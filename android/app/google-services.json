@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "135874233942",
+    "project_id": "direct2lead",
+    "storage_bucket": "direct2lead.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135874233942:android:10bb6a6dd257cf4bc8ddf7",
+        "android_client_info": {
+          "package_name": "com.direct2leadapp.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9PhlL4952r2p39KM-GAfSpXyBBQyx7sg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135874233942:android:10bc6d6e208c1b77c8ddf7",
+        "android_client_info": {
+          "package_name": "com.mycompany.crmapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9PhlL4952r2p39KM-GAfSpXyBBQyx7sg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
