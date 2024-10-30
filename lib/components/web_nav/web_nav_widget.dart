@@ -72,7 +72,8 @@ class _WebNavWidgetState extends State<WebNavWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -89,7 +90,8 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                       currentUserDocument?.adminAccount, false) ==
                   false)
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: AuthUserStreamWidget(
                     builder: (context) => InkWell(
                       splashColor: Colors.transparent,
@@ -164,7 +166,8 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                       currentUserDocument?.adminAccount, false) ==
                   true)
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: AuthUserStreamWidget(
                     builder: (context) => InkWell(
                       splashColor: Colors.transparent,
@@ -239,7 +242,8 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                       currentUserDocument?.adminAccount, false) ==
                   true)
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: AuthUserStreamWidget(
                     builder: (context) => InkWell(
                       splashColor: Colors.transparent,
@@ -314,7 +318,8 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                       currentUserDocument?.adminAccount, false) ==
                   false)
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: AuthUserStreamWidget(
                     builder: (context) => InkWell(
                       splashColor: Colors.transparent,
@@ -389,7 +394,8 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                       currentUserDocument?.adminAccount, false) ==
                   false)
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: AuthUserStreamWidget(
                     builder: (context) => InkWell(
                       splashColor: Colors.transparent,
@@ -461,7 +467,8 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                   ),
                 ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -530,7 +537,8 @@ class _WebNavWidgetState extends State<WebNavWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -541,8 +549,8 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                         color: FlutterFlowTheme.of(context).alternate,
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 12.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -566,10 +574,8 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                                           const Duration(milliseconds: 500),
                                       fadeOutDuration:
                                           const Duration(milliseconds: 500),
-                                      imageUrl: valueOrDefault<String>(
-                                        currentUserPhoto,
-                                        'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
-                                      ),
+                                      imageUrl:
+                                          'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
                                       width: 44.0,
                                       height: 44.0,
                                       fit: BoxFit.cover,
@@ -601,8 +607,9 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           currentUserEmail,

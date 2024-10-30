@@ -620,16 +620,13 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                                     borderRadius:
                                                                         BorderRadius.circular(
                                                                             8.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      containerUsersRecord
-                                                                          .photoUrl,
-                                                                      width:
-                                                                          70.0,
-                                                                      height:
-                                                                          70.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .group_outlined,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      size:
+                                                                          24.0,
                                                                     ),
                                                                   ),
                                                                   Expanded(
@@ -1128,16 +1125,13 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                                     borderRadius:
                                                                         BorderRadius.circular(
                                                                             8.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      containerUsersRecord
-                                                                          .photoUrl,
-                                                                      width:
-                                                                          70.0,
-                                                                      height:
-                                                                          70.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .group_outlined,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      size:
+                                                                          24.0,
                                                                     ),
                                                                   ),
                                                                   Expanded(
@@ -1636,16 +1630,13 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                                     borderRadius:
                                                                         BorderRadius.circular(
                                                                             8.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      containerUsersRecord
-                                                                          .photoUrl,
-                                                                      width:
-                                                                          70.0,
-                                                                      height:
-                                                                          70.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .group_outlined,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      size:
+                                                                          24.0,
                                                                     ),
                                                                   ),
                                                                   Expanded(

@@ -1520,6 +1520,7 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                               ],
                             ),
                           ),
+                          /*
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 0.0, 0.0),
@@ -1647,6 +1648,7 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                             ).animateOnPageLoad(animationsMap[
                                 'containerOnPageLoadAnimation7']!),
                           ),
+                          */
                           if (responsiveVisibility(
                             context: context,
                             phone: false,
