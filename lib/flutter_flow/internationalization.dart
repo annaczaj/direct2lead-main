@@ -891,7 +891,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': 'نئے معاہدے',
     },
     'saxskj92': {
-      'en': 'New Messages',
+      'en': 'New Comments',
       'bn': 'মেয়াদোত্তীর্ণ চুক্তি',
       'hi': 'समाप्त अनुबंध',
       'ml': 'കാലഹരണപ്പെട്ട കരാറുകൾ',

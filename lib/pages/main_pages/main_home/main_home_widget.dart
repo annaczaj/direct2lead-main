@@ -851,8 +851,9 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                         .secondaryBackground,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 12.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 12.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -861,9 +862,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 0.0, 8.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(16.0, 0.0, 0.0, 8.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
                                               '3bi54x5g' /* Dashboard */,
@@ -879,9 +879,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                               'textOnPageLoadAnimation1']!),
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 16.0, 16.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(16.0, 0.0, 16.0, 16.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
                                               'nnv46x35' /* Below is a summary of your act... */,
@@ -902,10 +901,12 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                  alignment:
+                                      const AlignmentDirectional(0.0, 1.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 30.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 30.0, 0.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
                                       height: 140.0,
@@ -921,9 +922,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                         scrollDirection: Axis.horizontal,
                                         children: [
                                           Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 0.0, 12.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(16.0, 0.0, 0.0, 12.0),
                                             child: StreamBuilder<
                                                 List<LeadInfoRecord>>(
                                               stream: queryLeadInfoRecord(
@@ -963,7 +963,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                       milliseconds: 100),
                                                   curve: Curves.easeInOut,
                                                   width: double.infinity,
-                                                  constraints: const BoxConstraints(
+                                                  constraints:
+                                                      const BoxConstraints(
                                                     minHeight: 70.0,
                                                     maxWidth: 300.0,
                                                   ),
@@ -997,7 +998,7 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(12.0, 0.0,
-                                                                12.0, 0.0),
+                                                            12.0, 0.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1029,7 +1030,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                       .circular(
                                                                           40.0),
                                                             ),
-                                                            child: const Padding(
+                                                            child:
+                                                                const Padding(
                                                               padding:
                                                                   EdgeInsets
                                                                       .all(
@@ -1048,8 +1050,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                 'containerOnPageLoadAnimation2']!),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
-                                                                  12.0),
+                                                              const EdgeInsets
+                                                                  .all(12.0),
                                                           child: Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -1083,10 +1085,10 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                 padding:
                                                                     const EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            8.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                        0.0,
+                                                                        8.0,
+                                                                        0.0,
+                                                                        0.0),
                                                                 child: Text(
                                                                   containerLeadInfoRecordList
                                                                       .length
@@ -1116,9 +1118,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                             ),
                                           ),
                                           Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 0.0, 12.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(16.0, 0.0, 0.0, 12.0),
                                             child: StreamBuilder<
                                                 List<LeadInfoRecord>>(
                                               stream: queryLeadInfoRecord(
@@ -1157,7 +1158,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                   duration: const Duration(
                                                       milliseconds: 100),
                                                   curve: Curves.easeInOut,
-                                                  constraints: const BoxConstraints(
+                                                  constraints:
+                                                      const BoxConstraints(
                                                     minHeight: 70.0,
                                                     maxWidth: 300.0,
                                                   ),
@@ -1191,7 +1193,7 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(12.0, 0.0,
-                                                                12.0, 0.0),
+                                                            12.0, 0.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1223,7 +1225,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                       .circular(
                                                                           40.0),
                                                             ),
-                                                            child: const Padding(
+                                                            child:
+                                                                const Padding(
                                                               padding:
                                                                   EdgeInsets
                                                                       .all(
@@ -1242,8 +1245,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                 'containerOnPageLoadAnimation4']!),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
-                                                                  12.0),
+                                                              const EdgeInsets
+                                                                  .all(12.0),
                                                           child: Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -1277,10 +1280,10 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                 padding:
                                                                     const EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            8.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                        0.0,
+                                                                        8.0,
+                                                                        0.0,
+                                                                        0.0),
                                                                 child: Text(
                                                                   containerLeadInfoRecordList
                                                                       .length
@@ -1310,9 +1313,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                             ),
                                           ),
                                           Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 0.0, 12.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(16.0, 0.0, 0.0, 12.0),
                                             child: AuthUserStreamWidget(
                                               builder: (context) =>
                                                   StreamBuilder<
@@ -1355,7 +1357,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                     duration: const Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.easeInOut,
-                                                    constraints: const BoxConstraints(
+                                                    constraints:
+                                                        const BoxConstraints(
                                                       minHeight: 70.0,
                                                       maxWidth: 300.0,
                                                     ),
@@ -1388,11 +1391,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  12.0,
-                                                                  0.0,
-                                                                  12.0,
-                                                                  0.0),
+                                                              .fromSTEB(12.0,
+                                                              0.0, 12.0, 0.0),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -1424,7 +1424,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                         .circular(
                                                                             40.0),
                                                               ),
-                                                              child: const Padding(
+                                                              child:
+                                                                  const Padding(
                                                                 padding:
                                                                     EdgeInsets
                                                                         .all(
@@ -1443,8 +1444,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                   'containerOnPageLoadAnimation6']!),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsets.all(
-                                                                    12.0),
+                                                                const EdgeInsets
+                                                                    .all(12.0),
                                                             child: Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
@@ -1460,7 +1461,7 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                   FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    'saxskj92' /* New Messages */,
+                                                                    'saxskj92' /* New Comments */,
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -1475,8 +1476,9 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                     animationsMap[
                                                                         'textOnPageLoadAnimation7']!),
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
+                                                                  padding:
+                                                                      const EdgeInsetsDirectional
+                                                                          .fromSTEB(
                                                                           0.0,
                                                                           8.0,
                                                                           0.0,
@@ -1562,8 +1564,9 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 12.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -1571,7 +1574,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                         children: [
                                           Stack(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(
+                                                    0.0, 0.0),
                                             children: [
                                               CircularPercentIndicator(
                                                 percent: 0.7,
@@ -1608,8 +1612,9 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                     ).animateOnPageLoad(animationsMap[
                                         'dividerOnPageLoadAnimation']!),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 8.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 8.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
                                           'xlzf8qqx' /* Notifications */,
@@ -1626,9 +1631,7 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                           'textOnPageLoadAnimation10']!),
                                     ),
                                     Text(
-                                      FFLocalizations.of(context).getText(
-                                        'zt3s5l2s' /* 4 */,
-                                      ),
+                                      '4',
                                       style: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -1706,12 +1709,13 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                   listViewLeadInfoRecordList[
                                                       listViewIndex];
                                               return AnimatedContainer(
-                                                duration:
-                                                    const Duration(milliseconds: 100),
+                                                duration: const Duration(
+                                                    milliseconds: 100),
                                                 curve: Curves.easeInOut,
                                                 width: double.infinity,
                                                 height: 145.0,
-                                                constraints: const BoxConstraints(
+                                                constraints:
+                                                    const BoxConstraints(
                                                   minHeight: 70.0,
                                                   maxWidth: 770.0,
                                                 ),
@@ -1740,8 +1744,9 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: Column(
                                                     mainAxisSize:
@@ -1753,11 +1758,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                       Padding(
                                                         padding:
                                                             const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    12.0,
-                                                                    8.0,
-                                                                    16.0,
-                                                                    8.0),
+                                                                .fromSTEB(12.0,
+                                                                8.0, 16.0, 8.0),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -1769,10 +1771,10 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          4.0,
-                                                                          12.0,
-                                                                          12.0,
-                                                                          12.0),
+                                                                      4.0,
+                                                                      12.0,
+                                                                      12.0,
+                                                                      12.0),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
@@ -1826,10 +1828,10 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                   Padding(
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                        0.0,
+                                                                        4.0,
+                                                                        0.0,
+                                                                        0.0),
                                                                     child: Text(
                                                                       dateTimeFormat(
                                                                         "relative",
@@ -1854,10 +1856,10 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                   Padding(
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0,
+                                                                        0.0),
                                                                     child:
                                                                         Container(
                                                                       width:
@@ -1878,7 +1880,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                             0.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional
+                                                                              .fromSTEB(
                                                                               3.0,
                                                                               3.0,
                                                                               3.0,
@@ -1960,12 +1963,13 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                   listViewCommentsRecordList[
                                                       listViewIndex];
                                               return AnimatedContainer(
-                                                duration:
-                                                    const Duration(milliseconds: 100),
+                                                duration: const Duration(
+                                                    milliseconds: 100),
                                                 curve: Curves.easeInOut,
                                                 width: double.infinity,
                                                 height: 125.0,
-                                                constraints: const BoxConstraints(
+                                                constraints:
+                                                    const BoxConstraints(
                                                   minHeight: 70.0,
                                                   maxWidth: 770.0,
                                                 ),
@@ -1994,8 +1998,9 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: Column(
                                                     mainAxisSize:
@@ -2007,11 +2012,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                       Padding(
                                                         padding:
                                                             const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    12.0,
-                                                                    8.0,
-                                                                    16.0,
-                                                                    4.0),
+                                                                .fromSTEB(12.0,
+                                                                8.0, 16.0, 4.0),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -2023,10 +2025,10 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          4.0,
-                                                                          12.0,
-                                                                          12.0,
-                                                                          12.0),
+                                                                      4.0,
+                                                                      12.0,
+                                                                      12.0,
+                                                                      12.0),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
@@ -2080,10 +2082,10 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                   Padding(
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                        0.0,
+                                                                        4.0,
+                                                                        0.0,
+                                                                        0.0),
                                                                     child: StreamBuilder<
                                                                         UsersRecord>(
                                                                       stream: UsersRecord.getDocument(
@@ -2145,10 +2147,10 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                   Padding(
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                        0.0,
+                                                                        4.0,
+                                                                        0.0,
+                                                                        0.0),
                                                                     child: Text(
                                                                       dateTimeFormat(
                                                                         "relative",
@@ -2225,7 +2227,7 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                       snapshot.data!;
 
                                   return ListView.builder(
-                                    padding: EdgeInsets.zero,
+                                    padding: EdgeInsets.all(16.0),
                                     primary: false,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
@@ -2236,7 +2238,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                           listViewLeadInfoRecordList[
                                               listViewIndex];
                                       return AnimatedContainer(
-                                        duration: const Duration(milliseconds: 100),
+                                        duration:
+                                            const Duration(milliseconds: 100),
                                         curve: Curves.easeInOut,
                                         width: double.infinity,
                                         height: 125.0,
@@ -2266,17 +2269,17 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                           ),
                                         ),
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 12.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
                                                         12.0, 8.0, 16.0, 4.0),
                                                 child: Row(
                                                   mainAxisSize:
@@ -2288,11 +2291,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  4.0,
-                                                                  12.0,
-                                                                  12.0,
-                                                                  12.0),
+                                                              .fromSTEB(4.0,
+                                                              12.0, 12.0, 12.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -2350,10 +2350,10 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                             padding:
                                                                 const EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        0.0,
-                                                                        4.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                                    0.0,
+                                                                    4.0,
+                                                                    0.0,
+                                                                    0.0),
                                                             child: Text(
                                                               dateTimeFormat(
                                                                 "relative",
@@ -2380,10 +2380,10 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                             padding:
                                                                 const EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        0.0,
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0,
+                                                                    0.0),
                                                             child: Container(
                                                               width: 100.0,
                                                               height: 30.0,
@@ -2403,8 +2403,9 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                                         0.0,
                                                                         0.0),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
+                                                                  padding:
+                                                                      const EdgeInsetsDirectional
+                                                                          .fromSTEB(
                                                                           3.0,
                                                                           3.0,
                                                                           3.0,
@@ -2483,7 +2484,7 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                       snapshot.data!;
 
                                   return ListView.builder(
-                                    padding: EdgeInsets.zero,
+                                    padding: EdgeInsets.all(16.0),
                                     primary: false,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
@@ -2494,7 +2495,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                           listViewCommentsRecordList[
                                               listViewIndex];
                                       return AnimatedContainer(
-                                        duration: const Duration(milliseconds: 100),
+                                        duration:
+                                            const Duration(milliseconds: 100),
                                         curve: Curves.easeInOut,
                                         width: double.infinity,
                                         height: 125.0,
@@ -2524,17 +2526,17 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                           ),
                                         ),
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 12.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0.0, 0.0, 0.0, 12.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
                                                         12.0, 8.0, 16.0, 4.0),
                                                 child: Row(
                                                   mainAxisSize:
@@ -2546,11 +2548,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  4.0,
-                                                                  12.0,
-                                                                  12.0,
-                                                                  12.0),
+                                                              .fromSTEB(4.0,
+                                                              12.0, 12.0, 12.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -2608,10 +2607,10 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                             padding:
                                                                 const EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        0.0,
-                                                                        4.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                                    0.0,
+                                                                    4.0,
+                                                                    0.0,
+                                                                    0.0),
                                                             child: StreamBuilder<
                                                                 UsersRecord>(
                                                               stream: UsersRecord
@@ -2692,10 +2691,10 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                             padding:
                                                                 const EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        0.0,
-                                                                        4.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                                    0.0,
+                                                                    4.0,
+                                                                    0.0,
+                                                                    0.0),
                                                             child: Text(
                                                               dateTimeFormat(
                                                                 "relative",

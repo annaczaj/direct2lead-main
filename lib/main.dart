@@ -11,6 +11,8 @@ import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 import 'index.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   GoRouter.optionURLReflectsImperativeAPIs = true;
@@ -149,7 +151,10 @@ class _NavBarPageState extends State<NavBarPage> {
       'Main_HomeAdmin': const MainHomeAdminWidget(),
       'Main_HomeSuperAdmin': const MainHomeSuperAdminWidget(),
     };
-    final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
+    final currentIndex = (_currentPageName == 'Main_Home' ||
+            _currentPageName == 'Main_customerList')
+        ? tabs.keys.toList().indexOf(_currentPageName)
+        : 0;
 
     return Scaffold(
       body: _currentPage ?? tabs[_currentPageName],
@@ -200,76 +205,6 @@ class _NavBarPageState extends State<NavBarPage> {
               ),
               tooltip: '',
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(
-                Icons.home_work_outlined,
-                size: 24.0,
-              ),
-              activeIcon: const Icon(
-                Icons.home_work_rounded,
-                size: 32.0,
-              ),
-              label: FFLocalizations.of(context).getText(
-                'j08eiorc' /* __ */,
-              ),
-              tooltip: '',
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(
-                Icons.forum_outlined,
-                size: 24.0,
-              ),
-              activeIcon: const Icon(
-                Icons.forum_rounded,
-                size: 24.0,
-              ),
-              label: FFLocalizations.of(context).getText(
-                'smtxdnbn' /* __ */,
-              ),
-              tooltip: '',
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(
-                Icons.account_circle_outlined,
-                size: 24.0,
-              ),
-              activeIcon: const Icon(
-                Icons.account_circle,
-                size: 32.0,
-              ),
-              label: FFLocalizations.of(context).getText(
-                'o3dp9tss' /* __ */,
-              ),
-              tooltip: '',
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(
-                Icons.dashboard_outlined,
-                size: 24.0,
-              ),
-              activeIcon: const Icon(
-                Icons.dashboard_rounded,
-                size: 32.0,
-              ),
-              label: FFLocalizations.of(context).getText(
-                'zj04wz17' /* __ */,
-              ),
-              tooltip: '',
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(
-                Icons.dashboard_outlined,
-                size: 24.0,
-              ),
-              activeIcon: const Icon(
-                Icons.dashboard_rounded,
-                size: 32.0,
-              ),
-              label: FFLocalizations.of(context).getText(
-                'm5qo5q58' /* __ */,
-              ),
-              tooltip: '',
-            )
           ],
         ),
       ),
