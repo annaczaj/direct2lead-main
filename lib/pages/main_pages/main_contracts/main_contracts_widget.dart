@@ -100,24 +100,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: !isWeb
-            ? AppBar(
-                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-                automaticallyImplyLeading: false,
-                title: Text(
-                  FFLocalizations.of(context).getText(
-                    '4h88trkp' /* Contracts */,
-                  ),
-                  style: FlutterFlowTheme.of(context).displaySmall.override(
-                        fontFamily: 'Outfit',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                actions: const [],
-                centerTitle: false,
-                elevation: 0.0,
-              )
-            : null,
+        appBar: null,
         body: Column(
           mainAxisSize: MainAxisSize.max,
           children: [

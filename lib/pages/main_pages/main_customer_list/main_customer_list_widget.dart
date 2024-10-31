@@ -467,15 +467,21 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                               queryBuilder: (leadInfoRecord) =>
                                                   leadInfoRecord
                                                       .where(Filter.or(
-                                                Filter(
-                                                  'leadRecipient',
-                                                  isEqualTo: currentUserUid,
-                                                ),
-                                                Filter(
-                                                  'leadSender',
-                                                  isEqualTo: currentUserUid,
-                                                ),
-                                              )),
+                                                        Filter(
+                                                          'leadRecipient',
+                                                          isEqualTo:
+                                                              currentUserUid,
+                                                        ),
+                                                        Filter(
+                                                          'leadSender',
+                                                          isEqualTo:
+                                                              currentUserUid,
+                                                        ),
+                                                      ))
+                                                      .orderBy(
+                                                          'leadCreationDate',
+                                                          descending: true)
+                                                      .limit(10),
                                             ),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
@@ -620,13 +626,16 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                                     borderRadius:
                                                                         BorderRadius.circular(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                      Icons
-                                                                          .group_outlined,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      size:
-                                                                          24.0,
+                                                                    child: Image
+                                                                        .network(
+                                                                      containerUsersRecord
+                                                                          .photoUrl,
+                                                                      width:
+                                                                          70.0,
+                                                                      height:
+                                                                          70.0,
+                                                                      fit: BoxFit
+                                                                          .cover,
                                                                     ),
                                                                   ),
                                                                   Expanded(
@@ -977,10 +986,16 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                           StreamBuilder<List<LeadInfoRecord>>(
                                             stream: queryLeadInfoRecord(
                                               queryBuilder: (leadInfoRecord) =>
-                                                  leadInfoRecord.where(
-                                                'leadRecipient',
-                                                isEqualTo: currentUserUid,
-                                              ),
+                                                  leadInfoRecord
+                                                      .where(
+                                                        'leadRecipient',
+                                                        isEqualTo:
+                                                            currentUserUid,
+                                                      )
+                                                      .orderBy(
+                                                          'leadCreationDate',
+                                                          descending: true)
+                                                      .limit(10),
                                             ),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
@@ -1125,13 +1140,16 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                                     borderRadius:
                                                                         BorderRadius.circular(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                      Icons
-                                                                          .group_outlined,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      size:
-                                                                          24.0,
+                                                                    child: Image
+                                                                        .network(
+                                                                      containerUsersRecord
+                                                                          .photoUrl,
+                                                                      width:
+                                                                          70.0,
+                                                                      height:
+                                                                          70.0,
+                                                                      fit: BoxFit
+                                                                          .cover,
                                                                     ),
                                                                   ),
                                                                   Expanded(
@@ -1482,10 +1500,16 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                           StreamBuilder<List<LeadInfoRecord>>(
                                             stream: queryLeadInfoRecord(
                                               queryBuilder: (leadInfoRecord) =>
-                                                  leadInfoRecord.where(
-                                                'leadSender',
-                                                isEqualTo: currentUserUid,
-                                              ),
+                                                  leadInfoRecord
+                                                      .where(
+                                                        'leadSender',
+                                                        isEqualTo:
+                                                            currentUserUid,
+                                                      )
+                                                      .orderBy(
+                                                          'leadCreationDate',
+                                                          descending: true)
+                                                      .limit(10),
                                             ),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
@@ -1630,13 +1654,16 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                                     borderRadius:
                                                                         BorderRadius.circular(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                      Icons
-                                                                          .group_outlined,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      size:
-                                                                          24.0,
+                                                                    child: Image
+                                                                        .network(
+                                                                      containerUsersRecord
+                                                                          .photoUrl,
+                                                                      width:
+                                                                          70.0,
+                                                                      height:
+                                                                          70.0,
+                                                                      fit: BoxFit
+                                                                          .cover,
                                                                     ),
                                                                   ),
                                                                   Expanded(

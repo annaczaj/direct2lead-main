@@ -212,8 +212,9 @@ class _CreateCommentWidgetState extends State<CreateCommentWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 32.0, 20.0, 12.0),
+                              contentPadding:
+                                  const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 32.0, 20.0, 12.0),
                             ),
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
@@ -255,15 +256,14 @@ class _CreateCommentWidgetState extends State<CreateCommentWidget> {
                                     ),
                                   });
                                 },
-                                text: FFLocalizations.of(context).getText(
-                                  'farrki57' /* Create Note */,
-                                ),
+                                text: 'Send',
                                 options: FFButtonOptions(
                                   height: 52.0,
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       44.0, 0.0, 44.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleMedium

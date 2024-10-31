@@ -783,26 +783,7 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: !isWeb
-            ? AppBar(
-                backgroundColor: FlutterFlowTheme.of(context).primary,
-                automaticallyImplyLeading: false,
-                title: Text(
-                  FFLocalizations.of(context).getText(
-                    'y24lcr13' /* Dashboard */,
-                  ),
-                  style: FlutterFlowTheme.of(context).displaySmall.override(
-                        fontFamily: 'Outfit',
-                        color: Colors.white,
-                        letterSpacing: 0.0,
-                      ),
-                ).animateOnPageLoad(
-                    animationsMap['textOnPageLoadAnimation14']!),
-                actions: const [],
-                centerTitle: false,
-                elevation: 0.0,
-              )
-            : null,
+        appBar: null,
         body: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -918,7 +899,7 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                           44.0,
                                           0,
                                         ),
-                                        shrinkWrap: true,
+                                        //shrinkWrap: true,
                                         scrollDirection: Axis.horizontal,
                                         children: [
                                           Padding(

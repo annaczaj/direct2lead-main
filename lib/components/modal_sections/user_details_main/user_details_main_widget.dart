@@ -950,7 +950,8 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                           ),
                           if (widget.showBack == true)
                             Align(
-                              alignment: const AlignmentDirectional(-0.95, -0.55),
+                              alignment:
+                                  const AlignmentDirectional(-0.95, -0.55),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -985,8 +986,8 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          20.0, 16.0, 20.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1054,8 +1055,8 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 12.0, 10.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          10.0, 12.0, 10.0, 0.0),
                       child: Container(
                         width: 370.0,
                         height: 40.0,
@@ -1160,8 +1161,8 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                           animationsMap['containerOnPageLoadAnimation']!),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          20.0, 12.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1200,8 +1201,8 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 0.0, 12.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          20.0, 12.0, 0.0, 12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1228,8 +1229,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                   ).animateOnPageLoad(animationsMap[
                                       'textOnPageLoadAnimation5']!),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 4.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 4.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         widget.leadInfo?.leadEmail,
@@ -1273,8 +1275,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                   ).animateOnPageLoad(animationsMap[
                                       'textOnPageLoadAnimation7']!),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 4.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 4.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         widget.leadInfo?.leadPhone,
@@ -1318,8 +1321,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                   ).animateOnPageLoad(animationsMap[
                                       'textOnPageLoadAnimation9']!),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 4.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 4.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         widget.leadInfo?.language,
@@ -1364,8 +1368,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation11']!),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           widget.leadInfo?.prequalOrPending,
@@ -1411,8 +1416,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation13']!),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           widget.leadInfo?.prequalAmtLender,
@@ -1458,8 +1464,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation15']!),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           widget.leadInfo?.homeToSellLender,
@@ -1505,8 +1512,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation17']!),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           widget.leadInfo?.homeToSellRealtor,
@@ -1552,8 +1560,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation19']!),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           widget.leadInfo?.loanPurpose,
@@ -1599,8 +1608,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation21']!),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           widget.leadInfo?.readyToApply,
@@ -1646,8 +1656,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation23']!),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           widget.leadInfo?.prequalAmtLender,
@@ -1693,8 +1704,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation25']!),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           widget.leadInfo?.prequalAmtRealtor,
@@ -1740,8 +1752,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation27']!),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           widget.leadInfo?.highNurture,
@@ -1787,8 +1800,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation29']!),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           widget.leadInfo?.workingWithRealtor,
@@ -1834,8 +1848,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation31']!),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           widget.leadInfo?.workingWithLender,
@@ -1960,8 +1975,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                   ).animateOnPageLoad(animationsMap[
                                       'textOnPageLoadAnimation34']!),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 4.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 4.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         widget.leadInfo?.notes,
@@ -2026,7 +2042,8 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                               await showModalBottomSheet(
                                 isScrollControlled: true,
                                 backgroundColor: Colors.transparent,
-                                enableDrag: false,
+                                isDismissible: true,
+                                enableDrag: true,
                                 context: context,
                                 builder: (context) {
                                   return Padding(
@@ -2044,10 +2061,13 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                     ),
                     StreamBuilder<List<CommentsRecord>>(
                       stream: queryCommentsRecord(
-                        queryBuilder: (commentsRecord) => commentsRecord.where(
-                          'commentLeadChoice',
-                          isEqualTo: widget.leadInfo?.reference,
-                        ),
+                        queryBuilder: (commentsRecord) => commentsRecord
+                            .where(
+                              'commentLeadChoice',
+                              isEqualTo: widget.leadInfo?.reference,
+                            )
+                            .orderBy('commentDate', descending: true)
+                            .limit(10),
                       ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
@@ -2131,8 +2151,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                             ),
                                             Expanded(
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
                                                         12.0, 0.0, 0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -2155,14 +2176,11 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  4.0,
-                                                                  0.0,
-                                                                  0.0),
+                                                              .fromSTEB(0.0,
+                                                              4.0, 0.0, 0.0),
                                                       child: Text(
                                                         dateTimeFormat(
-                                                          "M/d h:mm a",
+                                                          "MMMM d, y  h:mm a",
                                                           listViewCommentsRecord
                                                               .commentDate!,
                                                           locale:
@@ -2189,9 +2207,8 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                           ],
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 0.0, 0.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0.0, 12.0, 0.0, 0.0),
                                           child: Text(
                                             listViewCommentsRecord.content,
                                             style: FlutterFlowTheme.of(context)
