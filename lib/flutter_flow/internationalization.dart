@@ -871,7 +871,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': 'ذیل میں آپ کی ٹیموں کی سرگرمیوں کا خلاصہ ہے۔',
     },
     'jqevo63s': {
-      'en': 'Recieved Leads',
+      'en': 'Received Leads',
       'bn': 'নতুন গ্রাহকরা',
       'hi': 'नए ग्राहक',
       'ml': 'പുതിയ ഉപഭോക്താക്കൾ',
@@ -1144,7 +1144,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': 'حالت',
     },
     'qh2ock0d': {
-      'en': 'Recieved',
+      'en': 'Received',
       'bn': 'নতুন কল',
       'hi': 'नई कॉलें',
       'ml': 'പുതിയ കോളുകൾ',
