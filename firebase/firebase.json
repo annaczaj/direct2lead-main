@@ -3,12 +3,13 @@
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
-  "functions": [
+  "functions": 
     {
       "source": "functions",
-      "codebase": "functions"
+      "codebase": "functions",
+      "predeploy": ["npm --prefix $Env:RESOURCE_DIR run lint", "npm --prefix $Env:RESOURCE_DIR run build"]
     }
-  ],
+  ,
   "hosting": {
     "public": "public",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]

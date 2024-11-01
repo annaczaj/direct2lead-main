@@ -216,8 +216,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                               10.0, 0.0, 0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          logFirebaseEvent(
-                                              'MAIN_CONTRACTS_PAGE_submitLeadFromCSV_ON_TAP');
+                                          logFirebaseEvent('submitLeadsCSV');
 
                                           FilePickerResult? result =
                                               await FilePicker.platform
@@ -2880,7 +2879,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     logFirebaseEvent(
-                                                        'MAIN_CONTRACTS_PAGE_submitLead_ON_TAP');
+                                                        'leadSubmitButton');
 
                                                     await LeadInfoRecord
                                                         .collection

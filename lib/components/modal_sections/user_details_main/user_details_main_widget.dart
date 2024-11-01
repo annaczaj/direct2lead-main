@@ -2061,13 +2061,10 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                     ),
                     StreamBuilder<List<CommentsRecord>>(
                       stream: queryCommentsRecord(
-                        queryBuilder: (commentsRecord) => commentsRecord
-                            .where(
-                              'commentLeadChoice',
-                              isEqualTo: widget.leadInfo?.reference,
-                            )
-                            .orderBy('commentDate', descending: true)
-                            .limit(10),
+                        queryBuilder: (commentsRecord) => commentsRecord.where(
+                          'commentLeadChoice',
+                          isEqualTo: widget.leadInfo?.reference,
+                        ),
                       ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.

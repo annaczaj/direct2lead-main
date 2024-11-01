@@ -1,7 +1,12 @@
+import 'dart:io';
+
+import 'package:design_redo_direct2_lead/components/notification_badge.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'auth/firebase_auth/firebase_user_provider.dart';
 import 'auth/firebase_auth/auth_util.dart';
 
@@ -10,8 +15,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 import 'index.dart';
+import 'components/push_notification.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+
+Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print('Handling a background message: ${message.messageId}');
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,8 +58,63 @@ class _MyAppState extends State<MyApp> {
 
   final authUserSub = authenticatedUserStream.listen((_) {});
 
+  late int _totalNotifications;
+  late final FirebaseMessaging _messaging;
+  PushNotification? _notification_info;
+
+  void requestAndRegisterNotification() async {
+    await Firebase.initializeApp();
+
+    _messaging = FirebaseMessaging.instance;
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+    NotificationSettings settings = await _messaging.requestPermission(
+        alert: true, badge: true, provisional: false, sound: true);
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print('User granted permission');
+      String? token = await _messaging.getToken();
+      print('The token is ' + token!);
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        PushNotification notification = PushNotification(
+          title: message.notification?.title,
+          body: message.notification?.body,
+        );
+        setState(() {
+          _notification_info = notification;
+          _totalNotifications++;
+        });
+
+        if (_notification_info != null) {
+          showSimpleNotification(
+            Text(_notification_info!.title!),
+            leading: NotificationBadge(totalNotifications: _totalNotifications),
+            subtitle: Text(_notification_info!.body!),
+            background: FlutterFlowTheme.of(context).background,
+            duration: Duration(seconds: 2),
+          );
+        }
+      });
+    } else {
+      print('User declined or has not accepted permission');
+    }
+  }
+
   @override
   void initState() {
+    requestAndRegisterNotification();
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      PushNotification notification = PushNotification(
+        title: message.notification?.title,
+        body: message.notification?.body,
+      );
+      setState(() {
+        _notification_info = notification;
+        _totalNotifications++;
+      });
+    });
+    _totalNotifications = 0;
+
     super.initState();
 
     _appStateNotifier = AppStateNotifier.instance;
@@ -145,14 +210,15 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'Main_Home': const MainHomeWidget(),
       'Main_customerList': const MainCustomerListWidget(),
+      'Main_profilePage': const MainProfilePageWidget(),
       'Main_Contracts': const MainContractsWidget(),
       'Main_messages': const MainMessagesWidget(),
-      'Main_profilePage': const MainProfilePageWidget(),
       'Main_HomeAdmin': const MainHomeAdminWidget(),
       'Main_HomeSuperAdmin': const MainHomeSuperAdminWidget(),
     };
     final currentIndex = (_currentPageName == 'Main_Home' ||
-            _currentPageName == 'Main_customerList')
+            _currentPageName == 'Main_customerList' ||
+            _currentPageName == 'Main_profilePage')
         ? tabs.keys.toList().indexOf(_currentPageName)
         : 0;
 
@@ -202,6 +268,20 @@ class _NavBarPageState extends State<NavBarPage> {
               ),
               label: FFLocalizations.of(context).getText(
                 '3ourv2w9' /* __ */,
+              ),
+              tooltip: '',
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(
+                Icons.verified_user_outlined,
+                size: 24.0,
+              ),
+              activeIcon: const Icon(
+                Icons.verified_user_sharp,
+                size: 32.0,
+              ),
+              label: FFLocalizations.of(context).getText(
+                'xdxbdj20' /* __ */,
               ),
               tooltip: '',
             ),

@@ -124,24 +124,7 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: !isWeb
-            ? AppBar(
-                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-                automaticallyImplyLeading: false,
-                title: Text(
-                  FFLocalizations.of(context).getText(
-                    'fcyoodds' /* Customers */,
-                  ),
-                  style: FlutterFlowTheme.of(context).displaySmall.override(
-                        fontFamily: 'Outfit',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                actions: const [],
-                centerTitle: false,
-                elevation: 0.0,
-              )
-            : null,
+        appBar: null,
         body: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -480,8 +463,7 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                       ))
                                                       .orderBy(
                                                           'leadCreationDate',
-                                                          descending: true)
-                                                      .limit(10),
+                                                          descending: true),
                                             ),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
@@ -490,16 +472,6 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                   child: SizedBox(
                                                     width: 50.0,
                                                     height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                      ),
-                                                    ),
                                                   ),
                                                 );
                                               }
@@ -513,7 +485,7 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                   0,
                                                   0,
                                                   0,
-                                                  70.0,
+                                                  0.0,
                                                 ),
                                                 shrinkWrap: true,
                                                 scrollDirection: Axis.vertical,
@@ -544,16 +516,6 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                             child: SizedBox(
                                                               width: 50.0,
                                                               height: 50.0,
-                                                              child:
-                                                                  CircularProgressIndicator(
-                                                                valueColor:
-                                                                    AlwaysStoppedAnimation<
-                                                                        Color>(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                ),
-                                                              ),
                                                             ),
                                                           );
                                                         }
@@ -994,8 +956,7 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                       )
                                                       .orderBy(
                                                           'leadCreationDate',
-                                                          descending: true)
-                                                      .limit(10),
+                                                          descending: true),
                                             ),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
@@ -1004,16 +965,6 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                   child: SizedBox(
                                                     width: 50.0,
                                                     height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                      ),
-                                                    ),
                                                   ),
                                                 );
                                               }
@@ -1027,7 +978,7 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                   0,
                                                   0,
                                                   0,
-                                                  70.0,
+                                                  0.0,
                                                 ),
                                                 shrinkWrap: true,
                                                 scrollDirection: Axis.vertical,
@@ -1508,8 +1459,7 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                       )
                                                       .orderBy(
                                                           'leadCreationDate',
-                                                          descending: true)
-                                                      .limit(10),
+                                                          descending: true),
                                             ),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
@@ -1518,16 +1468,6 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                   child: SizedBox(
                                                     width: 50.0,
                                                     height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                      ),
-                                                    ),
                                                   ),
                                                 );
                                               }
@@ -1541,7 +1481,7 @@ class _MainCustomerListWidgetState extends State<MainCustomerListWidget>
                                                   0,
                                                   0,
                                                   0,
-                                                  70.0,
+                                                  0.0,
                                                 ),
                                                 shrinkWrap: true,
                                                 scrollDirection: Axis.vertical,
