@@ -96,6 +96,10 @@ class UsersRecord extends FirestoreRecord {
   bool get adminAccount => _adminAccount ?? false;
   bool hasAdminAccount() => _adminAccount != null;
 
+  String? _token;
+  String get token => _token ?? '';
+  bool hasToken() => _token != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -113,6 +117,7 @@ class UsersRecord extends FirestoreRecord {
     _superAdmin = snapshotData['superAdmin'] as bool?;
     _podNum = snapshotData['podNum'] as String?;
     _adminAccount = snapshotData['adminAccount'] as bool?;
+    _token = snapshotData['token'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -163,6 +168,7 @@ Map<String, dynamic> createUsersRecordData({
   bool? superAdmin,
   String? podNum,
   bool? adminAccount,
+  String? token,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -180,6 +186,7 @@ Map<String, dynamic> createUsersRecordData({
       'superAdmin': superAdmin,
       'podNum': podNum,
       'adminAccount': adminAccount,
+      'token': token,
     }.withoutNulls,
   );
 
@@ -207,7 +214,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         listEquality.equals(e1?.workAreas, e2?.workAreas) &&
         e1?.superAdmin == e2?.superAdmin &&
         e1?.podNum == e2?.podNum &&
-        e1?.adminAccount == e2?.adminAccount;
+        e1?.adminAccount == e2?.adminAccount &&
+        e1?.token == e2?.token;
   }
 
   @override
@@ -227,7 +235,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.workAreas,
         e?.superAdmin,
         e?.podNum,
-        e?.adminAccount
+        e?.adminAccount,
+        e?.token
       ]);
 
   @override

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:design_redo_direct2_lead/pages/main_pages/lead_csv/lead_csv_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
@@ -73,14 +74,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const AuthLoginWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? const NavBarPage()
+          : const AuthLoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? const NavBarPage() : const AuthLoginWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? const NavBarPage()
+              : const AuthLoginWidget(),
           routes: [
             FFRoute(
               name: 'auth_Login',
@@ -157,7 +160,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'projectDetailsHealthAi',
               path: 'projectDetailsHealthAi',
-              builder: (context, params) => const ProjectDetailsHealthAiWidget(),
+              builder: (context, params) =>
+                  const ProjectDetailsHealthAiWidget(),
             ),
             FFRoute(
               name: 'projectDetails',
@@ -187,6 +191,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? const NavBarPage(initialPage: 'Main_HomeSuperAdmin')
                   : const MainHomeSuperAdminWidget(),
+            ),
+            FFRoute(
+              name: 'Lead_Csv',
+              path: 'Lead_Csv',
+              builder: (context, params) => const LeadCsvWidget(),
             ),
             FFRoute(
               name: 'editProfileAdmin',
@@ -438,7 +447,8 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() =>
+      const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

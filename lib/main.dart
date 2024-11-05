@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:design_redo_direct2_lead/backend/schema/users_record.dart';
 import 'package:design_redo_direct2_lead/components/notification_badge.dart';
+import 'package:design_redo_direct2_lead/pages/main_pages/lead_csv/lead_csv_widget.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
@@ -73,8 +75,9 @@ class _MyAppState extends State<MyApp> {
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       print('User granted permission');
-      String? token = await _messaging.getToken();
-      print('The token is ' + token!);
+      String? _token = await _messaging.getToken();
+      print('The token is ' + _token!);
+      currentUserReference!.update(createUsersRecordData(token: _token));
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         PushNotification notification = PushNotification(
           title: message.notification?.title,
@@ -102,7 +105,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    requestAndRegisterNotification();
+    if (isiOS) {
+      requestAndRegisterNotification();
+    }
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       PushNotification notification = PushNotification(
         title: message.notification?.title,
@@ -215,10 +220,12 @@ class _NavBarPageState extends State<NavBarPage> {
       'Main_messages': const MainMessagesWidget(),
       'Main_HomeAdmin': const MainHomeAdminWidget(),
       'Main_HomeSuperAdmin': const MainHomeSuperAdminWidget(),
+      'Lead_Csv': const LeadCsvWidget()
     };
     final currentIndex = (_currentPageName == 'Main_Home' ||
             _currentPageName == 'Main_customerList' ||
-            _currentPageName == 'Main_profilePage')
+            _currentPageName == 'Main_profilePage' ||
+            _currentPageName == 'Main_Contracts')
         ? tabs.keys.toList().indexOf(_currentPageName)
         : 0;
 
@@ -278,6 +285,20 @@ class _NavBarPageState extends State<NavBarPage> {
               ),
               activeIcon: const Icon(
                 Icons.verified_user_sharp,
+                size: 32.0,
+              ),
+              label: FFLocalizations.of(context).getText(
+                'xdxbdj20' /* __ */,
+              ),
+              tooltip: '',
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(
+                Icons.add_chart_outlined,
+                size: 24.0,
+              ),
+              activeIcon: const Icon(
+                Icons.add_chart_sharp,
                 size: 32.0,
               ),
               label: FFLocalizations.of(context).getText(

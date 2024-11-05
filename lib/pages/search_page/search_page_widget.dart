@@ -116,8 +116,8 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 16.0, 0.0, 0.0),
                         child: Container(
                           width: double.infinity,
                           height: 16.0,
@@ -272,7 +272,8 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                         fillColor: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                         contentPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional
+                                                .fromSTEB(
                                                 24.0, 20.0, 12.0, 20.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -375,8 +376,9 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                     final listViewUsersRecord =
                                         listViewUsersRecordList[listViewIndex];
                                     return Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 4.0, 16.0, 8.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              16.0, 4.0, 16.0, 8.0),
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
@@ -414,8 +416,9 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           8.0, 0.0, 0.0, 0.0),
                                                   child: Column(
                                                     mainAxisSize:
@@ -444,11 +447,8 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                                       Padding(
                                                         padding:
                                                             const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    4.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                                .fromSTEB(0.0,
+                                                                4.0, 0.0, 0.0),
                                                         child: Text(
                                                           listViewUsersRecord
                                                               .email,
@@ -536,12 +536,12 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                                     height: 36.0,
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
+                                                            .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
                                                     iconPadding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
+                                                            .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
@@ -557,7 +557,8 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                     elevation: 2.0,
-                                                    borderSide: const BorderSide(
+                                                    borderSide:
+                                                        const BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),
@@ -622,8 +623,9 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                     final listViewUsersRecord =
                                         listViewUsersRecordList[listViewIndex];
                                     return Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 4.0, 16.0, 8.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              16.0, 4.0, 16.0, 8.0),
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
@@ -661,8 +663,9 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           8.0, 0.0, 0.0, 0.0),
                                                   child: Column(
                                                     mainAxisSize:
@@ -691,11 +694,8 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                                       Padding(
                                                         padding:
                                                             const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    4.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                                .fromSTEB(0.0,
+                                                                4.0, 0.0, 0.0),
                                                         child: Text(
                                                           listViewUsersRecord
                                                               .email,
@@ -783,12 +783,12 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                                     height: 36.0,
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
+                                                            .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
                                                     iconPadding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
+                                                            .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
@@ -804,7 +804,8 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                     elevation: 2.0,
-                                                    borderSide: const BorderSide(
+                                                    borderSide:
+                                                        const BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),

@@ -2948,7 +2948,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': 'ذیل میں آپ کی ٹیموں کی سرگرمیوں کا خلاصہ ہے۔',
     },
     'yf5acfe7': {
-      'en': 'Lendor Leads',
+      'en': 'Lender Leads',
       'bn': 'নতুন গ্রাহকরা',
       'hi': 'नए ग्राहक',
       'ml': 'പുതിയ ഉപഭോക്താക്കൾ',
