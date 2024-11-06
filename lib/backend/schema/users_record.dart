@@ -100,6 +100,10 @@ class UsersRecord extends FirestoreRecord {
   String get token => _token ?? '';
   bool hasToken() => _token != null;
 
+  bool? _isPaused;
+  bool get isPaused => _isPaused ?? false;
+  bool hasIsPaused() => _isPaused != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -118,6 +122,7 @@ class UsersRecord extends FirestoreRecord {
     _podNum = snapshotData['podNum'] as String?;
     _adminAccount = snapshotData['adminAccount'] as bool?;
     _token = snapshotData['token'] as String?;
+    _isPaused = snapshotData['isPaused'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -169,6 +174,7 @@ Map<String, dynamic> createUsersRecordData({
   String? podNum,
   bool? adminAccount,
   String? token,
+  bool? isPaused,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -187,6 +193,7 @@ Map<String, dynamic> createUsersRecordData({
       'podNum': podNum,
       'adminAccount': adminAccount,
       'token': token,
+      'isPaused': isPaused,
     }.withoutNulls,
   );
 
@@ -215,7 +222,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.superAdmin == e2?.superAdmin &&
         e1?.podNum == e2?.podNum &&
         e1?.adminAccount == e2?.adminAccount &&
-        e1?.token == e2?.token;
+        e1?.token == e2?.token &&
+        e1?.isPaused == e2?.isPaused;
   }
 
   @override
@@ -236,7 +244,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.superAdmin,
         e?.podNum,
         e?.adminAccount,
-        e?.token
+        e?.token,
+        e?.isPaused,
       ]);
 
   @override

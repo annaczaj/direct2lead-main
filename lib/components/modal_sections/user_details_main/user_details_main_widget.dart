@@ -1107,6 +1107,7 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                         await widget.leadInfo!.reference
                                             .update(createLeadInfoRecordData(
                                           leadStage: _model.stageChoiceValue,
+                                          lastChanged: DateTime.now(),
                                         ));
                                       },
                                 selectedChipStyle: ChipStyle(
@@ -2061,11 +2062,11 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                     ),
                     StreamBuilder<List<CommentsRecord>>(
                       stream: queryCommentsRecord(
-                        queryBuilder: (commentsRecord) => commentsRecord.where(
-                          'commentLeadChoice',
-                          isEqualTo: widget.leadInfo?.reference,
-                        ),
-                      ),
+                          queryBuilder: (commentsRecord) =>
+                              commentsRecord.where(
+                                'commentLeadChoice',
+                                isEqualTo: widget.leadInfo?.reference,
+                              )),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
@@ -2083,6 +2084,9 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                         }
                         List<CommentsRecord> listViewCommentsRecordList =
                             snapshot.data!;
+
+                        listViewCommentsRecordList.sort(
+                            (a, b) => b.commentDate!.compareTo(a.commentDate!));
 
                         return ListView.builder(
                           padding: EdgeInsets.zero,

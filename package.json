@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@google-cloud/functions-framework": "^3.4.2",
     "csv-parser": "^3.0.0",
     "firebase-admin": "^12.7.0"
   },

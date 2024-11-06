@@ -154,8 +154,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                 alignment:
                                     const AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 16.0, 0.0),
+                                  padding: (isWeb)
+                                      ? const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0)
+                                      : const EdgeInsets.all(0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
@@ -180,8 +182,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 4.0, 0.0, 0.0),
+                              padding: (isMobileWidth(context))
+                                  ? const EdgeInsets.all(0.0)
+                                  : const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 4.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   't967eizl' /* Fill out the form below */,
@@ -197,10 +201,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                             Align(
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 20.0, 50.0, 0.0),
+                                padding: (isMobileWidth(context))
+                                    ? const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 20.0, 0.0, 0.0)
+                                    : const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 20.0, 50.0, 0.0),
                                 child: Container(
-                                  width: MediaQuery.sizeOf(context).width * 0.6,
+                                  width: (isMobileWidth(context))
+                                      ? MediaQuery.sizeOf(context).width * 0.85
+                                      : MediaQuery.sizeOf(context).width * 0.6,
                                   height:
                                       MediaQuery.sizeOf(context).height * 0.8,
                                   decoration: BoxDecoration(
@@ -638,8 +647,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsetsDirectional
-                                                .fromSTEB(0.0, 5.0, 0.0, 5.0),
+                                            padding: const EdgeInsets.all(0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -649,7 +657,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                   padding:
                                                       const EdgeInsetsDirectional
                                                           .fromSTEB(
-                                                          0.0, 0.0, 0.0, 0.0),
+                                                          8.0, 8.0, 8.0, 8.0),
                                                   child: Container(
                                                     width: MediaQuery.sizeOf(
                                                                 context)
@@ -881,8 +889,8 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(0.0,
-                                                              0.0, 0.0, 0.0),
+                                                              .fromSTEB(8.0,
+                                                              8.0, 8.0, 8.0),
                                                       child: Container(
                                                         width:
                                                             MediaQuery.sizeOf(
@@ -2687,9 +2695,9 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                         (e) =>
                                                                             () {
                                                                               if (valueOrDefault(currentUserDocument?.userType, '') == 'Realtor') {
-                                                                                return ((e.userType == 'Lender') && e.language.contains(_model.languageValue));
+                                                                                return ((e.userType == 'Lender') && e.language.contains(_model.languageValue) && (e.isPaused != true));
                                                                               } else if (valueOrDefault(currentUserDocument?.userType, '') == 'Lender') {
-                                                                                return ((e.userType == 'Realtor') && e.language.contains(_model.languageValue));
+                                                                                return ((e.userType == 'Realtor') && e.language.contains(_model.languageValue) && (e.isPaused != true));
                                                                               } else {
                                                                                 return true;
                                                                               }
@@ -2704,9 +2712,9 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                         (e) =>
                                                                             () {
                                                                               if (valueOrDefault(currentUserDocument?.userType, '') == 'Realtor') {
-                                                                                return ((e.userType == 'Lender') && e.language.contains(_model.languageValue));
+                                                                                return ((e.userType == 'Lender') && e.language.contains(_model.languageValue) && (e.isPaused != true));
                                                                               } else if (valueOrDefault(currentUserDocument?.userType, '') == 'Lender') {
-                                                                                return ((e.userType == 'Realtor') && e.language.contains(_model.languageValue));
+                                                                                return ((e.userType == 'Realtor') && e.language.contains(_model.languageValue) && (e.isPaused != true));
                                                                               } else {
                                                                                 return true;
                                                                               }
@@ -2843,6 +2851,9 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                         ...mapToFirestore(
                                                           {
                                                             'leadCreationDate':
+                                                                FieldValue
+                                                                    .serverTimestamp(),
+                                                            'lastChanged':
                                                                 FieldValue
                                                                     .serverTimestamp(),
                                                             'areaOfInterest': _model
