@@ -136,6 +136,10 @@ class LeadInfoRecord extends FirestoreRecord {
   String get senderGroupID => _senderGroupID ?? '';
   bool hasSenderGroupID() => _senderGroupID != null;
 
+  String? _leadID;
+  String get leadID => _leadID ?? '';
+  bool hasLeadID() => _leadID != null;
+
   void _initializeFields() {
     _leadName = snapshotData['leadName'] as String?;
     _leadEmail = snapshotData['leadEmail'] as String?;
@@ -161,6 +165,7 @@ class LeadInfoRecord extends FirestoreRecord {
     _readyToApply = snapshotData['readyToApply'] as String?;
     _senderUserType = snapshotData['senderUserType'] as String?;
     _senderGroupID = snapshotData['senderGroupID'] as String?;
+    _leadID = snapshotData['leadID'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -221,6 +226,7 @@ Map<String, dynamic> createLeadInfoRecordData({
   String? readyToApply,
   String? senderUserType,
   String? senderGroupID,
+  String? leadID,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -247,6 +253,7 @@ Map<String, dynamic> createLeadInfoRecordData({
       'readyToApply': readyToApply,
       'senderUserType': senderUserType,
       'senderGroupID': senderGroupID,
+      'leadID': leadID,
     }.withoutNulls,
   );
 
@@ -282,7 +289,8 @@ class LeadInfoRecordDocumentEquality implements Equality<LeadInfoRecord> {
         e1?.workingWithLender == e2?.workingWithLender &&
         e1?.readyToApply == e2?.readyToApply &&
         e1?.senderUserType == e2?.senderUserType &&
-        e1?.senderGroupID == e2?.senderGroupID;
+        e1?.senderGroupID == e2?.senderGroupID &&
+        e1?.leadID == e2?.leadID;
   }
 
   @override
@@ -310,7 +318,8 @@ class LeadInfoRecordDocumentEquality implements Equality<LeadInfoRecord> {
         e?.workingWithLender,
         e?.readyToApply,
         e?.senderUserType,
-        e?.senderGroupID
+        e?.senderGroupID,
+        e?.leadID
       ]);
 
   @override

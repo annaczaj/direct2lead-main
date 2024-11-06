@@ -19,6 +19,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'main_contracts_model.dart';
 export 'main_contracts_model.dart';
 import 'package:csv/csv.dart';
+import 'package:uuid/uuid.dart';
 
 class MainContractsWidget extends StatefulWidget {
   const MainContractsWidget({super.key});
@@ -34,6 +35,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = <String, AnimationInfo>{};
+  final uuid = Uuid();
 
   @override
   void initState() {
@@ -2845,6 +2847,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                     .serverTimestamp(),
                                                             'areaOfInterest': _model
                                                                 .areaOfInterestValue,
+                                                            'leadID': uuid.v4(),
                                                           },
                                                         ),
                                                       });
