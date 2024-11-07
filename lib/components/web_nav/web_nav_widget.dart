@@ -419,7 +419,7 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: widget.selectedNav == 3
+                          color: widget.selectedNav == 6
                               ? FlutterFlowTheme.of(context).alternate
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -433,7 +433,7 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                             children: [
                               Icon(
                                 Icons.send,
-                                color: widget.selectedNav == 3
+                                color: widget.selectedNav == 6
                                     ? FlutterFlowTheme.of(context).primary
                                     : FlutterFlowTheme.of(context)
                                         .secondaryText,
@@ -448,7 +448,7 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                                       .labelLarge
                                       .override(
                                         fontFamily: 'Plus Jakarta Sans',
-                                        color: widget.selectedNav == 3
+                                        color: widget.selectedNav == 6
                                             ? FlutterFlowTheme.of(context)
                                                 .primaryText
                                             : FlutterFlowTheme.of(context)

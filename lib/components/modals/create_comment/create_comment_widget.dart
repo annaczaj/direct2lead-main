@@ -255,6 +255,13 @@ class _CreateCommentWidgetState extends State<CreateCommentWidget> {
                                       },
                                     ),
                                   });
+
+                                  await widget.leadDoc!
+                                      .update(createLeadInfoRecordData(
+                                    lastChanged: DateTime.now(),
+                                  ));
+
+                                  Navigator.pop(context);
                                 },
                                 text: 'Send',
                                 options: FFButtonOptions(
