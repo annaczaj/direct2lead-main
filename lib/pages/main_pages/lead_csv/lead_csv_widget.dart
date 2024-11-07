@@ -8,6 +8,7 @@ import '/backend/backend.dart';
 import 'package:flutter/material.dart';
 import 'lead_csv_model.dart';
 export 'lead_csv_model.dart';
+import '/components/web_nav/web_nav_widget.dart';
 
 class LeadCsvWidget extends StatefulWidget {
   const LeadCsvWidget({super.key});
@@ -40,10 +41,37 @@ class _LeadCsvWidgetState extends State<LeadCsvWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: null,
-        body: Column());
+    return GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            appBar: null,
+            body: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                      child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                        if (responsiveVisibility(
+                          context: context,
+                          phone: false,
+                          tablet: false,
+                        ))
+                          wrapWithModel(
+                            model: _model.webNavModel,
+                            updateCallback: () => safeSetState(() {}),
+                            child: const WebNavWidget(
+                              selectedNav: 1,
+                            ),
+                          ),
+                        Expanded(
+                            flex: 10,
+                            child: SingleChildScrollView(child: Column()))
+                      ]))
+                ])));
   }
 }
