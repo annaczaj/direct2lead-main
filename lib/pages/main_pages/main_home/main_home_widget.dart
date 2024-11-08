@@ -2130,279 +2130,311 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                             tabletLandscape: false,
                             desktop: false,
                           ))*/
+
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 16.0, horizontal: 16.0),
                             child: StreamBuilder<List<LeadInfoRecord>>(
                               stream: queryLeadInfoRecord(
                                   queryBuilder: (leadInfoRecord) =>
-                                      leadInfoRecord.where('leadRecipient',
-                                          isEqualTo: currentUserUid)),
+                                      leadInfoRecord
+                                          .where('leadRecipient',
+                                              isEqualTo: currentUserUid)
+                                          .orderBy('leadCreationDate',
+                                              descending: true)
+                                          .limit(15)),
                               builder: (context, leadSnapshot) {
+                                if (!leadSnapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          FlutterFlowTheme.of(context).primary,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
                                 final leadRefs = leadSnapshot.data!
                                     .map((lead) => lead.reference)
                                     .toList();
-
-                                return StreamBuilder<List<CommentsRecord>>(
-                                  stream: queryCommentsRecord(
-                                      queryBuilder: (commentsRecord) =>
-                                          commentsRecord.where(
-                                              'commentLeadChoice',
-                                              whereIn: leadRefs)),
-                                  builder: (context, commentSnapshot) {
-                                    if (!leadSnapshot.hasData ||
-                                        !commentSnapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          child: CircularProgressIndicator(
-                                            valueColor:
-                                                AlwaysStoppedAnimation<Color>(
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }
-
-                                    List<dynamic> commentList = commentSnapshot
-                                        .data!
-                                        .where((comment) =>
-                                            comment.commentOwner !=
-                                            currentUserReference)
-                                        .toList();
-
-                                    // Combine and sort the records
-                                    final List<dynamic> combinedRecords = [
-                                      ...leadSnapshot.data!,
-                                      ...commentList,
-                                    ];
-
-                                    // Sort by date (most recent first)
-                                    combinedRecords.sort((a, b) {
-                                      final DateTime dateA = a is LeadInfoRecord
-                                          ? a.leadCreationDate!
-                                          : (a as CommentsRecord).commentDate!;
-                                      final DateTime dateB = b is LeadInfoRecord
-                                          ? b.leadCreationDate!
-                                          : (b as CommentsRecord).commentDate!;
-                                      return dateB.compareTo(dateA);
-                                    });
-
-                                    return Column(
-                                      children: List.generate(
-                                        combinedRecords.length,
-                                        (index) {
-                                          final record = combinedRecords[index];
-                                          final bool isLead =
-                                              record is LeadInfoRecord;
-
-                                          return Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 16.0),
-                                            child: AnimatedContainer(
-                                              duration: const Duration(
-                                                  milliseconds: 100),
-                                              curve: Curves.easeInOut,
-                                              width: double.infinity,
-                                              height: 145.0,
-                                              constraints: const BoxConstraints(
-                                                minHeight: 70.0,
-                                                maxWidth: 770.0,
-                                              ),
-                                              decoration: BoxDecoration(
-                                                color:
+                                return StreamBuilder<List<LeadInfoRecord>>(
+                                    stream: queryLeadInfoRecord(
+                                        queryBuilder: (leadInfoRecord) =>
+                                            leadInfoRecord
+                                                .where('leadSender',
+                                                    isEqualTo: currentUserUid)
+                                                .orderBy('leadCreationDate',
+                                                    descending: true)
+                                                .limit(15)),
+                                    builder: (context, senderSnapshot) {
+                                      final allLeadRefs = [
+                                        ...leadSnapshot.data!
+                                            .map((lead) => lead.reference),
+                                        ...senderSnapshot.data!
+                                            .map((lead) => lead.reference)
+                                      ];
+                                      return StreamBuilder<
+                                          List<CommentsRecord>>(
+                                        stream: queryCommentsRecord(
+                                            queryBuilder: (commentsRecord) =>
+                                                commentsRecord.where(
+                                                    'commentLeadChoice',
+                                                    whereIn: allLeadRefs)),
+                                        builder: (context, commentSnapshot) {
+                                          if (!leadSnapshot.hasData ||
+                                              !commentSnapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                boxShadow: const [
-                                                  BoxShadow(
-                                                    blurRadius: 3.0,
-                                                    color: Color(0x33000000),
-                                                    offset: Offset(0.0, 1.0),
-                                                  )
-                                                ],
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                                border: Border.all(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  width: 1.0,
+                                                        .primary,
+                                                  ),
                                                 ),
                                               ),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                        0.0, 0.0, 0.0, 12.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Padding(
+                                            );
+                                          }
+
+                                          List<dynamic> commentList =
+                                              commentSnapshot.data!
+                                                  .where((comment) =>
+                                                      comment.commentOwner !=
+                                                      currentUserReference)
+                                                  .toList();
+
+                                          // Combine and sort the records
+                                          final List<dynamic> combinedRecords =
+                                              [
+                                            ...leadSnapshot.data!,
+                                            ...commentList,
+                                          ];
+
+                                          // Sort by date (most recent first)
+                                          combinedRecords.sort((a, b) {
+                                            final DateTime dateA =
+                                                a is LeadInfoRecord
+                                                    ? a.leadCreationDate!
+                                                    : (a as CommentsRecord)
+                                                        .commentDate!;
+                                            final DateTime dateB =
+                                                b is LeadInfoRecord
+                                                    ? b.leadCreationDate!
+                                                    : (b as CommentsRecord)
+                                                        .commentDate!;
+                                            return dateB.compareTo(dateA);
+                                          });
+
+                                          return Column(
+                                            children: List.generate(
+                                              combinedRecords.length,
+                                              (index) {
+                                                final record =
+                                                    combinedRecords[index];
+                                                final bool isLead =
+                                                    record is LeadInfoRecord;
+
+                                                return Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 16.0),
+                                                  child: AnimatedContainer(
+                                                    duration: const Duration(
+                                                        milliseconds: 100),
+                                                    curve: Curves.easeInOut,
+                                                    width: double.infinity,
+                                                    height: 145.0,
+                                                    constraints:
+                                                        const BoxConstraints(
+                                                      minHeight: 70.0,
+                                                      maxWidth: 770.0,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          blurRadius: 3.0,
+                                                          color:
+                                                              Color(0x33000000),
+                                                          offset:
+                                                              Offset(0.0, 1.0),
+                                                        )
+                                                      ],
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                      border: Border.all(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 1.0,
+                                                      ),
+                                                    ),
+                                                    child: Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(12.0,
-                                                              8.0, 16.0, 8.0),
-                                                      child: Row(
+                                                              .fromSTEB(0.0,
+                                                              0.0, 0.0, 12.0),
+                                                      child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
                                                         children: [
                                                           Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                    4.0,
                                                                     12.0,
-                                                                    12.0,
-                                                                    12.0),
-                                                            child: Column(
+                                                                    8.0,
+                                                                    16.0,
+                                                                    8.0),
+                                                            child: Row(
                                                               mainAxisSize:
                                                                   MainAxisSize
                                                                       .max,
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
-                                                                      .center,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
+                                                                      .spaceBetween,
                                                               children: [
-                                                                RichText(
-                                                                  textScaler: MediaQuery.of(
-                                                                          context)
-                                                                      .textScaler,
-                                                                  text:
-                                                                      TextSpan(
-                                                                    children: [
-                                                                      TextSpan(
-                                                                        text: isLead
-                                                                            ? FFLocalizations.of(context).getText('d6u26iij') /* New Lead: */
-                                                                            : FFLocalizations.of(context).getText('x39v0k4c') /* New Comment: */,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .titleLarge
-                                                                            .override(
-                                                                              fontFamily: 'Plus Jakarta Sans',
-                                                                              letterSpacing: 0.0,
-                                                                            ),
-                                                                      ),
-                                                                      TextSpan(
-                                                                        text: isLead
-                                                                            ? (record as LeadInfoRecord).leadName
-                                                                            : (record as CommentsRecord).content,
-                                                                        style:
-                                                                            const TextStyle(),
-                                                                      )
-                                                                    ],
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleLarge
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Plus Jakarta Sans',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
-                                                                ),
                                                                 Padding(
                                                                   padding:
                                                                       const EdgeInsetsDirectional
                                                                           .fromSTEB(
-                                                                          0.0,
                                                                           4.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    dateTimeFormat(
-                                                                      "relative",
-                                                                      isLead
-                                                                          ? (record as LeadInfoRecord)
-                                                                              .leadCreationDate!
-                                                                          : (record as CommentsRecord)
-                                                                              .commentDate!,
-                                                                      locale: FFLocalizations.of(
-                                                                              context)
-                                                                          .languageCode,
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Plus Jakarta Sans',
-                                                                          letterSpacing:
-                                                                              0.0,
+                                                                          12.0,
+                                                                          12.0,
+                                                                          12.0),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      RichText(
+                                                                        textScaler:
+                                                                            MediaQuery.of(context).textScaler,
+                                                                        text:
+                                                                            TextSpan(
+                                                                          children: [
+                                                                            TextSpan(
+                                                                              text: isLead
+                                                                                  ? FFLocalizations.of(context).getText('d6u26iij') /* New Lead: */
+                                                                                  : FFLocalizations.of(context).getText('x39v0k4c') /* New Comment: */,
+                                                                              style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                                                    fontFamily: 'Plus Jakarta Sans',
+                                                                                    letterSpacing: 0.0,
+                                                                                  ),
+                                                                            ),
+                                                                            TextSpan(
+                                                                              text: isLead ? (record as LeadInfoRecord).leadName : (record as CommentsRecord).content,
+                                                                              style: const TextStyle(),
+                                                                            )
+                                                                          ],
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .titleLarge
+                                                                              .override(
+                                                                                fontFamily: 'Plus Jakarta Sans',
+                                                                                letterSpacing: 0.0,
+                                                                              ),
                                                                         ),
-                                                                  ),
-                                                                ),
-                                                                if (isLead)
-                                                                  Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                        0.0,
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                                    child:
-                                                                        Container(
-                                                                      width:
-                                                                          100.0,
-                                                                      height:
-                                                                          30.0,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primary,
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
                                                                       ),
-                                                                      child:
-                                                                          Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                      Padding(
+                                                                        padding: const EdgeInsetsDirectional
+                                                                            .fromSTEB(
+                                                                            0.0,
+                                                                            4.0,
                                                                             0.0,
                                                                             0.0),
                                                                         child:
-                                                                            Padding(
-                                                                          padding: const EdgeInsets
-                                                                              .all(
-                                                                              3.0),
-                                                                          child:
-                                                                              AutoSizeText(
-                                                                            (record as LeadInfoRecord).leadStage,
-                                                                            style: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                  fontFamily: 'Plus Jakarta Sans',
-                                                                                  fontSize: 12.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                ),
+                                                                            Text(
+                                                                          dateTimeFormat(
+                                                                            "relative",
+                                                                            isLead
+                                                                                ? (record as LeadInfoRecord).leadCreationDate!
+                                                                                : (record as CommentsRecord).commentDate!,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
                                                                           ),
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .labelMedium
+                                                                              .override(
+                                                                                fontFamily: 'Plus Jakarta Sans',
+                                                                                letterSpacing: 0.0,
+                                                                              ),
                                                                         ),
                                                                       ),
-                                                                    ),
+                                                                      if (isLead)
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional
+                                                                              .fromSTEB(
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Container(
+                                                                            width:
+                                                                                100.0,
+                                                                            height:
+                                                                                30.0,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: FlutterFlowTheme.of(context).primary,
+                                                                              borderRadius: BorderRadius.circular(8.0),
+                                                                            ),
+                                                                            child:
+                                                                                Align(
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                              child: Padding(
+                                                                                padding: const EdgeInsets.all(3.0),
+                                                                                child: AutoSizeText(
+                                                                                  (record as LeadInfoRecord).leadStage,
+                                                                                  style: FlutterFlowTheme.of(context).titleSmall.override(
+                                                                                        fontFamily: 'Plus Jakarta Sans',
+                                                                                        fontSize: 12.0,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                    ],
                                                                   ),
+                                                                ),
                                                               ],
                                                             ),
                                                           ),
                                                         ],
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'containerOnPageLoadAnimation8']!),
+                                                  ).animateOnPageLoad(animationsMap[
+                                                      'containerOnPageLoadAnimation8']!),
+                                                );
+                                              },
+                                            ),
                                           );
                                         },
-                                      ),
-                                    );
-                                  },
-                                );
+                                      );
+                                    });
                               },
                             ),
                           )
