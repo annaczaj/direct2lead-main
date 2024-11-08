@@ -259,7 +259,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                 width:
                                                     MediaQuery.sizeOf(context)
                                                             .width *
-                                                        0.4,
+                                                        0.55,
                                                 child: TextFormField(
                                                   controller: _model
                                                       .leadNameTextController,
@@ -394,7 +394,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                 width:
                                                     MediaQuery.sizeOf(context)
                                                             .width *
-                                                        0.4,
+                                                        0.55,
                                                 child: TextFormField(
                                                   controller: _model
                                                       .leadEmailTextController,
@@ -529,7 +529,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                 width:
                                                     MediaQuery.sizeOf(context)
                                                             .width *
-                                                        0.4,
+                                                        0.55,
                                                 child: TextFormField(
                                                   controller: _model
                                                       .leadPhoneTextController,
@@ -662,7 +662,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                     width: MediaQuery.sizeOf(
                                                                 context)
                                                             .width *
-                                                        0.4,
+                                                        0.55,
                                                     decoration: BoxDecoration(
                                                       boxShadow: const [
                                                         BoxShadow(
@@ -761,7 +761,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                     width: MediaQuery.sizeOf(
                                                                 context)
                                                             .width *
-                                                        0.4,
+                                                        0.55,
                                                     decoration: BoxDecoration(
                                                       boxShadow: const [
                                                         BoxShadow(
@@ -896,7 +896,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                             MediaQuery.sizeOf(
                                                                         context)
                                                                     .width *
-                                                                0.4,
+                                                                0.55,
                                                         decoration:
                                                             BoxDecoration(
                                                           boxShadow: const [
@@ -996,7 +996,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                             MediaQuery.sizeOf(
                                                                         context)
                                                                     .width *
-                                                                0.4,
+                                                                0.55,
                                                         decoration:
                                                             BoxDecoration(
                                                           boxShadow: const [
@@ -1139,7 +1139,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                     SingleChildScrollView(
                                                   scrollDirection:
                                                       Axis.horizontal,
-                                                  child: Row(
+                                                  child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
@@ -1152,7 +1152,11 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                 .fromSTEB(10.0,
                                                                 5.0, 10.0, 5.0),
                                                         child: Container(
-                                                          width: 150.0,
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  0.55,
                                                           height: 80.0,
                                                           decoration:
                                                               BoxDecoration(
@@ -1217,10 +1221,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                   padding:
                                                                       const EdgeInsetsDirectional
                                                                           .fromSTEB(
-                                                                          5.0,
-                                                                          5.0,
-                                                                          5.0,
-                                                                          5.0),
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
                                                                   child:
                                                                       FlutterFlowChoiceChips(
                                                                     options: [
@@ -1251,15 +1255,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                             fontFamily:
                                                                                 'Plus Jakarta Sans',
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).info,
+                                                                                FlutterFlowTheme.of(context).primaryText,
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
                                                                       iconColor:
                                                                           FlutterFlowTheme.of(context)
-                                                                              .info,
+                                                                              .primaryText,
                                                                       iconSize:
-                                                                          16.0,
+                                                                          30.0,
                                                                       elevation:
                                                                           0.0,
                                                                       borderRadius:
@@ -1278,15 +1282,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                             fontFamily:
                                                                                 'Plus Jakarta Sans',
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                                FlutterFlowTheme.of(context).primaryText,
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
                                                                       iconColor:
                                                                           FlutterFlowTheme.of(context)
-                                                                              .secondaryText,
+                                                                              .primaryText,
                                                                       iconSize:
-                                                                          16.0,
+                                                                          30.0,
                                                                       elevation:
                                                                           0.0,
                                                                       borderRadius:
@@ -1294,7 +1298,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                               8.0),
                                                                     ),
                                                                     chipSpacing:
-                                                                        10.0,
+                                                                        20.0,
                                                                     rowSpacing:
                                                                         8.0,
                                                                     multiselect:
@@ -1323,7 +1327,11 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                 .fromSTEB(10.0,
                                                                 5.0, 10.0, 5.0),
                                                         child: Container(
-                                                          width: 150.0,
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  0.55,
                                                           height: 80.0,
                                                           decoration:
                                                               BoxDecoration(
@@ -1425,15 +1433,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                             fontFamily:
                                                                                 'Plus Jakarta Sans',
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).info,
+                                                                                FlutterFlowTheme.of(context).primaryText,
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
                                                                       iconColor:
                                                                           FlutterFlowTheme.of(context)
-                                                                              .info,
+                                                                              .primaryText,
                                                                       iconSize:
-                                                                          16.0,
+                                                                          30.0,
                                                                       elevation:
                                                                           0.0,
                                                                       borderRadius:
@@ -1452,15 +1460,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                             fontFamily:
                                                                                 'Plus Jakarta Sans',
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                                FlutterFlowTheme.of(context).primaryText,
                                                                             letterSpacing:
                                                                                 0.0,
                                                                           ),
                                                                       iconColor:
                                                                           FlutterFlowTheme.of(context)
-                                                                              .secondaryText,
+                                                                              .primaryText,
                                                                       iconSize:
-                                                                          16.0,
+                                                                          30.0,
                                                                       elevation:
                                                                           0.0,
                                                                       borderRadius:
@@ -1468,7 +1476,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                               8.0),
                                                                     ),
                                                                     chipSpacing:
-                                                                        10.0,
+                                                                        20.0,
                                                                     rowSpacing:
                                                                         8.0,
                                                                     multiselect:
@@ -1497,7 +1505,11 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                 .fromSTEB(10.0,
                                                                 5.0, 10.0, 5.0),
                                                         child: Container(
-                                                          width: 150.0,
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  0.55,
                                                           height: 80.0,
                                                           decoration:
                                                               BoxDecoration(
@@ -1543,7 +1555,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                             context)
                                                                         .getText(
                                                                       'ggy3nq37' /* Working with 
-                                                                          Realtor? */
+                                                                      Realtor? */
                                                                       ,
                                                                     ),
                                                                     textAlign:
@@ -1596,13 +1608,13 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                             .bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Plus Jakarta Sans',
-                                                                              color: FlutterFlowTheme.of(context).info,
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
                                                                               letterSpacing: 0.0,
                                                                             ),
                                                                         iconColor:
-                                                                            FlutterFlowTheme.of(context).info,
+                                                                            FlutterFlowTheme.of(context).primaryText,
                                                                         iconSize:
-                                                                            16.0,
+                                                                            30.0,
                                                                         elevation:
                                                                             0.0,
                                                                         borderRadius:
@@ -1616,20 +1628,20 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                             .bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Plus Jakarta Sans',
-                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
                                                                               letterSpacing: 0.0,
                                                                             ),
                                                                         iconColor:
-                                                                            FlutterFlowTheme.of(context).secondaryText,
+                                                                            FlutterFlowTheme.of(context).primaryText,
                                                                         iconSize:
-                                                                            16.0,
+                                                                            30.0,
                                                                         elevation:
                                                                             0.0,
                                                                         borderRadius:
                                                                             BorderRadius.circular(8.0),
                                                                       ),
                                                                       chipSpacing:
-                                                                          10.0,
+                                                                          20.0,
                                                                       rowSpacing:
                                                                           8.0,
                                                                       multiselect:
@@ -1668,7 +1680,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                       .fromSTEB(
                                                       0.0, 5.0, 0.0, 5.0),
                                               child: AuthUserStreamWidget(
-                                                builder: (context) => Row(
+                                                builder: (context) => Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
@@ -1678,13 +1690,13 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                       padding:
                                                           const EdgeInsetsDirectional
                                                               .fromSTEB(0.0,
-                                                              0.0, 10.0, 0.0),
+                                                              0.0, 0.0, 0.0),
                                                       child: Container(
                                                         width:
                                                             MediaQuery.sizeOf(
                                                                         context)
                                                                     .width *
-                                                                0.19,
+                                                                0.55,
                                                         decoration:
                                                             BoxDecoration(
                                                           boxShadow: const [
@@ -1777,14 +1789,14 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(10.0,
-                                                              0.0, 0.0, 0.0),
+                                                              .fromSTEB(0.0,
+                                                              10.0, 0.0, 0.0),
                                                       child: Container(
                                                         width:
                                                             MediaQuery.sizeOf(
                                                                         context)
                                                                     .width *
-                                                                0.19,
+                                                                0.55,
                                                         decoration:
                                                             BoxDecoration(
                                                           boxShadow: const [
@@ -1923,7 +1935,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                       .fromSTEB(
                                                       0.0, 5.0, 0.0, 5.0),
                                               child: AuthUserStreamWidget(
-                                                builder: (context) => Row(
+                                                builder: (context) => Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
@@ -1935,7 +1947,11 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                               .fromSTEB(10.0,
                                                               5.0, 10.0, 5.0),
                                                       child: Container(
-                                                        width: 150.0,
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                0.55,
                                                         height: 80.0,
                                                         decoration:
                                                             BoxDecoration(
@@ -2032,15 +2048,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                           fontFamily:
                                                                               'Plus Jakarta Sans',
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).info,
+                                                                              FlutterFlowTheme.of(context).primaryText,
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
-                                                                    iconColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .info,
+                                                                    iconColor: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
                                                                     iconSize:
-                                                                        16.0,
+                                                                        30.0,
                                                                     elevation:
                                                                         0.0,
                                                                     borderRadius:
@@ -2059,15 +2075,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                           fontFamily:
                                                                               'Plus Jakarta Sans',
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                              FlutterFlowTheme.of(context).primaryText,
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
                                                                     iconColor: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .secondaryText,
+                                                                        .primaryText,
                                                                     iconSize:
-                                                                        16.0,
+                                                                        30.0,
                                                                     elevation:
                                                                         0.0,
                                                                     borderRadius:
@@ -2105,7 +2121,11 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                               .fromSTEB(10.0,
                                                               5.0, 10.0, 5.0),
                                                       child: Container(
-                                                        width: 150.0,
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                0.55,
                                                         height: 80.0,
                                                         decoration:
                                                             BoxDecoration(
@@ -2205,15 +2225,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                           fontFamily:
                                                                               'Plus Jakarta Sans',
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).info,
+                                                                              FlutterFlowTheme.of(context).primaryText,
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
-                                                                    iconColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .info,
+                                                                    iconColor: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
                                                                     iconSize:
-                                                                        16.0,
+                                                                        30.0,
                                                                     elevation:
                                                                         0.0,
                                                                     borderRadius:
@@ -2232,15 +2252,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                           fontFamily:
                                                                               'Plus Jakarta Sans',
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                              FlutterFlowTheme.of(context).primaryText,
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
                                                                     iconColor: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .secondaryText,
+                                                                        .primaryText,
                                                                     iconSize:
-                                                                        16.0,
+                                                                        30.0,
                                                                     elevation:
                                                                         0.0,
                                                                     borderRadius:
@@ -2278,7 +2298,11 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                               .fromSTEB(10.0,
                                                               5.0, 10.0, 5.0),
                                                       child: Container(
-                                                        width: 150.0,
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                0.55,
                                                         height: 80.0,
                                                         decoration:
                                                             BoxDecoration(
@@ -2380,15 +2404,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                           fontFamily:
                                                                               'Plus Jakarta Sans',
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).info,
+                                                                              FlutterFlowTheme.of(context).primaryText,
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
-                                                                    iconColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .info,
+                                                                    iconColor: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
                                                                     iconSize:
-                                                                        16.0,
+                                                                        30.0,
                                                                     elevation:
                                                                         0.0,
                                                                     borderRadius:
@@ -2407,15 +2431,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                           fontFamily:
                                                                               'Plus Jakarta Sans',
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                              FlutterFlowTheme.of(context).primaryText,
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
                                                                     iconColor: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .secondaryText,
+                                                                        .primaryText,
                                                                     iconSize:
-                                                                        16.0,
+                                                                        30.0,
                                                                     elevation:
                                                                         0.0,
                                                                     borderRadius:
@@ -2474,7 +2498,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                 width:
                                                     MediaQuery.sizeOf(context)
                                                             .width *
-                                                        0.4,
+                                                        0.55,
                                                 child: TextFormField(
                                                   controller: _model
                                                       .notesTextController,
