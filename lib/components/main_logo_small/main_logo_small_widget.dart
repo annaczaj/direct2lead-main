@@ -38,8 +38,8 @@ class _MainLogoSmallWidgetState extends State<MainLogoSmallWidget> {
   Widget build(BuildContext context) {
     return Image.asset(
       Theme.of(context).brightness == Brightness.dark
-          ? 'assets/images/Transparent_Background_Logo_White_Long.png'
-          : 'assets/images/Transparent_Background_Logo_Long.png',
+          ? 'assets/images/logowhtcircle.png'
+          : 'assets/images/logoblkcircle.png',
       width: 225.0,
       fit: BoxFit.fitWidth,
     );

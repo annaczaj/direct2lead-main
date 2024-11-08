@@ -399,7 +399,7 @@ class FFRoute {
                   color: FlutterFlowTheme.of(context).primaryText,
                   child: Center(
                     child: Image.asset(
-                      'assets/images/Transparent_Background_Logo.png',
+                      'assets/images/logoblkcircle.png',
                       width: 300.0,
                       fit: BoxFit.cover,
                     ),
