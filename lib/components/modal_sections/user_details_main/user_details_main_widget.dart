@@ -9,6 +9,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'user_details_main_model.dart';
 export 'user_details_main_model.dart';
 
@@ -779,7 +781,7 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 60.0),
+            begin: const Offset(0.0, 70.0),
             end: const Offset(0.0, 0.0),
           ),
         ],
@@ -799,7 +801,7 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 70.0),
+            begin: const Offset(0.0, 60.0),
             end: const Offset(0.0, 0.0),
           ),
         ],
@@ -1012,41 +1014,32 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 4.0, 0.0, 0.0),
-                                child: StreamBuilder<UsersRecord>(
-                                  stream: UsersRecord.getDocument(
-                                      widget.leadInfo!.senderInfo!),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          child: CircularProgressIndicator(
-                                            valueColor:
-                                                AlwaysStoppedAnimation<Color>(
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                            ),
-                                          ),
-                                        ),
-                                      );
+                                child: InkWell(
+                                  onTap: () async {
+                                    final phoneNumber =
+                                        widget.leadInfo?.leadPhone;
+                                    if (phoneNumber != null) {
+                                      final url = 'tel:$phoneNumber';
+                                      if (await canLaunchUrl(Uri.parse(url))) {
+                                        await launchUrl(Uri.parse(url));
+                                      }
                                     }
-
-                                    final textUsersRecord = snapshot.data!;
-
-                                    return Text(
-                                      textUsersRecord.displayName,
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .headlineSmall
-                                          .override(
-                                            fontFamily: 'Outfit',
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation2']!);
                                   },
+                                  child: Text(
+                                    valueOrDefault<String>(
+                                      widget.leadInfo?.leadPhone,
+                                      'Unknown',
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .override(
+                                          fontFamily: 'Plus Jakarta Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ],
@@ -1229,27 +1222,63 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                         ),
                                   ).animateOnPageLoad(animationsMap[
                                       'textOnPageLoadAnimation5']!),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 4.0, 0.0, 0.0),
-                                    child: Text(
-                                      valueOrDefault<String>(
-                                        widget.leadInfo?.leadEmail,
-                                        'Unknown',
-                                      ),
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            letterSpacing: 0.0,
+                                  if (isMobileWidth(context))
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          final email =
+                                              widget.leadInfo?.leadEmail;
+                                          if (email != null) {
+                                            final url = 'mailto:$email';
+                                            if (await canLaunchUrl(
+                                                Uri.parse(url))) {
+                                              await launchUrl(Uri.parse(url));
+                                            }
+                                          }
+                                        },
+                                        child: Text(
+                                          valueOrDefault<String>(
+                                            widget.leadInfo?.leadEmail,
+                                            'Unknown',
                                           ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation6']!),
-                                  ),
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleMedium
+                                              .override(
+                                                fontFamily: 'Plus Jakarta Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  if (isWeb)
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
+                                      child: Text(
+                                        valueOrDefault<String>(
+                                          widget.leadInfo?.leadEmail,
+                                          'Unknown',
+                                        ),
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
                                 ],
                               ),
                             ),
@@ -1275,27 +1304,63 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                         ),
                                   ).animateOnPageLoad(animationsMap[
                                       'textOnPageLoadAnimation7']!),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 4.0, 0.0, 0.0),
-                                    child: Text(
-                                      valueOrDefault<String>(
-                                        widget.leadInfo?.leadPhone,
-                                        'Unknown',
-                                      ),
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            letterSpacing: 0.0,
+                                  if (isMobileWidth(context))
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          final phoneNumber =
+                                              widget.leadInfo?.leadPhone;
+                                          if (phoneNumber != null) {
+                                            final url = 'tel:$phoneNumber';
+                                            if (await canLaunchUrl(
+                                                Uri.parse(url))) {
+                                              await launchUrl(Uri.parse(url));
+                                            }
+                                          }
+                                        },
+                                        child: Text(
+                                          valueOrDefault<String>(
+                                            widget.leadInfo?.leadPhone,
+                                            'Unknown',
                                           ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation8']!),
-                                  ),
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleMedium
+                                              .override(
+                                                fontFamily: 'Plus Jakarta Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  if (isWeb)
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 0.0),
+                                      child: Text(
+                                        valueOrDefault<String>(
+                                          widget.leadInfo?.leadPhone,
+                                          'Unknown',
+                                        ),
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
                                 ],
                               ),
                             ),
