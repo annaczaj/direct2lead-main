@@ -1301,14 +1301,15 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                   StreamBuilder<
                                                       List<CommentsRecord>>(
                                                 stream: queryCommentsRecord(
-                                                  queryBuilder:
-                                                      (commentsRecord) =>
-                                                          commentsRecord.where(
-                                                    'commentDate',
-                                                    isLessThanOrEqualTo:
-                                                        currentUserDocument
-                                                            ?.lastActive,
-                                                  ),
+                                                  queryBuilder: (commentsRecord) =>
+                                                      commentsRecord.where(
+                                                          'commentDate',
+                                                          isGreaterThan: DateTime
+                                                                  .now()
+                                                              .subtract(
+                                                                  const Duration(
+                                                                      days:
+                                                                          1))),
                                                 ),
                                                 builder: (context, snapshot) {
                                                   // Customize what your widget looks like when it's loading.
