@@ -20,6 +20,8 @@ class MainHomeAdminModel extends FlutterFlowModel<MainHomeAdminWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue3;
   FormFieldController<String>? dropDownValueController3;
+  String? dropDownValue4;
+  FormFieldController<String>? dropDownValueController4;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<UsersRecord>();

@@ -50,6 +50,7 @@ class _MainHomeAdminWidgetState extends State<MainHomeAdminWidget>
         _model.dropDownValueController1?.reset();
         _model.dropDownValueController2?.reset();
         _model.dropDownValueController3?.reset();
+        _model.dropDownValueController4?.reset();
       });
     });
 
@@ -1175,263 +1176,329 @@ class _MainHomeAdminWidgetState extends State<MainHomeAdminWidget>
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 10.0, 10.0, 10.0, 10.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                AuthUserStreamWidget(
-                                  builder: (context) =>
-                                      StreamBuilder<List<UsersRecord>>(
-                                    stream: queryUsersRecord(
-                                      queryBuilder: (usersRecord) =>
-                                          usersRecord.where(
-                                        'groupID',
-                                        isEqualTo: valueOrDefault(
-                                            currentUserDocument?.groupID, ''),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  AuthUserStreamWidget(
+                                    builder: (context) =>
+                                        StreamBuilder<List<UsersRecord>>(
+                                      stream: queryUsersRecord(
+                                        queryBuilder: (usersRecord) =>
+                                            usersRecord.where(
+                                          'groupID',
+                                          isEqualTo: valueOrDefault(
+                                              currentUserDocument?.groupID, ''),
+                                        ),
                                       ),
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                ),
                                               ),
                                             ),
+                                          );
+                                        }
+                                        List<UsersRecord>
+                                            containerUsersRecordList =
+                                            snapshot.data!;
+
+                                        return Container(
+                                          decoration: BoxDecoration(
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                blurRadius: 3.0,
+                                                color: Color(0x33000000),
+                                                offset: Offset(
+                                                  0.0,
+                                                  3.0,
+                                                ),
+                                              )
+                                            ],
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          child: FlutterFlowDropDown<String>(
+                                            controller: _model
+                                                    .dropDownValueController1 ??=
+                                                FormFieldController<String>(
+                                                    null),
+                                            options: containerUsersRecordList
+                                                .map((e) => e.displayName)
+                                                .toList(),
+                                            onChanged: (val) => safeSetState(
+                                                () => _model.dropDownValue1 =
+                                                    val),
+                                            width: 200.0,
+                                            height: 40.0,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily:
+                                                          'Plus Jakarta Sans',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            hintText:
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                              '6cxeu476' /* Name */,
+                                            ),
+                                            icon: Icon(
+                                              Icons.keyboard_arrow_down_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 24.0,
+                                            ),
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            elevation: 2.0,
+                                            borderColor: Colors.transparent,
+                                            borderWidth: 0.0,
+                                            borderRadius: 8.0,
+                                            margin: const EdgeInsetsDirectional
+                                                .fromSTEB(12.0, 0.0, 12.0, 0.0),
+                                            hidesUnderline: true,
+                                            isOverButton: false,
+                                            isSearchable: true,
+                                            isMultiSelect: false,
                                           ),
                                         );
-                                      }
-                                      List<UsersRecord>
-                                          containerUsersRecordList =
-                                          snapshot.data!;
-
-                                      return Container(
-                                        decoration: BoxDecoration(
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              blurRadius: 3.0,
-                                              color: Color(0x33000000),
-                                              offset: Offset(
-                                                0.0,
-                                                3.0,
-                                              ),
-                                            )
-                                          ],
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: FlutterFlowDropDown<String>(
-                                          controller: _model
-                                                  .dropDownValueController1 ??=
+                                      },
+                                    ),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 3.0,
+                                          color: Color(0x33000000),
+                                          offset: Offset(
+                                            0.0,
+                                            3.0,
+                                          ),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    child: FlutterFlowDropDown<String>(
+                                      controller:
+                                          _model.dropDownValueController2 ??=
                                               FormFieldController<String>(null),
-                                          options: containerUsersRecordList
-                                              .map((e) => e.displayName)
-                                              .toList(),
-                                          onChanged: (val) => safeSetState(() =>
-                                              _model.dropDownValue1 = val),
-                                          width: 200.0,
-                                          height: 40.0,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily:
-                                                        'Plus Jakarta Sans',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          hintText: FFLocalizations.of(context)
-                                              .getText(
-                                            '6cxeu476' /* Name */,
-                                          ),
-                                          icon: Icon(
-                                            Icons.keyboard_arrow_down_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 24.0,
-                                          ),
-                                          fillColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          elevation: 2.0,
-                                          borderColor: Colors.transparent,
-                                          borderWidth: 0.0,
-                                          borderRadius: 8.0,
-                                          margin: const EdgeInsetsDirectional
-                                              .fromSTEB(12.0, 0.0, 12.0, 0.0),
-                                          hidesUnderline: true,
-                                          isOverButton: false,
-                                          isSearchable: true,
-                                          isMultiSelect: false,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 3.0,
-                                        color: Color(0x33000000),
-                                        offset: Offset(
-                                          0.0,
-                                          3.0,
-                                        ),
-                                      )
-                                    ],
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: FlutterFlowDropDown<String>(
-                                    controller:
-                                        _model.dropDownValueController2 ??=
-                                            FormFieldController<String>(null),
-                                    options: [
-                                      FFLocalizations.of(context).getText(
-                                        'd71pi2y1' /* 1 */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'idlv61da' /* 2 */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'h662ltxk' /* 3 */,
-                                      )
-                                    ],
-                                    onChanged: (val) => safeSetState(
-                                        () => _model.dropDownValue2 = val),
-                                    width: 200.0,
-                                    height: 40.0,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Plus Jakarta Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    hintText:
+                                      options: [
                                         FFLocalizations.of(context).getText(
-                                      'n9zd2yja' /* Pod # */,
-                                    ),
-                                    icon: Icon(
-                                      Icons.keyboard_arrow_down_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
-                                    ),
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    elevation: 2.0,
-                                    borderColor: Colors.transparent,
-                                    borderWidth: 0.0,
-                                    borderRadius: 8.0,
-                                    margin:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            12.0, 0.0, 12.0, 0.0),
-                                    hidesUnderline: true,
-                                    isOverButton: false,
-                                    isSearchable: false,
-                                    isMultiSelect: false,
-                                  ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 3.0,
-                                        color: Color(0x33000000),
-                                        offset: Offset(
-                                          0.0,
-                                          3.0,
+                                          'd71pi2y1' /* 1 */,
                                         ),
-                                      )
-                                    ],
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: FlutterFlowDropDown<String>(
-                                    controller:
-                                        _model.dropDownValueController3 ??=
-                                            FormFieldController<String>(null),
-                                    options: [
-                                      'Sent',
-                                      'Accepted',
-                                      'Closed',
-                                      'Rejected'
-                                    ],
-                                    onChanged: (val) => safeSetState(
-                                        () => _model.dropDownValue3 = val),
-                                    width: 200.0,
-                                    height: 40.0,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Plus Jakarta Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    hintText:
                                         FFLocalizations.of(context).getText(
-                                      'ap5kw3jn' /* Stage */,
+                                          'idlv61da' /* 2 */,
+                                        ),
+                                        FFLocalizations.of(context).getText(
+                                          'h662ltxk' /* 3 */,
+                                        )
+                                      ],
+                                      onChanged: (val) => safeSetState(
+                                          () => _model.dropDownValue2 = val),
+                                      width: 200.0,
+                                      height: 40.0,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Plus Jakarta Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintText:
+                                          FFLocalizations.of(context).getText(
+                                        'n9zd2yja' /* Pod # */,
+                                      ),
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      elevation: 2.0,
+                                      borderColor: Colors.transparent,
+                                      borderWidth: 0.0,
+                                      borderRadius: 8.0,
+                                      margin:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              12.0, 0.0, 12.0, 0.0),
+                                      hidesUnderline: true,
+                                      isOverButton: false,
+                                      isSearchable: false,
+                                      isMultiSelect: false,
                                     ),
-                                    icon: Icon(
-                                      Icons.keyboard_arrow_down_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
-                                    ),
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    elevation: 2.0,
-                                    borderColor: Colors.transparent,
-                                    borderWidth: 0.0,
-                                    borderRadius: 8.0,
-                                    margin:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            12.0, 0.0, 12.0, 0.0),
-                                    hidesUnderline: true,
-                                    isOverButton: false,
-                                    isSearchable: false,
-                                    isMultiSelect: false,
                                   ),
-                                ),
-                                FFButtonWidget(
-                                  onPressed: () async {
-                                    logFirebaseEvent(
-                                        'MAIN_HOME_ADMIN_RESET_FILTERS_BTN_ON_TAP');
-                                    safeSetState(() {
-                                      _model.dropDownValueController1?.reset();
-                                      _model.dropDownValueController2?.reset();
-                                      _model.dropDownValueController3?.reset();
-                                    });
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 3.0,
+                                          color: Color(0x33000000),
+                                          offset: Offset(
+                                            0.0,
+                                            3.0,
+                                          ),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    child: FlutterFlowDropDown<String>(
+                                      controller:
+                                          _model.dropDownValueController3 ??=
+                                              FormFieldController<String>(null),
+                                      options: [
+                                        'Sent',
+                                        'Accepted',
+                                        'Closed',
+                                        'Rejected'
+                                      ],
+                                      onChanged: (val) => safeSetState(
+                                          () => _model.dropDownValue3 = val),
+                                      width: 200.0,
+                                      height: 40.0,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Plus Jakarta Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintText:
+                                          FFLocalizations.of(context).getText(
+                                        'ap5kw3jn' /* Stage */,
+                                      ),
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      elevation: 2.0,
+                                      borderColor: Colors.transparent,
+                                      borderWidth: 0.0,
+                                      borderRadius: 8.0,
+                                      margin:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              12.0, 0.0, 12.0, 0.0),
+                                      hidesUnderline: true,
+                                      isOverButton: false,
+                                      isSearchable: false,
+                                      isMultiSelect: false,
+                                    ),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 3.0,
+                                          color: Color(0x33000000),
+                                          offset: Offset(
+                                            0.0,
+                                            3.0,
+                                          ),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    child: FlutterFlowDropDown<String>(
+                                      controller:
+                                          _model.dropDownValueController4 ??=
+                                              FormFieldController<String>(null),
+                                      options: ['Lender', 'Realtor'],
+                                      onChanged: (val) => safeSetState(
+                                          () => _model.dropDownValue4 = val),
+                                      width: 200.0,
+                                      height: 40.0,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Plus Jakarta Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintText: 'User Type',
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      elevation: 2.0,
+                                      borderColor: Colors.transparent,
+                                      borderWidth: 0.0,
+                                      borderRadius: 8.0,
+                                      margin:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              12.0, 0.0, 12.0, 0.0),
+                                      hidesUnderline: true,
+                                      isOverButton: false,
+                                      isSearchable: false,
+                                      isMultiSelect: false,
+                                    ),
+                                  ),
+                                  FFButtonWidget(
+                                    onPressed: () async {
+                                      logFirebaseEvent(
+                                          'MAIN_HOME_ADMIN_RESET_FILTERS_BTN_ON_TAP');
+                                      safeSetState(() {
+                                        _model.dropDownValueController1
+                                            ?.reset();
+                                        _model.dropDownValueController2
+                                            ?.reset();
+                                        _model.dropDownValueController3
+                                            ?.reset();
+                                        _model.dropDownValueController4
+                                            ?.reset();
+                                      });
 
-                                    context.pushNamed('Main_HomeAdmin');
-                                  },
-                                  text: FFLocalizations.of(context).getText(
-                                    '4llujhyy' /* Reset Filters */,
+                                      context.pushNamed('Main_HomeAdmin');
+                                    },
+                                    text: FFLocalizations.of(context).getText(
+                                      '4llujhyy' /* Reset Filters */,
+                                    ),
+                                    options: FFButtonOptions(
+                                      height: 40.0,
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              16.0, 0.0, 16.0, 0.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Plus Jakarta Sans',
+                                            color: Colors.white,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 0.0,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
                                   ),
-                                  options: FFButtonOptions(
-                                    height: 40.0,
-                                    padding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 0.0, 16.0, 0.0),
-                                    iconPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Plus Jakarta Sans',
-                                          color: Colors.white,
-                                          letterSpacing: 0.0,
-                                        ),
-                                    elevation: 0.0,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           Align(
@@ -1494,6 +1561,14 @@ class _MainHomeAdminWidgetState extends State<MainHomeAdminWidget>
                                                           return (e.podNum ==
                                                               _model
                                                                   .dropDownValue2);
+                                                        } else if (_model
+                                                                    .dropDownValue4 !=
+                                                                null &&
+                                                            _model.dropDownValue4 !=
+                                                                '') {
+                                                          return (e.userType ==
+                                                              _model
+                                                                  .dropDownValue4);
                                                         } else {
                                                           return true;
                                                         }
