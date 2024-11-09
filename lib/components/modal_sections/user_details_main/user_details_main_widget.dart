@@ -1010,41 +1010,28 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     ),
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation1']!),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 4.0, 0.0, 0.0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    final phoneNumber =
-                                        widget.leadInfo?.leadPhone;
-                                    if (phoneNumber != null) {
-                                      final url = 'tel:$phoneNumber';
-                                      if (await canLaunchUrl(Uri.parse(url))) {
-                                        await launchUrl(Uri.parse(url));
-                                      }
-                                    }
-                                  },
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      widget.leadInfo?.leadPhone,
-                                      'Unknown',
-                                    ),
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleMedium
-                                        .override(
-                                          fontFamily: 'Plus Jakarta Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                              ),
                             ],
                           ),
                         ],
                       ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          20.0, 4.0, 0.0, 0.0),
+                      child: Text(
+                        valueOrDefault<String>(
+                          widget.leadInfo?.leadName,
+                          'Unknown',
+                        ),
+                        textAlign: TextAlign.start,
+                        style: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .override(
+                              fontFamily: 'Outfit',
+                              letterSpacing: 0.0,
+                            ),
+                      ).animateOnPageLoad(
+                          animationsMap['textOnPageLoadAnimation4']!),
                     ),
                     Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(
@@ -1698,6 +1685,7 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                 ),
                               ),
                             ),
+                          /*
                           if (widget.leadInfo?.senderUserType == 'Lender')
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -1745,7 +1733,7 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                   ],
                                 ),
                               ),
-                            ),
+                            ),*/
                           if (widget.leadInfo?.senderUserType == 'Realtor')
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(

@@ -465,7 +465,7 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                   ),
                 ),
               if (valueOrDefault<bool>(
-                      currentUserDocument?.superAdmin, false) ==
+                      currentUserDocument?.adminAccount, false) ==
                   false)
                 Padding(
                   padding:

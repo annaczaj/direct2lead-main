@@ -1266,7 +1266,7 @@ class _MainHomeAdminWidgetState extends State<MainHomeAdminWidget>
                                               .fromSTEB(12.0, 0.0, 12.0, 0.0),
                                           hidesUnderline: true,
                                           isOverButton: false,
-                                          isSearchable: false,
+                                          isSearchable: true,
                                           isMultiSelect: false,
                                         ),
                                       );
@@ -1356,18 +1356,10 @@ class _MainHomeAdminWidgetState extends State<MainHomeAdminWidget>
                                         _model.dropDownValueController3 ??=
                                             FormFieldController<String>(null),
                                     options: [
-                                      FFLocalizations.of(context).getText(
-                                        '6wc8t5d6' /* Sent */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'yn1mh2gd' /* Accepeted */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'ladmpjv6' /* Closed */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        '7ljk03tn' /* Rejected */,
-                                      )
+                                      'Sent',
+                                      'Accepted',
+                                      'Closed',
+                                      'Rejected'
                                     ],
                                     onChanged: (val) => safeSetState(
                                         () => _model.dropDownValue3 = val),
