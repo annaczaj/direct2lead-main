@@ -10,7 +10,6 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '/actions/actions.dart' as action_blocks;
 import 'user_details_main_model.dart';
 export 'user_details_main_model.dart';
 

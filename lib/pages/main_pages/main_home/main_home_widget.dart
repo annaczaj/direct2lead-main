@@ -1303,34 +1303,23 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                       List<CommentsRecord>>(
                                                 stream: queryCommentsRecord(
                                                   queryBuilder: (commentsRecord) =>
-                                                      commentsRecord.where(
-                                                          'commentDate',
-                                                          isGreaterThan: DateTime
-                                                                  .now()
-                                                              .subtract(
-                                                                  const Duration(
-                                                                      days:
-                                                                          1))),
+                                                      commentsRecord
+                                                          .where('commentDate',
+                                                              isGreaterThan: DateTime
+                                                                      .now()
+                                                                  .subtract(
+                                                                      const Duration(
+                                                                          days:
+                                                                              1)))
+                                                          .where(
+                                                              'commentRecipient',
+                                                              isEqualTo:
+                                                                  currentUserUid),
                                                 ),
                                                 builder: (context, snapshot) {
                                                   // Customize what your widget looks like when it's loading.
                                                   if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
+                                                    return Center();
                                                   }
                                                   List<CommentsRecord>
                                                       containerCommentsRecordList =
@@ -2147,18 +2136,7 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                           .limit(15)),
                               builder: (context, leadSnapshot) {
                                 if (!leadSnapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
-                                      ),
-                                    ),
-                                  );
+                                  return Center();
                                 }
                                 final leadRefs = leadSnapshot.data!
                                     .map((lead) => lead.reference)
@@ -2173,6 +2151,9 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                     descending: true)
                                                 .limit(15)),
                                     builder: (context, senderSnapshot) {
+                                      if (!senderSnapshot.hasData) {
+                                        return Center();
+                                      }
                                       final allLeadRefs = [
                                         ...leadSnapshot.data!
                                             .map((lead) => lead.reference),
@@ -2187,23 +2168,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                     'commentLeadChoice',
                                                     whereIn: allLeadRefs)),
                                         builder: (context, commentSnapshot) {
-                                          if (!leadSnapshot.hasData ||
-                                              !commentSnapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                  ),
-                                                ),
-                                              ),
-                                            );
+                                          if (!commentSnapshot.hasData) {
+                                            return Center();
                                           }
 
                                           List<dynamic> commentList =

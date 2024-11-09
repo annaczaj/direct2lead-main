@@ -28,7 +28,8 @@ class UsersRecord extends FirestoreRecord {
 
   // "photo_url" field.
   String? _photoUrl;
-  String get photoUrl => _photoUrl ?? '';
+  String get photoUrl =>
+      _photoUrl ?? 'https://i.postimg.cc/cLfZth2Z/default.jpg';
   bool hasPhotoUrl() => _photoUrl != null;
 
   // "uid" field.
@@ -165,6 +166,8 @@ Map<String, dynamic> createUsersRecordData({
   String? uid,
   DateTime? createdTime,
   String? phoneNumber,
+  List<String>? language,
+  List<String>? workAreas,
   DateTime? lastActive,
   String? status,
   String? bio,
@@ -188,6 +191,8 @@ Map<String, dynamic> createUsersRecordData({
       'status': status,
       'bio': bio,
       'groupID': groupID,
+      'language': language,
+      'workAreas': workAreas,
       'userType': userType,
       'superAdmin': superAdmin,
       'podNum': podNum,

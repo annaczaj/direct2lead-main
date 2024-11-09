@@ -13,6 +13,10 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   FocusNode? yourBrokerageFocusNode;
   TextEditingController? yourBrokerageTextController;
   String? Function(BuildContext, String?)? yourBrokerageTextControllerValidator;
+  // State field(s) for languages widget.
+  List<String> selectedLanguages = [];
+  // State field(s) for workAreas widget.
+  List<String> selectedWorkAreas = [];
 
   @override
   void initState(BuildContext context) {}

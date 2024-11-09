@@ -14,6 +14,10 @@ class ModalProfileEditModel extends FlutterFlowModel<ModalProfileEditWidget> {
   TextEditingController? yourBrokerageTextController;
   String? Function(BuildContext, String?)? yourBrokerageTextControllerValidator;
 
+  List<String> selectedLanguages = [];
+  // State field(s) for workAreas widget.
+  List<String> selectedWorkAreas = [];
+
   @override
   void initState(BuildContext context) {}
 

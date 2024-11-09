@@ -914,7 +914,8 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                   context)
                                                               .getText(
                                                             'd0b0mnoo' /* Pending */,
-                                                          )
+                                                          ),
+                                                          'High Nurture Lead',
                                                         ],
                                                         onChanged: (val) =>
                                                             safeSetState(() =>
@@ -1290,6 +1291,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                         ),
                                                       ),
                                                     ),
+                                                    /*
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
@@ -1467,6 +1469,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                         ),
                                                       ),
                                                     ),
+                                                    */
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional

@@ -36,6 +36,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         text: valueOrDefault(currentUserDocument?.bio, ''));
     _model.yourBrokerageFocusNode ??= FocusNode();
 
+    _model.selectedLanguages =
+        List<String>.from(currentUserDocument?.language.toList() ?? []);
+    _model.selectedWorkAreas =
+        List<String>.from(currentUserDocument?.workAreas.toList() ?? []);
+
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -98,7 +103,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -125,8 +131,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 shape: BoxShape.circle,
                               ),
                               child: CachedNetworkImage(
-                                fadeInDuration: const Duration(milliseconds: 500),
-                                fadeOutDuration: const Duration(milliseconds: 500),
+                                fadeInDuration:
+                                    const Duration(milliseconds: 500),
+                                fadeOutDuration:
+                                    const Duration(milliseconds: 500),
                                 imageUrl: currentUserPhoto,
                                 fit: BoxFit.fitWidth,
                               ),
@@ -138,7 +146,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      0.0, 12.0, 0.0, 16.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -199,8 +208,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
                   child: AuthUserStreamWidget(
                     builder: (context) => TextFormField(
                       controller: _model.yourNameTextController,
@@ -266,8 +275,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
                   child: AuthUserStreamWidget(
                     builder: (context) => TextFormField(
                       controller: _model.yourBrokerageTextController,
@@ -275,9 +284,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       autofocus: true,
                       obscureText: false,
                       decoration: InputDecoration(
-                        labelText: FFLocalizations.of(context).getText(
-                          '685vdjyk' /* Your Name */,
-                        ),
+                        labelText: 'Brokerage',
                         labelStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: 'Plus Jakarta Sans',
@@ -333,7 +340,110 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
+                  child: AuthUserStreamWidget(
+                    builder: (context) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          FFLocalizations.of(context).getText(
+                            'languages_label' /* Languages */,
+                          ),
+                          style: FlutterFlowTheme.of(context).labelMedium,
+                        ),
+                        const SizedBox(height: 8),
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            'English',
+                            'Spanish',
+                            'French',
+                            'German',
+                            'Mandarin',
+                            // Add more languages as needed
+                          ]
+                              .map((language) => FilterChip(
+                                    selected: _model.selectedLanguages
+                                        .contains(language),
+                                    label: Text(language),
+                                    onSelected: (selected) {
+                                      setState(() {
+                                        if (selected) {
+                                          _model.selectedLanguages
+                                              .add(language);
+                                        } else {
+                                          _model.selectedLanguages
+                                              .remove(language);
+                                        }
+                                      });
+                                    },
+                                    selectedColor: FlutterFlowTheme.of(context)
+                                        .primary
+                                        .withOpacity(0.2),
+                                    checkmarkColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                  ))
+                              .toList(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
+                  child: AuthUserStreamWidget(
+                    builder: (context) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          FFLocalizations.of(context).getText(
+                            'work_areas_label' /* Work Areas */,
+                          ),
+                          style: FlutterFlowTheme.of(context).labelMedium,
+                        ),
+                        const SizedBox(height: 8),
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            'NW Valley',
+                            'NE Valley',
+                            'SW Valley',
+                            'SE Valley',
+                            'Other',
+                          ]
+                              .map((area) => FilterChip(
+                                    selected:
+                                        _model.selectedWorkAreas.contains(area),
+                                    label: Text(area),
+                                    onSelected: (selected) {
+                                      setState(() {
+                                        if (selected) {
+                                          _model.selectedWorkAreas.add(area);
+                                        } else {
+                                          _model.selectedWorkAreas.remove(area);
+                                        }
+                                      });
+                                    },
+                                    selectedColor: FlutterFlowTheme.of(context)
+                                        .primary
+                                        .withOpacity(0.2),
+                                    checkmarkColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                  ))
+                              .toList(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+// Update the save c
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 0.0, 0.0),
                   child: SelectionArea(
                       child: Text(
                     FFLocalizations.of(context).getText(
@@ -346,7 +456,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   )),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 0.0, 24.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 4.0, 0.0, 24.0),
                   child: SelectionArea(
                       child: Text(
                     currentUserEmail,
@@ -365,6 +476,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       await currentUserReference!.update(createUsersRecordData(
                         displayName: _model.yourNameTextController.text,
                         bio: _model.yourBrokerageTextController.text,
+                        language: _model.selectedLanguages,
+                        workAreas: _model.selectedWorkAreas,
                       ));
                       context.pop();
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -390,10 +503,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     ),
                     options: FFButtonOptions(
                       height: 52.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(44.0, 0.0, 44.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          44.0, 0.0, 44.0, 0.0),
+                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleMedium.override(
