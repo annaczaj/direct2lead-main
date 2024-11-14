@@ -361,9 +361,17 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                 cursorColor:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
-                                                validator: _model
-                                                    .leadNameTextControllerValidator
-                                                    .asValidator(context),
+                                                validator: (value) {
+                                                  if (_model
+                                                          .prequalOrPendingValue !=
+                                                      'High Nurture Lead') {
+                                                    if (value == null ||
+                                                        value.isEmpty) {
+                                                      return 'Field is required';
+                                                    }
+                                                  }
+                                                  return null;
+                                                },
                                               ),
                                             ),
                                           ),
@@ -494,9 +502,17 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                 cursorColor:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
-                                                validator: _model
-                                                    .leadEmailTextControllerValidator
-                                                    .asValidator(context),
+                                                validator: (value) {
+                                                  if (_model
+                                                          .prequalOrPendingValue !=
+                                                      'High Nurture Lead') {
+                                                    if (value == null ||
+                                                        value.isEmpty) {
+                                                      return 'Field is required';
+                                                    }
+                                                  }
+                                                  return null;
+                                                },
                                               ),
                                             ),
                                           ),
@@ -629,12 +645,20 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                 cursorColor:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
-                                                validator: _model
-                                                    .leadPhoneTextControllerValidator
-                                                    .asValidator(context),
                                                 inputFormatters: [
                                                   _model.leadPhoneMask
                                                 ],
+                                                validator: (value) {
+                                                  if (_model
+                                                          .prequalOrPendingValue !=
+                                                      'High Nurture Lead') {
+                                                    if (value == null ||
+                                                        value.isEmpty) {
+                                                      return 'Field is required';
+                                                    }
+                                                  }
+                                                  return null;
+                                                },
                                               ),
                                             ),
                                           ),
@@ -2601,174 +2625,277 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                        0.0, 0.0, 10.0, 0.0),
-                                                child: AuthUserStreamWidget(
-                                                  builder: (context) =>
-                                                      StreamBuilder<
-                                                          List<UsersRecord>>(
-                                                    stream: queryUsersRecord(
-                                                      queryBuilder:
-                                                          (usersRecord) =>
-                                                              usersRecord.where(
-                                                        'groupID',
-                                                        isEqualTo: valueOrDefault(
-                                                            currentUserDocument
-                                                                ?.groupID,
-                                                            ''),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                            8.0, 8.0, 8.0, 8.0),
+                                                    child: Container(
+                                                      width: 200,
+                                                      decoration: BoxDecoration(
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            blurRadius: 3.0,
+                                                            color: Color(
+                                                                0x33000000),
+                                                            offset: Offset(
+                                                              0.0,
+                                                              3.0,
+                                                            ),
+                                                          )
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child:
+                                                          FlutterFlowDropDown<
+                                                              String>(
+                                                        controller: _model
+                                                                .selectedPodNumberController ??=
+                                                            FormFieldController<
+                                                                    String>(
+                                                                valueOrDefault(
+                                                                    currentUserDocument
+                                                                        ?.podNum,
+                                                                    '')),
+                                                        options: [
+                                                          '1',
+                                                          '2',
+                                                          '3',
+                                                        ],
+                                                        onChanged: (val) =>
+                                                            safeSetState(() =>
+                                                                _model.selectedPodNumber =
+                                                                    val),
+                                                        width: 200.0,
+                                                        height: 40.0,
+                                                        maxHeight: 200.0,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Plus Jakarta Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                        hintText: 'Pod Number',
+                                                        icon: Icon(
+                                                          Icons
+                                                              .keyboard_arrow_down_rounded,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          size: 24.0,
+                                                        ),
+                                                        fillColor: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        elevation: 2.0,
+                                                        borderColor:
+                                                            Colors.transparent,
+                                                        borderWidth: 0.0,
+                                                        borderRadius: 8.0,
+                                                        margin:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(12.0,
+                                                                0.0, 12.0, 0.0),
+                                                        hidesUnderline: true,
+                                                        isOverButton: true,
+                                                        isSearchable: true,
+                                                        isMultiSelect: false,
                                                       ),
                                                     ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                              valueColor:
-                                                                  AlwaysStoppedAnimation<
-                                                                      Color>(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      List<UsersRecord>
-                                                          containerUsersRecordList =
-                                                          snapshot.data!;
-
-                                                      return Container(
-                                                        width: 200.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          boxShadow: const [
-                                                            BoxShadow(
-                                                              blurRadius: 3.0,
-                                                              color: Color(
-                                                                  0x33000000),
-                                                              offset: Offset(
-                                                                0.0,
-                                                                3.0,
-                                                              ),
-                                                            )
-                                                          ],
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        child:
-                                                            FlutterFlowDropDown<
-                                                                String>(
-                                                          controller: _model
-                                                                  .chooseRecipientValueController ??=
-                                                              FormFieldController<
-                                                                  String>(
-                                                            _model.chooseRecipientValue ??=
-                                                                '',
-                                                          ),
-                                                          options: List<
-                                                                  String>.from(
-                                                              containerUsersRecordList
-                                                                  .where(
-                                                                      (e) =>
-                                                                          () {
-                                                                            if (valueOrDefault(currentUserDocument?.userType, '') ==
-                                                                                'Realtor') {
-                                                                              return ((e.userType == 'Lender') && e.language.contains(_model.languageValue) && (e.isPaused != true));
-                                                                            } else if (valueOrDefault(currentUserDocument?.userType, '') ==
-                                                                                'Lender') {
-                                                                              return ((e.userType == 'Realtor') && e.language.contains(_model.languageValue) && (e.isPaused != true));
-                                                                            } else {
-                                                                              return true;
-                                                                            }
-                                                                          }())
-                                                                  .toList()
-                                                                  .map((e) =>
-                                                                      e.uid)
-                                                                  .toList()),
-                                                          optionLabels:
-                                                              containerUsersRecordList
-                                                                  .where(
-                                                                      (e) =>
-                                                                          () {
-                                                                            if (valueOrDefault(currentUserDocument?.userType, '') ==
-                                                                                'Realtor') {
-                                                                              return ((e.userType == 'Lender') && e.language.contains(_model.languageValue) && (e.isPaused != true));
-                                                                            } else if (valueOrDefault(currentUserDocument?.userType, '') ==
-                                                                                'Lender') {
-                                                                              return ((e.userType == 'Realtor') && e.language.contains(_model.languageValue) && (e.isPaused != true));
-                                                                            } else {
-                                                                              return true;
-                                                                            }
-                                                                          }())
-                                                                  .toList()
-                                                                  .map((e) => e
-                                                                      .displayName)
-                                                                  .toList(),
-                                                          onChanged: (val) =>
-                                                              safeSetState(() =>
-                                                                  _model.chooseRecipientValue =
-                                                                      val),
-                                                          width: 200.0,
-                                                          height: 40.0,
-                                                          textStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Plus Jakarta Sans',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                          hintText:
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                            '7ocjy7o7' /* Choose Recipient */,
-                                                          ),
-                                                          icon: Icon(
-                                                            Icons
-                                                                .keyboard_arrow_down_rounded,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
-                                                            size: 24.0,
-                                                          ),
-                                                          fillColor: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          elevation: 2.0,
-                                                          borderColor: Colors
-                                                              .transparent,
-                                                          borderWidth: 0.0,
-                                                          borderRadius: 8.0,
-                                                          margin:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                  12.0,
-                                                                  0.0,
-                                                                  12.0,
-                                                                  0.0),
-                                                          hidesUnderline: true,
-                                                          isOverButton: false,
-                                                          isSearchable: false,
-                                                          isMultiSelect: false,
-                                                        ),
-                                                      );
-                                                    },
                                                   ),
-                                                ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                            10.0, 0.0),
+                                                    child: AuthUserStreamWidget(
+                                                      builder: (context) =>
+                                                          StreamBuilder<
+                                                              List<
+                                                                  UsersRecord>>(
+                                                        stream:
+                                                            queryUsersRecord(
+                                                          queryBuilder: (usersRecord) =>
+                                                              usersRecord
+                                                                  .where(
+                                                                    'groupID',
+                                                                    isEqualTo: valueOrDefault(
+                                                                        currentUserDocument
+                                                                            ?.groupID,
+                                                                        ''),
+                                                                  )
+                                                                  .where(
+                                                                      'podNum',
+                                                                      isEqualTo:
+                                                                          _model
+                                                                              .selectedPodNumber),
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  valueColor:
+                                                                      AlwaysStoppedAnimation<
+                                                                          Color>(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<UsersRecord>
+                                                              containerUsersRecordList =
+                                                              snapshot.data!;
+
+                                                          return Container(
+                                                            width: 200.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              boxShadow: const [
+                                                                BoxShadow(
+                                                                  blurRadius:
+                                                                      3.0,
+                                                                  color: Color(
+                                                                      0x33000000),
+                                                                  offset:
+                                                                      Offset(
+                                                                    0.0,
+                                                                    3.0,
+                                                                  ),
+                                                                )
+                                                              ],
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            child:
+                                                                FlutterFlowDropDown<
+                                                                    String>(
+                                                              controller: _model
+                                                                      .chooseRecipientValueController ??=
+                                                                  FormFieldController<
+                                                                      String>(
+                                                                _model.chooseRecipientValue ??=
+                                                                    '',
+                                                              ),
+                                                              options: List<
+                                                                      String>.from(
+                                                                  containerUsersRecordList
+                                                                      .where((e) =>
+                                                                          () {
+                                                                            if (valueOrDefault(currentUserDocument?.userType, '') ==
+                                                                                'Realtor') {
+                                                                              return ((e.userType == 'Lender') && e.language.contains(_model.languageValue) && (e.isPaused != true));
+                                                                            } else if (valueOrDefault(currentUserDocument?.userType, '') ==
+                                                                                'Lender') {
+                                                                              return ((e.userType == 'Realtor') && e.language.contains(_model.languageValue) && (e.isPaused != true));
+                                                                            } else {
+                                                                              return true;
+                                                                            }
+                                                                          }())
+                                                                      .toList()
+                                                                      .map((e) =>
+                                                                          e.uid)
+                                                                      .toList()),
+                                                              optionLabels:
+                                                                  containerUsersRecordList
+                                                                      .where((e) =>
+                                                                          () {
+                                                                            if (valueOrDefault(currentUserDocument?.userType, '') ==
+                                                                                'Realtor') {
+                                                                              return ((e.userType == 'Lender') && e.language.contains(_model.languageValue) && (e.isPaused != true));
+                                                                            } else if (valueOrDefault(currentUserDocument?.userType, '') ==
+                                                                                'Lender') {
+                                                                              return ((e.userType == 'Realtor') && e.language.contains(_model.languageValue) && (e.isPaused != true));
+                                                                            } else {
+                                                                              return true;
+                                                                            }
+                                                                          }())
+                                                                      .toList()
+                                                                      .map((e) =>
+                                                                          e.displayName)
+                                                                      .toList(),
+                                                              maxHeight: 200.0,
+                                                              onChanged: (val) =>
+                                                                  safeSetState(() =>
+                                                                      _model.chooseRecipientValue =
+                                                                          val),
+                                                              width: 200.0,
+                                                              height: 40.0,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Plus Jakarta Sans',
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                              hintText:
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                '7ocjy7o7' /* Choose Recipient */,
+                                                              ),
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .keyboard_arrow_down_rounded,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 24.0,
+                                                              ),
+                                                              fillColor: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              elevation: 2.0,
+                                                              borderColor: Colors
+                                                                  .transparent,
+                                                              borderWidth: 0.0,
+                                                              borderRadius: 8.0,
+                                                              margin:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                      12.0,
+                                                                      0.0,
+                                                                      12.0,
+                                                                      0.0),
+                                                              hidesUnderline:
+                                                                  true,
+                                                              isOverButton:
+                                                                  true,
+                                                              isSearchable:
+                                                                  true,
+                                                              isMultiSelect:
+                                                                  false,
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                               Padding(
                                                 padding:

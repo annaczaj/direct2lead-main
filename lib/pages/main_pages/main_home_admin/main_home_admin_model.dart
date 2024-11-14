@@ -12,6 +12,10 @@ class MainHomeAdminModel extends FlutterFlowModel<MainHomeAdminWidget> {
   // Model for webNav component.
   late WebNavModel webNavModel;
   // State field(s) for DropDown widget.
+
+  String? selectedGroupID;
+  FormFieldController<String>? groupIDController;
+
   String? dropDownValue1;
   FormFieldController<String>? dropDownValueController1;
   // State field(s) for DropDown widget.

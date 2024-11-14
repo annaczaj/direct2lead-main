@@ -2151,13 +2151,11 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                                     descending: true)
                                                 .limit(15)),
                                     builder: (context, senderSnapshot) {
-                                      if (!senderSnapshot.hasData) {
-                                        return Center();
-                                      }
+                                      final senderLeads =
+                                          senderSnapshot.data ?? [];
                                       final allLeadRefs = [
-                                        ...leadSnapshot.data!
-                                            .map((lead) => lead.reference),
-                                        ...senderSnapshot.data!
+                                        ...leadRefs,
+                                        ...senderLeads
                                             .map((lead) => lead.reference)
                                       ];
                                       return StreamBuilder<
@@ -2166,7 +2164,9 @@ class _MainHomeWidgetState extends State<MainHomeWidget>
                                             queryBuilder: (commentsRecord) =>
                                                 commentsRecord.where(
                                                     'commentLeadChoice',
-                                                    whereIn: allLeadRefs)),
+                                                    whereIn: allLeadRefs.isEmpty
+                                                        ? null
+                                                        : allLeadRefs)),
                                         builder: (context, commentSnapshot) {
                                           if (!commentSnapshot.hasData) {
                                             return Center();

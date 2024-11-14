@@ -85,6 +85,9 @@ class MainContractsModel extends FlutterFlowModel<MainContractsWidget> {
   String? chooseRecipientValue;
   FormFieldController<String>? chooseRecipientValueController;
 
+  String? selectedPodNumber;
+  FormFieldController<String>? selectedPodNumberController;
+
   @override
   void initState(BuildContext context) {
     webNavModel = createModel(context, () => WebNavModel());
