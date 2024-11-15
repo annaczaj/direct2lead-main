@@ -278,11 +278,17 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                 'Plus Jakarta Sans',
                                                             letterSpacing: 0.0,
                                                           ),
-                                                  hintText: FFLocalizations.of(
-                                                          context)
-                                                      .getText(
-                                                    '1f74rgo5' /* Lead Name */,
-                                                  ),
+                                                  hintText: _model
+                                                              .prequalOrPendingValue !=
+                                                          'High Nurture Lead'
+                                                      ? FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                                  '1f74rgo5') +
+                                                          ' *'
+                                                      : FFLocalizations.of(
+                                                              context)
+                                                          .getText('1f74rgo5'),
                                                   hintStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -419,11 +425,17 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                 'Plus Jakarta Sans',
                                                             letterSpacing: 0.0,
                                                           ),
-                                                  hintText: FFLocalizations.of(
-                                                          context)
-                                                      .getText(
-                                                    'mawb09dl' /* Lead Email */,
-                                                  ),
+                                                  hintText: _model
+                                                              .prequalOrPendingValue !=
+                                                          'High Nurture Lead'
+                                                      ? FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                                  'mawb09dl') +
+                                                          ' *'
+                                                      : FFLocalizations.of(
+                                                              context)
+                                                          .getText('mawb09dl'),
                                                   hintStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -560,11 +572,17 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                 'Plus Jakarta Sans',
                                                             letterSpacing: 0.0,
                                                           ),
-                                                  hintText: FFLocalizations.of(
-                                                          context)
-                                                      .getText(
-                                                    'r5d7t6l0' /* Lead Phone */,
-                                                  ),
+                                                  hintText: _model
+                                                              .prequalOrPendingValue !=
+                                                          'High Nurture Lead'
+                                                      ? FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                                  'r5d7t6l0') +
+                                                          ' *'
+                                                      : FFLocalizations.of(
+                                                              context)
+                                                          .getText('r5d7t6l0'),
                                                   hintStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -733,12 +751,18 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                               'Plus Jakarta Sans',
                                                           letterSpacing: 0.0,
                                                         ),
-                                                    hintText:
-                                                        FFLocalizations.of(
+                                                    hintText: _model
+                                                                .prequalOrPendingValue !=
+                                                            'High Nurture Lead'
+                                                        ? FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                                    'm7avyr0r') +
+                                                            ' *'
+                                                        : FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                      'm7avyr0r' /* Language */,
-                                                    ),
+                                                                'm7avyr0r'),
                                                     icon: Icon(
                                                       Icons
                                                           .keyboard_arrow_down_rounded,
@@ -841,12 +865,18 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                               'Plus Jakarta Sans',
                                                           letterSpacing: 0.0,
                                                         ),
-                                                    hintText:
-                                                        FFLocalizations.of(
+                                                    hintText: _model
+                                                                .prequalOrPendingValue !=
+                                                            'High Nurture Lead'
+                                                        ? FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                                    'hc6zyezy') +
+                                                            ' *'
+                                                        : FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                      'hc6zyezy' /* Areas of Interest */,
-                                                    ),
+                                                                'hc6zyezy'),
                                                     icon: Icon(
                                                       Icons
                                                           .keyboard_arrow_down_rounded,
@@ -882,247 +912,255 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                             ],
                                           ),
                                         ),
-                                        if (valueOrDefault(
-                                                currentUserDocument?.userType,
-                                                '') ==
-                                            'Lender')
-                                          Padding(
-                                            padding: const EdgeInsetsDirectional
-                                                .fromSTEB(0.0, 5.0, 0.0, 5.0),
-                                            child: AuthUserStreamWidget(
-                                              builder: (context) => Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                            8.0, 8.0, 8.0, 8.0),
-                                                    child: Container(
-                                                      width: MediaQuery.sizeOf(
+                                        Padding(
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0.0, 5.0, 0.0, 5.0),
+                                          child: AuthUserStreamWidget(
+                                            builder: (context) => Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
+                                                          8.0, 8.0, 8.0, 8.0),
+                                                  child: Container(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        0.55,
+                                                    decoration: BoxDecoration(
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          blurRadius: 3.0,
+                                                          color:
+                                                              Color(0x33000000),
+                                                          offset: Offset(
+                                                            0.0,
+                                                            3.0,
+                                                          ),
+                                                        )
+                                                      ],
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    child: FlutterFlowDropDown<
+                                                        String>(
+                                                      controller: _model
+                                                              .prequalOrPendingValueController ??=
+                                                          FormFieldController<
+                                                              String>(null),
+                                                      options: [
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'vrpo7i59' /* Prequalified */,
+                                                        ),
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'd0b0mnoo' /* Pending */,
+                                                        ),
+                                                        'High Nurture Lead',
+                                                      ],
+                                                      onChanged: (val) =>
+                                                          safeSetState(() =>
+                                                              _model.prequalOrPendingValue =
+                                                                  val),
+                                                      width: 200.0,
+                                                      height: 40.0,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
                                                                   context)
-                                                              .width *
-                                                          0.55,
-                                                      decoration: BoxDecoration(
-                                                        boxShadow: const [
-                                                          BoxShadow(
-                                                            blurRadius: 3.0,
-                                                            color: Color(
-                                                                0x33000000),
-                                                            offset: Offset(
-                                                              0.0,
-                                                              3.0,
-                                                            ),
-                                                          )
-                                                        ],
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      child:
-                                                          FlutterFlowDropDown<
-                                                              String>(
-                                                        controller: _model
-                                                                .prequalOrPendingValueController ??=
-                                                            FormFieldController<
-                                                                String>(null),
-                                                        options: [
-                                                          FFLocalizations.of(
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Plus Jakarta Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                      hintText: _model
+                                                                  .prequalOrPendingValue !=
+                                                              'High Nurture Lead'
+                                                          ? FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                                      'gf5tn4td') +
+                                                              ' *'
+                                                          : FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'vrpo7i59' /* Prequalified */,
-                                                          ),
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'd0b0mnoo' /* Pending */,
-                                                          ),
-                                                          'High Nurture Lead',
-                                                        ],
-                                                        onChanged: (val) =>
-                                                            safeSetState(() =>
-                                                                _model.prequalOrPendingValue =
-                                                                    val),
-                                                        width: 200.0,
-                                                        height: 40.0,
-                                                        textStyle:
+                                                                  'gf5tn4td'),
+                                                      icon: Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Plus Jakarta Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        hintText:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                          'gf5tn4td' /* Prequalified or Pending */,
-                                                        ),
-                                                        icon: Icon(
-                                                          Icons
-                                                              .keyboard_arrow_down_rounded,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        fillColor: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        elevation: 2.0,
-                                                        borderColor:
-                                                            Colors.transparent,
-                                                        borderWidth: 0.0,
-                                                        borderRadius: 8.0,
-                                                        margin:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(12.0,
-                                                                0.0, 12.0, 0.0),
-                                                        hidesUnderline: true,
-                                                        isOverButton: false,
-                                                        isSearchable: false,
-                                                        isMultiSelect: false,
+                                                                .secondaryText,
+                                                        size: 24.0,
                                                       ),
+                                                      fillColor: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      elevation: 2.0,
+                                                      borderColor:
+                                                          Colors.transparent,
+                                                      borderWidth: 0.0,
+                                                      borderRadius: 8.0,
+                                                      margin:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(12.0,
+                                                              0.0, 12.0, 0.0),
+                                                      hidesUnderline: true,
+                                                      isOverButton: false,
+                                                      isSearchable: false,
+                                                      isMultiSelect: false,
                                                     ),
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                    child: Container(
-                                                      width: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .width *
-                                                          0.55,
-                                                      decoration: BoxDecoration(
-                                                        boxShadow: const [
-                                                          BoxShadow(
-                                                            blurRadius: 3.0,
-                                                            color: Color(
-                                                                0x33000000),
-                                                            offset: Offset(
-                                                              0.0,
-                                                              3.0,
-                                                            ),
-                                                          )
-                                                        ],
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      child:
-                                                          FlutterFlowDropDown<
-                                                              String>(
-                                                        controller: _model
-                                                                .prequalAmtValueController ??=
-                                                            FormFieldController<
-                                                                String>(null),
-                                                        options: [
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'bsdpkgw8' /* 200-300k */,
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
+                                                          0.0, 0.0, 0.0, 0.0),
+                                                  child: Container(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        0.55,
+                                                    decoration: BoxDecoration(
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          blurRadius: 3.0,
+                                                          color:
+                                                              Color(0x33000000),
+                                                          offset: Offset(
+                                                            0.0,
+                                                            3.0,
                                                           ),
-                                                          FFLocalizations.of(
+                                                        )
+                                                      ],
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    child: FlutterFlowDropDown<
+                                                        String>(
+                                                      controller: _model
+                                                              .prequalAmtValueController ??=
+                                                          FormFieldController<
+                                                              String>(null),
+                                                      options: [
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'bsdpkgw8' /* 200-300k */,
+                                                        ),
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          '85nye6oe' /* 300-400k */,
+                                                        ),
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          '69ooxgnh' /* 400-500k */,
+                                                        ),
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          '5o5ih8op' /* 500-600k */,
+                                                        ),
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'xfr71dow' /* 600-700k */,
+                                                        ),
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'aioa3lsa' /* 700-800k */,
+                                                        ),
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'nfbls9ui' /* 800-900k */,
+                                                        ),
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'xb2n9rba' /* 900-1M */,
+                                                        ),
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          '2te5g9ix' /* 1M+ */,
+                                                        )
+                                                      ],
+                                                      onChanged: (val) =>
+                                                          safeSetState(() =>
+                                                              _model.prequalAmtValue =
+                                                                  val),
+                                                      width: 200.0,
+                                                      height: 40.0,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Plus Jakarta Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                      hintText: _model
+                                                                  .prequalOrPendingValue !=
+                                                              'High Nurture Lead'
+                                                          ? FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                                      'mszgzko1') +
+                                                              ' *'
+                                                          : FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            '85nye6oe' /* 300-400k */,
-                                                          ),
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            '69ooxgnh' /* 400-500k */,
-                                                          ),
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            '5o5ih8op' /* 500-600k */,
-                                                          ),
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'xfr71dow' /* 600-700k */,
-                                                          ),
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'aioa3lsa' /* 700-800k */,
-                                                          ),
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'nfbls9ui' /* 800-900k */,
-                                                          ),
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'xb2n9rba' /* 900-1M */,
-                                                          ),
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            '2te5g9ix' /* 1M+ */,
-                                                          )
-                                                        ],
-                                                        onChanged: (val) =>
-                                                            safeSetState(() =>
-                                                                _model.prequalAmtValue =
-                                                                    val),
-                                                        width: 200.0,
-                                                        height: 40.0,
-                                                        textStyle:
+                                                                  'mszgzko1'),
+                                                      icon: Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Plus Jakarta Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        hintText:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                          'mszgzko1' /* Prequalified Amount */,
-                                                        ),
-                                                        icon: Icon(
-                                                          Icons
-                                                              .keyboard_arrow_down_rounded,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        fillColor: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        elevation: 2.0,
-                                                        borderColor:
-                                                            Colors.transparent,
-                                                        borderWidth: 0.0,
-                                                        borderRadius: 8.0,
-                                                        margin:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(12.0,
-                                                                0.0, 12.0, 0.0),
-                                                        hidesUnderline: true,
-                                                        isOverButton: false,
-                                                        isSearchable: false,
-                                                        isMultiSelect: false,
+                                                                .secondaryText,
+                                                        size: 24.0,
                                                       ),
+                                                      fillColor: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      elevation: 2.0,
+                                                      borderColor:
+                                                          Colors.transparent,
+                                                      borderWidth: 0.0,
+                                                      borderRadius: 8.0,
+                                                      margin:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(12.0,
+                                                              0.0, 12.0, 0.0),
+                                                      hidesUnderline: true,
+                                                      isOverButton: false,
+                                                      isSearchable: false,
+                                                      isMultiSelect: false,
                                                     ),
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ),
+                                        ),
                                         if (valueOrDefault(
                                                 currentUserDocument?.userType,
                                                 '') ==
@@ -1190,11 +1228,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                       0.0,
                                                                       0.0),
                                                               child: Text(
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  'euujb3gv' /* Home to Sell? */,
-                                                                ),
+                                                                _model.prequalOrPendingValue !=
+                                                                        'High Nurture Lead'
+                                                                    ? FFLocalizations.of(context).getText(
+                                                                            'euujb3gv') +
+                                                                        ' *'
+                                                                    : FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                            'euujb3gv'),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .labelMedium
@@ -1546,13 +1588,15 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'ggy3nq37' /* Working with 
-                                                                    Realtor? */
-                                                                    ,
-                                                                  ),
+                                                                  _model.prequalOrPendingValue !=
+                                                                          'High Nurture Lead'
+                                                                      ? FFLocalizations.of(context).getText(
+                                                                              'ggy3nq37') +
+                                                                          ' *'
+                                                                      : FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                              'ggy3nq37'),
                                                                   textAlign:
                                                                       TextAlign
                                                                           .center,
@@ -1756,12 +1800,18 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
-                                                        hintText:
-                                                            FFLocalizations.of(
-                                                                    context)
+                                                        hintText: _model
+                                                                    .prequalOrPendingValue !=
+                                                                'High Nurture Lead'
+                                                            ? FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                        'sv0fdk65') +
+                                                                ' *'
+                                                            : FFLocalizations
+                                                                    .of(context)
                                                                 .getText(
-                                                          'sv0fdk65' /* Loan Purpose */,
-                                                        ),
+                                                                    'sv0fdk65'),
                                                         icon: Icon(
                                                           Icons
                                                               .keyboard_arrow_down_rounded,
@@ -1885,12 +1935,18 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
-                                                        hintText:
-                                                            FFLocalizations.of(
-                                                                    context)
+                                                        hintText: _model
+                                                                    .prequalOrPendingValue !=
+                                                                'High Nurture Lead'
+                                                            ? FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                        'j517uch9') +
+                                                                ' *'
+                                                            : FFLocalizations
+                                                                    .of(context)
                                                                 .getText(
-                                                          'j517uch9' /* Prequalified Amount (Estimated... */,
-                                                        ),
+                                                                    'j517uch9'),
                                                         icon: Icon(
                                                           Icons
                                                               .keyboard_arrow_down_rounded,
@@ -1981,11 +2037,17 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                     0.0,
                                                                     0.0),
                                                             child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                '1mac9qaz' /* Home to Sell? */,
-                                                              ),
+                                                              _model.prequalOrPendingValue !=
+                                                                      'High Nurture Lead'
+                                                                  ? FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                              '1mac9qaz') +
+                                                                      ' *'
+                                                                  : FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                          '1mac9qaz'),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .labelMedium
@@ -2154,11 +2216,17 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                     0.0,
                                                                     0.0),
                                                             child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                'qgc1sm7d' /* Ready to Apply for Mortgage? */,
-                                                              ),
+                                                              _model.prequalOrPendingValue !=
+                                                                      'High Nurture Lead'
+                                                                  ? FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                              'qgc1sm7d') +
+                                                                      ' *'
+                                                                  : FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                          'qgc1sm7d'),
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
@@ -2330,13 +2398,17 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                     0.0,
                                                                     0.0),
                                                             child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                'rrbhymhd' /* Working with 
-                                                          Lender? */
-                                                                ,
-                                                              ),
+                                                              _model.prequalOrPendingValue !=
+                                                                      'High Nurture Lead'
+                                                                  ? FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                              'rrbhymhd') +
+                                                                      ' *'
+                                                                  : FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                          'rrbhymhd'),
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
@@ -2528,9 +2600,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                           ),
                                                   hintText: FFLocalizations.of(
                                                           context)
-                                                      .getText(
-                                                    'i4srbn4r' /* Notes... */,
-                                                  ),
+                                                      .getText('i4srbn4r'),
                                                   hintStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -2681,7 +2751,12 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
-                                                        hintText: 'Pod Number',
+                                                        hintText: _model
+                                                                    .prequalOrPendingValue !=
+                                                                'High Nurture Lead'
+                                                            ? 'Pod Number' +
+                                                                ' *'
+                                                            : 'Pod Number',
                                                         icon: Icon(
                                                           Icons
                                                               .keyboard_arrow_down_rounded,
@@ -2848,12 +2923,18 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
-                                                              hintText:
-                                                                  FFLocalizations.of(
+                                                              hintText: _model
+                                                                          .prequalOrPendingValue !=
+                                                                      'High Nurture Lead'
+                                                                  ? FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                              '7ocjy7o7') +
+                                                                      ' *'
+                                                                  : FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                '7ocjy7o7' /* Choose Recipient */,
-                                                              ),
+                                                                          '7ocjy7o7'),
                                                               icon: Icon(
                                                                 Icons
                                                                     .keyboard_arrow_down_rounded,
