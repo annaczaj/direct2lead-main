@@ -2658,11 +2658,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                         controller: _model
                                                                 .selectedPodNumberController ??=
                                                             FormFieldController<
-                                                                    String>(
-                                                                valueOrDefault(
-                                                                    currentUserDocument
-                                                                        ?.podNum,
-                                                                    '')),
+                                                                String>(null),
                                                         options: [
                                                           '1',
                                                           '2',
