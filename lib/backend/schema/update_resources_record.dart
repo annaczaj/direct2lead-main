@@ -31,10 +31,20 @@ class UpdateResourcesRecord extends FirestoreRecord {
   List<String> get devIDList => _devIDList ?? const [];
   bool hasDevIDList() => _devIDList != null;
 
+  List<String>? _momentumStageList;
+  List<String> get momentumStageList => _momentumStageList ?? const [];
+  bool hasMomentumStageList() => _momentumStageList != null;
+
+  List<String>? _rocketStageList;
+  List<String> get rocketStageList => _rocketStageList ?? const [];
+  bool hasRocketStageList() => _rocketStageList != null;
+
   void _initializeFields() {
     _userGroupIDList = getDataList(snapshotData['userGroupIDList']);
     _adminIDList = getDataList(snapshotData['adminIDList']);
     _devIDList = getDataList(snapshotData['devIDList']);
+    _momentumStageList = getDataList(snapshotData['momentumStageList']);
+    _rocketStageList = getDataList(snapshotData['rocketStageList']);
   }
 
   static CollectionReference get collection =>

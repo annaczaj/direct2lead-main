@@ -1058,82 +1058,115 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                               ),
                             ),
                             Expanded(
-                              child: FlutterFlowChoiceChips(
-                                options: [
-                                  ChipData(FFLocalizations.of(context).getText(
-                                    '7au5uoz8' /* Sent */,
-                                  )),
-                                  ChipData(FFLocalizations.of(context).getText(
-                                    '5tbpku2z' /* Accepted */,
-                                  )),
-                                  ChipData(FFLocalizations.of(context).getText(
-                                    'hfycnygm' /* Closed */,
-                                  )),
-                                  ChipData(FFLocalizations.of(context).getText(
-                                    'x0fcniow' /* Rejected */,
-                                  ))
-                                ],
-                                onChanged: (widget.leadInfo?.leadRecipient !=
-                                        currentUserUid)
-                                    ? null
-                                    : (val) async {
-                                        safeSetState(() =>
-                                            _model.stageChoiceValue =
-                                                val?.firstOrNull);
-                                        logFirebaseEvent(
-                                            'USER_DETAILS_MAIN_stageChoice_ON_FORM_WI');
+                              child: StreamBuilder<List<UpdateResourcesRecord>>(
+                                  stream: queryUpdateResourcesRecord(),
+                                  builder: (context, snapshot) {
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
 
-                                        await widget.leadInfo!.reference
-                                            .update(createLeadInfoRecordData(
-                                          leadStage: _model.stageChoiceValue,
-                                          lastChanged: DateTime.now(),
-                                        ));
-                                      },
-                                selectedChipStyle: ChipStyle(
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Plus Jakarta Sans',
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        letterSpacing: 0.0,
+                                    final stagesRecord = snapshot.data!.first;
+                                    final currentGroupOptions =
+                                        (currentUserDocument?.groupID ==
+                                                'AZFNT-MomentumBrokers')
+                                            ? stagesRecord.momentumStageList
+                                            : stagesRecord.rocketStageList;
+
+                                    return SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: FlutterFlowChoiceChips(
+                                        options: currentGroupOptions
+                                            .map((stage) => ChipData(stage))
+                                            .toList(),
+                                        onChanged: (widget
+                                                    .leadInfo?.leadRecipient !=
+                                                currentUserUid)
+                                            ? null
+                                            : (val) async {
+                                                safeSetState(() =>
+                                                    _model.stageChoiceValue =
+                                                        val?.firstOrNull);
+                                                logFirebaseEvent(
+                                                    'USER_DETAILS_MAIN_stageChoice_ON_FORM_WI');
+
+                                                await widget.leadInfo!.reference
+                                                    .update(
+                                                        createLeadInfoRecordData(
+                                                  leadStage:
+                                                      _model.stageChoiceValue,
+                                                  lastChanged: DateTime.now(),
+                                                ));
+                                              },
+                                        selectedChipStyle: ChipStyle(
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Plus Jakarta Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
+                                                letterSpacing: 0.0,
+                                              ),
+                                          iconColor:
+                                              FlutterFlowTheme.of(context).info,
+                                          iconSize: 16.0,
+                                          elevation: 0.0,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        unselectedChipStyle: ChipStyle(
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Plus Jakarta Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                letterSpacing: 0.0,
+                                              ),
+                                          iconColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryText,
+                                          iconSize: 16.0,
+                                          elevation: 0.0,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        chipSpacing: 8.0,
+                                        rowSpacing: 8.0,
+                                        multiselect: false,
+                                        initialized:
+                                            _model.stageChoiceValue != null,
+                                        alignment: WrapAlignment.start,
+                                        controller: _model
+                                                .stageChoiceValueController ??=
+                                            FormFieldController<List<String>>(
+                                          [widget.leadInfo!.leadStage],
+                                        ),
+                                        wrapped: true,
                                       ),
-                                  iconColor: FlutterFlowTheme.of(context).info,
-                                  iconSize: 16.0,
-                                  elevation: 0.0,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                unselectedChipStyle: ChipStyle(
-                                  backgroundColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Plus Jakarta Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  iconColor: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  iconSize: 16.0,
-                                  elevation: 0.0,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                chipSpacing: 8.0,
-                                rowSpacing: 8.0,
-                                multiselect: false,
-                                initialized: _model.stageChoiceValue != null,
-                                alignment: WrapAlignment.start,
-                                controller:
-                                    _model.stageChoiceValueController ??=
-                                        FormFieldController<List<String>>(
-                                  [widget.leadInfo!.leadStage],
-                                ),
-                                wrapped: true,
-                              ),
+                                    );
+                                  }),
                             ),
                           ],
                         ),
