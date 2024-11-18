@@ -144,6 +144,41 @@ class LeadInfoRecord extends FirestoreRecord {
   DateTime? get lastChanged => _lastChanged;
   bool hasLastChanged() => _lastChanged != null;
 
+  // "leadPhoneType" field.
+  String? _leadPhoneType;
+  String get leadPhoneType => _leadPhoneType ?? '';
+  bool hasLeadPhoneType() => _leadPhoneType != null;
+
+  // "leadAltPhone" field.
+  String? _leadAltPhone;
+  String get leadAltPhone => _leadAltPhone ?? '';
+  bool hasLeadAltPhone() => _leadAltPhone != null;
+
+  // "leadAltPhoneType" field.
+  String? _leadAltPhoneType;
+  String get leadAltPhoneType => _leadAltPhoneType ?? '';
+  bool hasLeadAltPhoneType() => _leadAltPhoneType != null;
+
+  // "leadAddressStreet" field.
+  String? _leadAddressStreet;
+  String get leadAddressStreet => _leadAddressStreet ?? '';
+  bool hasLeadAddressStreet() => _leadAddressStreet != null;
+
+  // "leadAddressCity" field.
+  String? _leadAddressCity;
+  String get leadAddressCity => _leadAddressCity ?? '';
+  bool hasLeadAddressCity() => _leadAddressCity != null;
+
+  // "leadAddressState" field.
+  String? _leadAddressState;
+  String get leadAddressState => _leadAddressState ?? '';
+  bool hasLeadAddressState() => _leadAddressState != null;
+
+  // "leadAddressZip" field.
+  String? _leadAddressZip;
+  String get leadAddressZip => _leadAddressZip ?? '';
+  bool hasLeadAddressZip() => _leadAddressZip != null;
+
   void _initializeFields() {
     _leadName = snapshotData['leadName'] as String?;
     _leadEmail = snapshotData['leadEmail'] as String?;
@@ -171,6 +206,13 @@ class LeadInfoRecord extends FirestoreRecord {
     _senderGroupID = snapshotData['senderGroupID'] as String?;
     _leadID = snapshotData['leadID'] as String?;
     _lastChanged = snapshotData['lastChanged'] as DateTime?;
+    _leadPhoneType = snapshotData['leadPhoneType'] as String?;
+    _leadAltPhone = snapshotData['leadAltPhone'] as String?;
+    _leadAltPhoneType = snapshotData['leadAltPhoneType'] as String?;
+    _leadAddressStreet = snapshotData['leadAddressStreet'] as String?;
+    _leadAddressCity = snapshotData['leadAddressCity'] as String?;
+    _leadAddressState = snapshotData['leadAddressState'] as String?;
+    _leadAddressZip = snapshotData['leadAddressZip'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -233,6 +275,13 @@ Map<String, dynamic> createLeadInfoRecordData({
   String? senderGroupID,
   String? leadID,
   DateTime? lastChanged,
+  String? leadPhoneType,
+  String? leadAltPhone,
+  String? leadAltPhoneType,
+  String? leadAddressStreet,
+  String? leadAddressCity,
+  String? leadAddressState,
+  String? leadAddressZip,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -261,6 +310,13 @@ Map<String, dynamic> createLeadInfoRecordData({
       'senderGroupID': senderGroupID,
       'leadID': leadID,
       'lastChanged': lastChanged,
+      'leadPhoneType': leadPhoneType,
+      'leadAltPhone': leadAltPhone,
+      'leadAltPhoneType': leadAltPhoneType,
+      'leadAddressStreet': leadAddressStreet,
+      'leadAddressCity': leadAddressCity,
+      'leadAddressState': leadAddressState,
+      'leadAddressZip': leadAddressZip,
     }.withoutNulls,
   );
 
@@ -298,7 +354,14 @@ class LeadInfoRecordDocumentEquality implements Equality<LeadInfoRecord> {
         e1?.senderUserType == e2?.senderUserType &&
         e1?.senderGroupID == e2?.senderGroupID &&
         e1?.leadID == e2?.leadID &&
-        e1?.lastChanged == e2?.lastChanged;
+        e1?.lastChanged == e2?.lastChanged &&
+        e1?.leadPhoneType == e2?.leadPhoneType &&
+        e1?.leadAltPhone == e2?.leadAltPhone &&
+        e1?.leadAltPhoneType == e2?.leadAltPhoneType &&
+        e1?.leadAddressStreet == e2?.leadAddressStreet &&
+        e1?.leadAddressCity == e2?.leadAddressCity &&
+        e1?.leadAddressState == e2?.leadAddressState &&
+        e1?.leadAddressZip == e2?.leadAddressZip;
   }
 
   @override
@@ -329,6 +392,13 @@ class LeadInfoRecordDocumentEquality implements Equality<LeadInfoRecord> {
         e?.senderGroupID,
         e?.leadID,
         e?.lastChanged,
+        e?.leadPhoneType,
+        e?.leadAltPhone,
+        e?.leadAltPhoneType,
+        e?.leadAddressStreet,
+        e?.leadAddressCity,
+        e?.leadAddressState,
+        e?.leadAddressZip,
       ]);
 
   @override

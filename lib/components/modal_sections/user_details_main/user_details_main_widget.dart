@@ -1,3 +1,5 @@
+import 'package:design_redo_direct2_lead/flutter_flow/flutter_flow_drop_down.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/modals/create_comment/create_comment_widget.dart';
@@ -1084,87 +1086,53 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                             ? stagesRecord.momentumStageList
                                             : stagesRecord.rocketStageList;
 
-                                    return SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: FlutterFlowChoiceChips(
-                                        options: currentGroupOptions
-                                            .map((stage) => ChipData(stage))
-                                            .toList(),
-                                        onChanged: (widget
-                                                    .leadInfo?.leadRecipient !=
-                                                currentUserUid)
-                                            ? null
-                                            : (val) async {
-                                                safeSetState(() =>
-                                                    _model.stageChoiceValue =
-                                                        val?.firstOrNull);
-                                                logFirebaseEvent(
-                                                    'USER_DETAILS_MAIN_stageChoice_ON_FORM_WI');
-
-                                                await widget.leadInfo!.reference
-                                                    .update(
-                                                        createLeadInfoRecordData(
-                                                  leadStage:
-                                                      _model.stageChoiceValue,
-                                                  lastChanged: DateTime.now(),
-                                                ));
-                                              },
-                                        selectedChipStyle: ChipStyle(
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Plus Jakarta Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
-                                                letterSpacing: 0.0,
-                                              ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context).info,
-                                          iconSize: 16.0,
-                                          elevation: 0.0,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        unselectedChipStyle: ChipStyle(
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Plus Jakarta Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                letterSpacing: 0.0,
-                                              ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryText,
-                                          iconSize: 16.0,
-                                          elevation: 0.0,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        chipSpacing: 8.0,
-                                        rowSpacing: 8.0,
-                                        multiselect: false,
-                                        initialized:
-                                            _model.stageChoiceValue != null,
-                                        alignment: WrapAlignment.start,
-                                        controller: _model
-                                                .stageChoiceValueController ??=
-                                            FormFieldController<List<String>>(
-                                          [widget.leadInfo!.leadStage],
-                                        ),
-                                        wrapped: true,
+                                    return FlutterFlowDropDown<String>(
+                                      controller: _model
+                                              .stageDropDownValueController ??=
+                                          FormFieldController<String>(
+                                              widget.leadInfo?.leadStage),
+                                      options: currentGroupOptions,
+                                      onChanged: (widget
+                                                  .leadInfo?.leadRecipient !=
+                                              currentUserUid)
+                                          ? null
+                                          : (val) async {
+                                              if (val == null) return;
+                                              setState(() => _model
+                                                  .stageDropDownValue = val);
+                                              await widget.leadInfo!.reference
+                                                  .update(
+                                                      createLeadInfoRecordData(
+                                                leadStage: val,
+                                                lastChanged: DateTime.now(),
+                                              ));
+                                            },
+                                      width: 200.0,
+                                      height: 40.0,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                      hintText: 'Select Stage',
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
                                       ),
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      elevation: 2.0,
+                                      borderColor: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      borderWidth: 2.0,
+                                      borderRadius: 8.0,
+                                      margin: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 4.0, 16.0, 4.0),
+                                      hidesUnderline: true,
+                                      isSearchable: false,
+                                      isMultiSelect: false,
+                                      disabled:
+                                          widget.leadInfo?.leadRecipient !=
+                                              currentUserUid,
                                     );
                                   }),
                             ),

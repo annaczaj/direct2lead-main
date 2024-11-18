@@ -105,8 +105,6 @@ class _LeadCsvWidgetState extends State<LeadCsvWidget> {
                                   allowedExtensions: ['csv'],
                                 );
 
-                                const leads = [];
-
                                 if (result != null) {
                                   Uint8List fileBytes =
                                       result.files.first.bytes!;
@@ -118,58 +116,84 @@ class _LeadCsvWidgetState extends State<LeadCsvWidget> {
 
                                   print('CSV Rows: $rows');
 
-                                  for (var row in rows.skip(1)) {
+                                  for (var row in rows.skip(1).where((row) {
+                                    return row.any((cell) =>
+                                        cell != null &&
+                                        cell.toString().trim().isNotEmpty &&
+                                        cell != '#N/A');
+                                  })) {
                                     Map<String, dynamic> leadData = {
-                                      'leadName': row[0],
-                                      'leadEmail': row[1],
-                                      'leadRecipient': row[3],
-                                      'leadSender': currentUserUid,
-                                      'leadPhone': row[4],
-                                      'language': row[5],
+                                      'leadCreationDate':
+                                          row[0]?.toString().trim() ?? '',
+                                      'leadName':
+                                          row[1]?.toString().trim() ?? '',
+                                      'leadEmail':
+                                          row[2]?.toString().trim() ?? '',
+                                      'leadPhone':
+                                          row[3]?.toString().trim() ?? '',
+                                      'leadPhoneType':
+                                          row[4]?.toString().trim() ?? '',
+                                      'leadAltPhone':
+                                          row[5]?.toString().trim() ?? '',
+                                      'leadAltPhoneType':
+                                          row[6]?.toString().trim() ?? '',
+                                      'leadAddressStreet':
+                                          row[7]?.toString().trim() ?? '',
+                                      'leadAddressCity':
+                                          row[8]?.toString().trim() ?? '',
+                                      'leadAddressState':
+                                          row[9]?.toString().trim() ?? '',
+                                      'leadAddressZip':
+                                          row[10]?.toString().trim() ?? '',
+                                      'leadRecipient':
+                                          row[12]?.toString().trim() ?? '',
                                       'leadStage': 'Sent',
-                                      'prequalOrPending': row[6],
-                                      'senderInfo': currentUserDocument,
-                                      'numComments': 0,
-                                      'homeToSellLender': row[9],
-                                      'prequalAmtLender': row[10],
-                                      'highNurture': row[11],
-                                      'workingWithRealtor': row[12],
+                                      'leadSender': currentUserUid,
                                       'senderUserType':
                                           currentUserDocument?.userType,
                                       'senderGroupID':
                                           currentUserDocument?.groupID,
+                                      'senderInfo':
+                                          currentUserDocument?.reference,
+                                      'numComments': 0,
                                     };
 
-                                    await LeadInfoRecord.collection.doc().set({
-                                      ...createLeadInfoRecordData(
-                                          leadName: leadData['leadName'],
-                                          leadEmail: leadData['leadEmail'],
-                                          leadRecipient:
-                                              leadData['leadRecipient'],
-                                          leadSender: leadData['leadSender'],
-                                          leadPhone: leadData['leadPhone'],
-                                          language: leadData['language'],
-                                          leadStage: leadData['leadStage'],
-                                          prequalOrPending:
-                                              leadData['prequalOrPending'],
-                                          senderInfo: leadData['senderInfo'],
-                                          numComments: leadData['numComments'],
-                                          homeToSellLender:
-                                              leadData['homeToSellLender'],
-                                          prequalAmtLender:
-                                              leadData['prequalAmtLender'],
-                                          highNurture: leadData['highNurture'],
-                                          workingWithRealtor:
-                                              leadData['workingWithRealtor'],
-                                          senderUserType:
-                                              leadData['senderUserType'],
-                                          senderGroupID:
-                                              leadData['senderGroupID']),
-                                      ...mapToFirestore({
-                                        'leadCreationDate':
-                                            FieldValue.serverTimestamp(),
-                                      })
-                                    });
+                                    try {
+                                      await LeadInfoRecord.collection
+                                          .doc()
+                                          .set(createLeadInfoRecordData(
+                                            leadName: leadData['leadName'],
+                                            leadEmail: leadData['leadEmail'],
+                                            leadRecipient:
+                                                leadData['leadRecipient'],
+                                            leadSender: leadData['leadSender'],
+                                            leadPhone: leadData['leadPhone'],
+                                            leadPhoneType:
+                                                leadData['leadPhoneType'],
+                                            leadAltPhone:
+                                                leadData['leadAltPhone'],
+                                            leadAltPhoneType:
+                                                leadData['leadAltPhoneType'],
+                                            leadAddressStreet:
+                                                leadData['leadAddressStreet'],
+                                            leadAddressCity:
+                                                leadData['leadAddressCity'],
+                                            leadAddressState:
+                                                leadData['leadAddressState'],
+                                            leadAddressZip:
+                                                leadData['leadAddressZip'],
+                                            leadStage: leadData['leadStage'],
+                                            senderUserType:
+                                                leadData['senderUserType'],
+                                            senderGroupID:
+                                                leadData['senderGroupID'],
+                                            senderInfo: leadData['senderInfo'],
+                                            numComments:
+                                                leadData['numComments'],
+                                          ));
+                                    } catch (e) {
+                                      print('Error adding lead: $e');
+                                    }
                                   }
                                 }
                               },

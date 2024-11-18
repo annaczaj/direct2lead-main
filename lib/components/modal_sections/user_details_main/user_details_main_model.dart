@@ -8,6 +8,10 @@ class UserDetailsMainModel extends FlutterFlowModel<UserDetailsMainWidget> {
 
   // State field(s) for stageChoice widget.
   FormFieldController<List<String>>? stageChoiceValueController;
+
+  String? stageDropDownValue;
+  FormFieldController<String>? stageDropDownValueController;
+
   String? get stageChoiceValue =>
       stageChoiceValueController?.value?.firstOrNull;
   set stageChoiceValue(String? val) =>
