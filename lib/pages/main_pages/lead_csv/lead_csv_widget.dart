@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'lead_csv_model.dart';
 export 'lead_csv_model.dart';
 import '/components/web_nav/web_nav_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LeadCsvWidget extends StatefulWidget {
   const LeadCsvWidget({super.key});
@@ -98,103 +99,143 @@ class _LeadCsvWidgetState extends State<LeadCsvWidget> {
                               onPressed: () async {
                                 logFirebaseEvent('submitLeadsCSV');
 
-                                FilePickerResult? result =
-                                    await FilePicker.platform.pickFiles(
-                                  withData: true,
-                                  type: FileType.custom,
-                                  allowedExtensions: ['csv'],
-                                );
+                                try {
+                                  FilePickerResult? result =
+                                      await FilePicker.platform.pickFiles(
+                                    withData: true,
+                                    type: FileType.custom,
+                                    allowedExtensions: ['csv'],
+                                  );
 
-                                if (result != null) {
-                                  Uint8List fileBytes =
-                                      result.files.first.bytes!;
-                                  String csvString = utf8.decode(fileBytes);
+                                  if (result != null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content:
+                                              Text('Processing CSV file...')),
+                                    );
 
-                                  List<List<dynamic>> rows =
-                                      const CsvToListConverter()
-                                          .convert(csvString);
+                                    Uint8List fileBytes =
+                                        result.files.first.bytes!;
+                                    String csvString = utf8.decode(fileBytes);
 
-                                  print('CSV Rows: $rows');
+                                    print('CSV Content: $csvString');
 
-                                  for (var row in rows.skip(1).where((row) {
-                                    return row.any((cell) =>
-                                        cell != null &&
-                                        cell.toString().trim().isNotEmpty &&
-                                        cell != '#N/A');
-                                  })) {
-                                    Map<String, dynamic> leadData = {
-                                      'leadCreationDate':
-                                          row[0]?.toString().trim() ?? '',
-                                      'leadName':
-                                          row[1]?.toString().trim() ?? '',
-                                      'leadEmail':
-                                          row[2]?.toString().trim() ?? '',
-                                      'leadPhone':
-                                          row[3]?.toString().trim() ?? '',
-                                      'leadPhoneType':
-                                          row[4]?.toString().trim() ?? '',
-                                      'leadAltPhone':
-                                          row[5]?.toString().trim() ?? '',
-                                      'leadAltPhoneType':
-                                          row[6]?.toString().trim() ?? '',
-                                      'leadAddressStreet':
-                                          row[7]?.toString().trim() ?? '',
-                                      'leadAddressCity':
-                                          row[8]?.toString().trim() ?? '',
-                                      'leadAddressState':
-                                          row[9]?.toString().trim() ?? '',
-                                      'leadAddressZip':
-                                          row[10]?.toString().trim() ?? '',
-                                      'leadRecipient':
-                                          row[12]?.toString().trim() ?? '',
-                                      'leadStage': 'Sent',
-                                      'leadSender': currentUserUid,
-                                      'senderUserType':
-                                          currentUserDocument?.userType,
-                                      'senderGroupID':
-                                          currentUserDocument?.groupID,
-                                      'senderInfo':
-                                          currentUserDocument?.reference,
-                                      'numComments': 0,
-                                    };
+                                    List<List<dynamic>> rows =
+                                        const CsvToListConverter()
+                                            .convert(csvString);
 
-                                    try {
-                                      await LeadInfoRecord.collection
-                                          .doc()
-                                          .set(createLeadInfoRecordData(
-                                            leadName: leadData['leadName'],
-                                            leadEmail: leadData['leadEmail'],
-                                            leadRecipient:
-                                                leadData['leadRecipient'],
-                                            leadSender: leadData['leadSender'],
-                                            leadPhone: leadData['leadPhone'],
-                                            leadPhoneType:
-                                                leadData['leadPhoneType'],
-                                            leadAltPhone:
-                                                leadData['leadAltPhone'],
-                                            leadAltPhoneType:
-                                                leadData['leadAltPhoneType'],
-                                            leadAddressStreet:
-                                                leadData['leadAddressStreet'],
-                                            leadAddressCity:
-                                                leadData['leadAddressCity'],
-                                            leadAddressState:
-                                                leadData['leadAddressState'],
-                                            leadAddressZip:
-                                                leadData['leadAddressZip'],
-                                            leadStage: leadData['leadStage'],
-                                            senderUserType:
-                                                leadData['senderUserType'],
-                                            senderGroupID:
-                                                leadData['senderGroupID'],
-                                            senderInfo: leadData['senderInfo'],
-                                            numComments:
-                                                leadData['numComments'],
-                                          ));
-                                    } catch (e) {
-                                      print('Error adding lead: $e');
+                                    print('Number of rows: ${rows.length}');
+                                    if (rows.isNotEmpty) {
+                                      print('Headers: ${rows[0]}');
                                     }
+
+                                    if (rows.isEmpty) {
+                                      throw Exception('CSV file is empty');
+                                    }
+
+                                    int successCount = 0;
+                                    int failureCount = 0;
+
+                                    print('Current User UID: $currentUserUid');
+                                    print(
+                                        'Current User Type: ${currentUserDocument?.userType}');
+                                    print(
+                                        'Current User Group ID: ${currentUserDocument?.groupID}');
+
+                                    for (var row in rows.skip(1).where((row) {
+                                      return row.any((cell) =>
+                                          cell != null &&
+                                          cell.toString().trim().isNotEmpty &&
+                                          cell != '#N/A');
+                                    })) {
+                                      try {
+                                        print('Processing row: $row');
+
+                                        // Create the lead data
+                                        final leadData = {
+                                          'leadCreationDate': FieldValue
+                                              .serverTimestamp(), // Add server timestamp
+                                          'leadName':
+                                              row[1]?.toString().trim() ?? '',
+                                          'leadEmail':
+                                              row[2]?.toString().trim() ?? '',
+                                          'leadPhone':
+                                              row[3]?.toString().trim() ?? '',
+                                          'leadPhoneType':
+                                              row[4]?.toString().trim() ?? '',
+                                          'leadAltPhone':
+                                              row[5]?.toString().trim() ?? '',
+                                          'leadAltPhoneType':
+                                              row[6]?.toString().trim() ?? '',
+                                          'leadAddressStreet':
+                                              row[7]?.toString().trim() ?? '',
+                                          'leadAddressCity':
+                                              row[8]?.toString().trim() ?? '',
+                                          'leadAddressState':
+                                              row[9]?.toString().trim() ?? '',
+                                          'leadAddressZip':
+                                              row[10]?.toString().trim() ?? '',
+                                          'leadRecipient':
+                                              row[12]?.toString().trim() ?? '',
+                                          'leadStage': 'Sent',
+                                          'leadSender': currentUserUid,
+                                          'senderUserType':
+                                              currentUserDocument?.userType,
+                                          'senderGroupID':
+                                              currentUserDocument?.groupID,
+                                          'senderInfo':
+                                              currentUserDocument?.reference,
+                                          'numComments': 0,
+                                        };
+
+                                        print(
+                                            'Attempting to save lead data: $leadData');
+
+                                        // Try direct Firestore write
+                                        final docRef = FirebaseFirestore
+                                            .instance
+                                            .collection('leadInfo')
+                                            .doc();
+                                        await docRef.set(leadData);
+
+                                        // Verify the write by attempting to read it back
+                                        final verifyDoc = await docRef.get();
+                                        if (verifyDoc.exists) {
+                                          print(
+                                              'Successfully verified lead save with ID: ${docRef.id}');
+                                          successCount++;
+                                        } else {
+                                          throw Exception(
+                                              'Document write failed verification');
+                                        }
+                                      } catch (e) {
+                                        failureCount++;
+                                        print('Error adding lead: $e');
+                                      }
+                                    }
+
+                                    if (!context.mounted) return;
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Upload complete: $successCount leads added, $failureCount failed',
+                                        ),
+                                        backgroundColor: successCount > 0
+                                            ? Colors.green
+                                            : Colors.red,
+                                      ),
+                                    );
                                   }
+                                } catch (e) {
+                                  print('Error processing CSV: $e');
+                                  if (!context.mounted) return;
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                          'Error processing CSV: ${e.toString()}'),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
                                 }
                               },
                               text: 'Upload Leads CSV',

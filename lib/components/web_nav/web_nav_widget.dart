@@ -191,7 +191,7 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: widget.selectedNav == 5
+                          color: widget.selectedNav == 1
                               ? FlutterFlowTheme.of(context).alternate
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -222,7 +222,7 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                                       .labelLarge
                                       .override(
                                         fontFamily: 'Plus Jakarta Sans',
-                                        color: widget.selectedNav == 5
+                                        color: widget.selectedNav == 1
                                             ? FlutterFlowTheme.of(context)
                                                 .primaryText
                                             : FlutterFlowTheme.of(context)
@@ -267,7 +267,7 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: widget.selectedNav == 5
+                          color: widget.selectedNav == 8
                               ? FlutterFlowTheme.of(context).alternate
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -281,7 +281,7 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                             children: [
                               Icon(
                                 Icons.person_rounded,
-                                color: widget.selectedNav == 5
+                                color: widget.selectedNav == 8
                                     ? FlutterFlowTheme.of(context).primary
                                     : FlutterFlowTheme.of(context)
                                         .secondaryText,
@@ -298,7 +298,7 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                                       .labelLarge
                                       .override(
                                         fontFamily: 'Plus Jakarta Sans',
-                                        color: widget.selectedNav == 5
+                                        color: widget.selectedNav == 8
                                             ? FlutterFlowTheme.of(context)
                                                 .primaryText
                                             : FlutterFlowTheme.of(context)
@@ -315,8 +315,12 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                   ),
                 ),
               if (valueOrDefault<bool>(
-                      currentUserDocument?.adminAccount, false) ==
-                  false)
+                          currentUserDocument?.adminAccount, false) ==
+                      false ||
+                  ((valueOrDefault<bool>(
+                              currentUserDocument?.adminAccount, false) ==
+                          true &&
+                      currentUserDocument?.groupID == 'AZFNT-MomentumBrokers')))
                 Padding(
                   padding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
@@ -391,8 +395,10 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                   ),
                 ),
               if (valueOrDefault<bool>(
-                      currentUserDocument?.adminAccount, false) ==
-                  true)
+                          currentUserDocument?.adminAccount, false) ==
+                      true &&
+                  currentUserDocument?.groupID != null &&
+                  currentUserDocument?.groupID == 'AZFNT-MomentumBrokers')
                 Padding(
                   padding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
