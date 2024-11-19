@@ -473,42 +473,63 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                                   onPressed: () async {
                                                     logFirebaseEvent(
                                                         'SEARCH_PAGE_PAGE_VIEW_BTN_ON_TAP');
+
+                                                    // First, unfocus any active text fields
+                                                    FocusScope.of(context)
+                                                        .unfocus();
+
+                                                    // Add a small delay to ensure proper cleanup
+                                                    await Future.microtask(
+                                                        () {});
+
+                                                    if (!mounted) return;
+
+                                                    if (listViewUsersRecord ==
+                                                        null) {
+                                                      print(
+                                                          'Error: User record is null');
+                                                      return;
+                                                    }
+
                                                     if (MediaQuery.sizeOf(
                                                                 context)
                                                             .width >=
                                                         991.0) {
-                                                      await showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (dialogContext) {
-                                                          return Dialog(
-                                                            elevation: 0,
-                                                            insetPadding:
-                                                                EdgeInsets.zero,
+                                                      // Desktop view - show modal
+                                                      await Navigator.of(
+                                                              context)
+                                                          .push(
+                                                        PageRouteBuilder(
+                                                          opaque: false,
+                                                          barrierDismissible:
+                                                              true,
+                                                          pageBuilder: (context,
+                                                                  _, __) =>
+                                                              Dialog(
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: const AlignmentDirectional(
-                                                                    0.0, 0.0)
-                                                                .resolve(
-                                                                    Directionality.of(
-                                                                        context)),
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () =>
-                                                                  FocusScope.of(
-                                                                          dialogContext)
-                                                                      .unfocus(),
+                                                            insetPadding:
+                                                                EdgeInsets.zero,
+                                                            child: SizedBox(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.8,
                                                               child:
                                                                   ModalProfileEditAdminWidget(
                                                                 userDoc:
                                                                     listViewUsersRecord,
+                                                                key: ValueKey(
+                                                                    'profile_edit_${listViewUsersRecord.uid}'),
                                                               ),
                                                             ),
-                                                          );
-                                                        },
+                                                          ),
+                                                        ),
                                                       );
                                                     } else {
+                                                      // Mobile view
                                                       context.pushNamed(
                                                         'editProfileAdmin',
                                                         queryParameters: {
@@ -720,42 +741,63 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                                   onPressed: () async {
                                                     logFirebaseEvent(
                                                         'SEARCH_PAGE_PAGE_VIEW_BTN_ON_TAP');
+
+                                                    // First, unfocus any active text fields
+                                                    FocusScope.of(context)
+                                                        .unfocus();
+
+                                                    // Add a small delay to ensure proper cleanup
+                                                    await Future.microtask(
+                                                        () {});
+
+                                                    if (!mounted) return;
+
+                                                    if (listViewUsersRecord ==
+                                                        null) {
+                                                      print(
+                                                          'Error: User record is null');
+                                                      return;
+                                                    }
+
                                                     if (MediaQuery.sizeOf(
                                                                 context)
                                                             .width >=
                                                         991.0) {
-                                                      await showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (dialogContext) {
-                                                          return Dialog(
-                                                            elevation: 0,
-                                                            insetPadding:
-                                                                EdgeInsets.zero,
+                                                      // Desktop view - show modal
+                                                      await Navigator.of(
+                                                              context)
+                                                          .push(
+                                                        PageRouteBuilder(
+                                                          opaque: false,
+                                                          barrierDismissible:
+                                                              true,
+                                                          pageBuilder: (context,
+                                                                  _, __) =>
+                                                              Dialog(
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: const AlignmentDirectional(
-                                                                    0.0, 0.0)
-                                                                .resolve(
-                                                                    Directionality.of(
-                                                                        context)),
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () =>
-                                                                  FocusScope.of(
-                                                                          dialogContext)
-                                                                      .unfocus(),
+                                                            insetPadding:
+                                                                EdgeInsets.zero,
+                                                            child: SizedBox(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.8,
                                                               child:
                                                                   ModalProfileEditAdminWidget(
                                                                 userDoc:
                                                                     listViewUsersRecord,
+                                                                key: ValueKey(
+                                                                    'profile_edit_${listViewUsersRecord.uid}'),
                                                               ),
                                                             ),
-                                                          );
-                                                        },
+                                                          ),
+                                                        ),
                                                       );
                                                     } else {
+                                                      // Mobile view
                                                       context.pushNamed(
                                                         'editProfileAdmin',
                                                         queryParameters: {
