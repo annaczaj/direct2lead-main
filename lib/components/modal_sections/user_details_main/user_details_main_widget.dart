@@ -45,6 +45,7 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => UserDetailsMainModel());
+    _model.initializeStageChoiceController(widget.leadInfo?.leadStage);
 
     animationsMap.addAll({
       'circleImageOnPageLoadAnimation': AnimationInfo(
@@ -944,7 +945,7 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                   ),
                                   child: Image.network(
                                     circleImageUsersRecord.photoUrl,
-                                    fit: BoxFit.cover,
+                                    fit: BoxFit.scaleDown,
                                   ),
                                 ).animateOnPageLoad(animationsMap[
                                     'circleImageOnPageLoadAnimation']!);
@@ -1017,24 +1018,30 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                          20.0, 4.0, 0.0, 0.0),
-                      child: Text(
-                        valueOrDefault<String>(
-                          currentUserDocument?.displayName,
-                          'Unknown',
-                        ),
-                        textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: 'Outfit',
-                              letterSpacing: 0.0,
-                            ),
-                      ).animateOnPageLoad(
-                          animationsMap['textOnPageLoadAnimation4']!),
-                    ),
+                    StreamBuilder<UsersRecord>(
+                        stream: UsersRecord.getDocument(
+                            widget.leadInfo!.senderInfo!),
+                        builder: (context, snapshot) {
+                          final circleImageUsersRecord = snapshot.data!;
+                          return Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 4.0, 0.0, 0.0),
+                            child: Text(
+                              valueOrDefault<String>(
+                                circleImageUsersRecord.displayName,
+                                'Unknown',
+                              ),
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineMedium
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation4']!),
+                          );
+                        }),
                     Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           10.0, 12.0, 10.0, 0.0),
@@ -1080,19 +1087,54 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                     }
 
                                     final stagesRecord = snapshot.data!.first;
-                                    final currentGroupOptions =
-                                        (currentUserDocument?.groupID ==
-                                                'AZFNT-MomentumBrokers')
-                                            ? stagesRecord.momentumStageList
-                                            : stagesRecord.rocketStageList;
+                                    List<String> currentGroupOptions;
+
+                                    if (currentUserDocument?.groupID ==
+                                        'AZFNT-MomentumBrokers') {
+                                      currentGroupOptions =
+                                          stagesRecord.momentumStageList;
+                                    } else if (currentUserDocument?.groupID ==
+                                        'AZFNT-RocketLocal') {
+                                      currentGroupOptions =
+                                          stagesRecord.rocketStageList;
+                                    } else {
+                                      currentGroupOptions = [];
+                                    }
+
+                                    if (currentGroupOptions.isEmpty) {
+                                      return Center(
+                                        child: Text(
+                                            'No options available for the selected group.'),
+                                      );
+                                    }
+
+                                    print(
+                                        'Current Group Options: $currentGroupOptions');
+                                    print(
+                                        'Current lead recipient: ${widget.leadInfo?.leadRecipient}');
+
+                                    print(
+                                        'Current User ID: $currentUserUid'); // Debugging log
+                                    print(
+                                        'Lead Recipient ID: ${widget.leadInfo?.leadRecipient}'); // Debugging log
+
+                                    // Check if the dropdown should be disabled
+                                    bool isDropdownDisabled =
+                                        widget.leadInfo?.leadRecipient !=
+                                            currentUserUid;
+                                    print(
+                                        'Is Dropdown Disabled: $isDropdownDisabled'); // Debugging log
 
                                     return SingleChildScrollView(
                                       child: FlutterFlowDropDown<String>(
+                                        options: currentGroupOptions,
+                                        isMultiSelect: false,
+                                        multiSelectController: null,
+                                        onMultiSelectChanged: null,
                                         controller: _model
                                                 .stageDropDownValueController ??=
                                             FormFieldController<String>(
                                                 widget.leadInfo?.leadStage),
-                                        options: currentGroupOptions,
                                         onChanged: (widget
                                                     .leadInfo?.leadRecipient !=
                                                 currentUserUid)
@@ -1100,8 +1142,7 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                             : (val) async {
                                                 if (val == null) return;
                                                 setState(() {
-                                                  _model.stageDropDownValue =
-                                                      val;
+                                                  _model.stageChoiceValue = val;
                                                   print(
                                                       "Selected Stage: $val"); // Debugging log
                                                 });
@@ -1143,10 +1184,8 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                             16.0, 4.0, 16.0, 4.0),
                                         hidesUnderline: true,
                                         isSearchable: false,
-                                        isMultiSelect: false,
                                         disabled:
-                                            widget.leadInfo?.leadRecipient !=
-                                                currentUserUid,
+                                            isDropdownDisabled, // Use the variable here
                                       ),
                                     );
                                   }),
@@ -1224,46 +1263,22 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                         ),
                                   ).animateOnPageLoad(animationsMap[
                                       'textOnPageLoadAnimation5']!),
-                                  if (isMobileWidth(context))
-                                    Padding(
-                                      padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 4.0, 0.0, 0.0),
-                                      child: InkWell(
-                                        onTap: () async {
-                                          final email =
-                                              widget.leadInfo?.leadEmail;
-                                          if (email != null) {
-                                            final url = 'mailto:$email';
-                                            if (await canLaunchUrl(
-                                                Uri.parse(url))) {
-                                              await launchUrl(Uri.parse(url));
-                                            }
+                                  Padding(
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 4.0, 0.0, 0.0),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        final email =
+                                            widget.leadInfo?.leadEmail;
+                                        if (email != null) {
+                                          final url = 'mailto:$email';
+                                          if (await canLaunchUrl(
+                                              Uri.parse(url))) {
+                                            await launchUrl(Uri.parse(url));
                                           }
-                                        },
-                                        child: Text(
-                                          valueOrDefault<String>(
-                                            widget.leadInfo?.leadEmail,
-                                            'Unknown',
-                                          ),
-                                          textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleMedium
-                                              .override(
-                                                fontFamily: 'Plus Jakarta Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                  if (isWeb)
-                                    Padding(
-                                      padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 4.0, 0.0, 0.0),
+                                        }
+                                      },
                                       child: Text(
                                         valueOrDefault<String>(
                                           widget.leadInfo?.leadEmail,
@@ -1281,6 +1296,7 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                             ),
                                       ),
                                     ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -1325,7 +1341,8 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                         },
                                         child: Text(
                                           valueOrDefault<String>(
-                                            widget.leadInfo?.leadPhone,
+                                            formatInternationalPhoneNumber(
+                                                widget.leadInfo!.leadPhone),
                                             'Unknown',
                                           ),
                                           textAlign: TextAlign.start,
@@ -1348,7 +1365,8 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
                                               0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.leadInfo?.leadPhone,
+                                          formatInternationalPhoneNumber(
+                                              widget.leadInfo!.leadPhone),
                                           'Unknown',
                                         ),
                                         textAlign: TextAlign.start,
@@ -2308,5 +2326,19 @@ class _UserDetailsMainWidgetState extends State<UserDetailsMainWidget>
         ),
       ],
     );
+  }
+}
+
+String formatInternationalPhoneNumber(String phoneNumber) {
+  // Remove any non-digit characters
+  String digits = phoneNumber.replaceAll(RegExp(r'\D'), '');
+
+  // Example: Format for US numbers
+  if (digits.length == 10) {
+    return '+1 (${digits.substring(0, 3)}) ${digits.substring(3, 6)}-${digits.substring(6)}';
+  } else if (digits.length == 11 && digits.startsWith('1')) {
+    return '+${digits.substring(0, 1)} (${digits.substring(1, 4)}) ${digits.substring(4, 7)}-${digits.substring(7)}';
+  } else {
+    return phoneNumber; // Return the original if not valid
   }
 }

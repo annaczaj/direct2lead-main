@@ -656,7 +656,7 @@ class _WebNavWidgetState extends State<WebNavWidget> {
                                           const Duration(milliseconds: 500),
                                       imageUrl: valueOrDefault<String>(
                                           currentUserPhoto,
-                                          'https://i.postimg.cc/cLfZth2Z/default.jpg'),
+                                          'https://i.postimg.cc/KYKx6kWT/default.jpg'),
                                       width: 44.0,
                                       height: 44.0,
                                       fit: BoxFit.cover,

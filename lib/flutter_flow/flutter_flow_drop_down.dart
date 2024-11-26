@@ -36,17 +36,7 @@ class FlutterFlowDropDown<T> extends StatefulWidget {
     this.isMultiSelect = false,
     this.labelText,
     this.labelTextStyle,
-  }) : assert(
-          isMultiSelect
-              ? (controller == null &&
-                  onChanged == null &&
-                  multiSelectController != null &&
-                  onMultiSelectChanged != null)
-              : (controller != null &&
-                  onChanged != null &&
-                  multiSelectController == null &&
-                  onMultiSelectChanged == null),
-        );
+  });
 
   final FormFieldController<T?>? controller;
   final FormFieldController<List<T>?>? multiSelectController;

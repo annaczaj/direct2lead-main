@@ -114,7 +114,8 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      24.0, 16.0, 0.0, 0.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
                       'jpem7nun' /* Edit Profile */,
@@ -126,7 +127,8 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 0.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
                       'us1gmlqc' /* Below are your profile details */,
@@ -142,8 +144,8 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 12.0, 16.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -169,8 +171,10 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
                                   shape: BoxShape.circle,
                                 ),
                                 child: CachedNetworkImage(
-                                  fadeInDuration: const Duration(milliseconds: 500),
-                                  fadeOutDuration: const Duration(milliseconds: 500),
+                                  fadeInDuration:
+                                      const Duration(milliseconds: 500),
+                                  fadeOutDuration:
+                                      const Duration(milliseconds: 500),
                                   imageUrl: widget.userDoc!.photoUrl,
                                   fit: BoxFit.fitWidth,
                                 ),
@@ -191,6 +195,13 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
                                     padding: MediaQuery.viewInsetsOf(context),
                                     child: EditProfilePhotoWidget(
                                       userDoc: widget.userDoc!,
+                                      onPhotoChanged: (newPhotoUrl) {
+                                        // Update the userDoc with the new photo URL
+                                        widget.userDoc!.reference.update({
+                                          ...createUsersRecordData(
+                                              photoUrl: newPhotoUrl)
+                                        });
+                                      },
                                     ),
                                   );
                                 },
@@ -234,8 +245,8 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 16.0, 0.0),
                       child: TextFormField(
                         controller: _model.yourNameTextController,
                         focusNode: _model.yourNameFocusNode,
@@ -299,8 +310,8 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 16.0, 0.0),
                       child: TextFormField(
                         controller: _model.emailTextController,
                         focusNode: _model.emailFocusNode,
@@ -364,8 +375,8 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 16.0, 0.0),
                       child: TextFormField(
                         controller: _model.phoneNumberTextController,
                         focusNode: _model.phoneNumberFocusNode,
@@ -429,8 +440,8 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 16.0, 0.0),
                       child: TextFormField(
                         controller: _model.companyTextController,
                         focusNode: _model.companyFocusNode,
@@ -539,8 +550,9 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
                                     ),
                                 iconColor: FlutterFlowTheme.of(context).info,
                                 iconSize: 16.0,
-                                labelPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
+                                labelPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                 elevation: 0.0,
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
@@ -558,8 +570,9 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
                                 iconColor:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 iconSize: 16.0,
-                                labelPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
+                                labelPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                 elevation: 0.0,
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
@@ -861,8 +874,8 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
                       ],
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 24.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -960,8 +973,8 @@ class _EditProfileAdminWidgetState extends State<EditProfileAdminWidget> {
                   ],
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 24.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      24.0, 12.0, 24.0, 24.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

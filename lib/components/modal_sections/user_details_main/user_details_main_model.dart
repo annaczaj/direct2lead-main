@@ -16,6 +16,14 @@ class UserDetailsMainModel extends FlutterFlowModel<UserDetailsMainWidget> {
       stageChoiceValueController?.value?.firstOrNull;
   set stageChoiceValue(String? val) =>
       stageChoiceValueController?.value = val != null ? [val] : [];
+
+  // Ensure initialization of stageChoiceValueController
+  void initializeStageChoiceController(String? initialValue) {
+    stageChoiceValueController = FormFieldController<List<String>>(
+      initialValue != null ? [initialValue] : [],
+    );
+  }
+
   // State field(s) for ChoiceChips widget.
   FormFieldController<List<String>>? choiceChipsValueController;
   String? get choiceChipsValue =>

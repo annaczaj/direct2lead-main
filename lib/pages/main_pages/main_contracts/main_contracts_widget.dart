@@ -36,6 +36,7 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
 
   final animationsMap = <String, AnimationInfo>{};
   final uuid = Uuid();
+  bool isFormValid = false; // Track if the form is valid
 
   @override
   void initState() {
@@ -55,6 +56,8 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
 
     _model.notesTextController ??= TextEditingController();
     _model.notesFocusNode ??= FocusNode();
+
+    _model.selectedPodNumber = currentUserDocument?.podNum;
 
     animationsMap.addAll({
       'textOnPageLoadAnimation': AnimationInfo(
@@ -93,6 +96,50 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
     _model.dispose();
 
     super.dispose();
+  }
+
+  void validateForm() {
+    setState(() {
+      if (_model.prequalOrPendingValue != 'High Nurture Lead' &&
+          _model.highNurtureLeadValue != 'Yes') {
+        if (currentUserDocument?.userType == 'Lender') {
+          print("Lender & not High nurture");
+          isFormValid = _model.leadNameTextController.text.isNotEmpty &&
+              _model.leadEmailTextController.text.isNotEmpty &&
+              _model.leadPhoneTextController.text.isNotEmpty &&
+              _model.selectedPodNumber != null &&
+              _model.languageValue != null &&
+              _model.areaOfInterestValue != [] &&
+              _model.prequalOrPendingValue != null &&
+              _model.prequalAmtValue != null &&
+              _model.homeToSellLenderValue != null &&
+              _model.highNurtureLeadValue != null &&
+              _model.workingwithRealtorValue != null &&
+              _model.chooseRecipientValue != '';
+        } else {
+          isFormValid = _model.leadNameTextController.text.isNotEmpty &&
+              _model.leadEmailTextController.text.isNotEmpty &&
+              _model.leadPhoneTextController.text.isNotEmpty &&
+              _model.selectedPodNumber != null &&
+              _model.languageValue != null &&
+              _model.areaOfInterestValue != [] &&
+              _model.prequalOrPendingValue != null &&
+              _model.prequalAmtRealtorValue != null &&
+              _model.loanPurposeValue != null &&
+              _model.chooseRecipientValue != '';
+        }
+      } else {
+        print("High nurture");
+        isFormValid = _model.leadNameTextController.text.isNotEmpty &&
+            _model.leadEmailTextController.text.isNotEmpty &&
+            _model.leadPhoneTextController.text.isNotEmpty &&
+            _model.selectedPodNumber != null &&
+            _model.languageValue != null &&
+            _model.areaOfInterestValue != [] &&
+            _model.chooseRecipientValue != '';
+      }
+      print("Form Valid: $isFormValid");
+    });
   }
 
   @override
@@ -261,6 +308,9 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                               child: TextFormField(
                                                 controller: _model
                                                     .leadNameTextController,
+                                                onChanged: (value) {
+                                                  validateForm();
+                                                },
                                                 focusNode:
                                                     _model.leadNameFocusNode,
                                                 autofocus: false,
@@ -278,17 +328,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                 'Plus Jakarta Sans',
                                                             letterSpacing: 0.0,
                                                           ),
-                                                  hintText: _model
-                                                              .prequalOrPendingValue !=
-                                                          'High Nurture Lead'
-                                                      ? FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                                  '1f74rgo5') +
-                                                          ' *'
-                                                      : FFLocalizations.of(
+                                                  hintText: FFLocalizations.of(
                                                               context)
-                                                          .getText('1f74rgo5'),
+                                                          .getText('1f74rgo5') +
+                                                      ' *',
                                                   hintStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -368,9 +411,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 validator: (value) {
-                                                  if (_model
-                                                          .prequalOrPendingValue !=
-                                                      'High Nurture Lead') {
+                                                  if (_model.prequalOrPendingValue !=
+                                                          'High Nurture Lead' &&
+                                                      _model.highNurtureLeadValue !=
+                                                          'Yes') {
                                                     if (value == null ||
                                                         value.isEmpty) {
                                                       return 'Field is required';
@@ -408,6 +452,9 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                               child: TextFormField(
                                                 controller: _model
                                                     .leadEmailTextController,
+                                                onChanged: (value) {
+                                                  validateForm();
+                                                },
                                                 focusNode:
                                                     _model.leadEmailFocusNode,
                                                 autofocus: false,
@@ -425,17 +472,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                 'Plus Jakarta Sans',
                                                             letterSpacing: 0.0,
                                                           ),
-                                                  hintText: _model
-                                                              .prequalOrPendingValue !=
-                                                          'High Nurture Lead'
-                                                      ? FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                                  'mawb09dl') +
-                                                          ' *'
-                                                      : FFLocalizations.of(
+                                                  hintText: FFLocalizations.of(
                                                               context)
-                                                          .getText('mawb09dl'),
+                                                          .getText('mawb09dl') +
+                                                      ' *',
                                                   hintStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -515,9 +555,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 validator: (value) {
-                                                  if (_model
-                                                          .prequalOrPendingValue !=
-                                                      'High Nurture Lead') {
+                                                  if (_model.prequalOrPendingValue !=
+                                                          'High Nurture Lead' &&
+                                                      _model.highNurtureLeadValue !=
+                                                          'Yes') {
                                                     if (value == null ||
                                                         value.isEmpty) {
                                                       return 'Field is required';
@@ -555,6 +596,9 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                               child: TextFormField(
                                                 controller: _model
                                                     .leadPhoneTextController,
+                                                onChanged: (value) {
+                                                  validateForm();
+                                                },
                                                 focusNode:
                                                     _model.leadPhoneFocusNode,
                                                 autofocus: false,
@@ -572,17 +616,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                 'Plus Jakarta Sans',
                                                             letterSpacing: 0.0,
                                                           ),
-                                                  hintText: _model
-                                                              .prequalOrPendingValue !=
-                                                          'High Nurture Lead'
-                                                      ? FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                                  'r5d7t6l0') +
-                                                          ' *'
-                                                      : FFLocalizations.of(
+                                                  hintText: FFLocalizations.of(
                                                               context)
-                                                          .getText('r5d7t6l0'),
+                                                          .getText('r5d7t6l0') +
+                                                      ' *',
                                                   hintStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -667,9 +704,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                   _model.leadPhoneMask
                                                 ],
                                                 validator: (value) {
-                                                  if (_model
-                                                          .prequalOrPendingValue !=
-                                                      'High Nurture Lead') {
+                                                  if (_model.prequalOrPendingValue !=
+                                                          'High Nurture Lead' &&
+                                                      _model.highNurtureLeadValue !=
+                                                          'Yes') {
                                                     if (value == null ||
                                                         value.isEmpty) {
                                                       return 'Field is required';
@@ -737,10 +775,11 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                         'w30ab6id' /* Other */,
                                                       )
                                                     ],
-                                                    onChanged: (val) =>
-                                                        safeSetState(() => _model
-                                                                .languageValue =
-                                                            val),
+                                                    onChanged: (val) {
+                                                      safeSetState(() => _model
+                                                          .languageValue = val);
+                                                      validateForm();
+                                                    },
                                                     width: 200.0,
                                                     height: 40.0,
                                                     textStyle: FlutterFlowTheme
@@ -751,18 +790,11 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                               'Plus Jakarta Sans',
                                                           letterSpacing: 0.0,
                                                         ),
-                                                    hintText: _model
-                                                                .prequalOrPendingValue !=
-                                                            'High Nurture Lead'
-                                                        ? FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                                    'm7avyr0r') +
-                                                            ' *'
-                                                        : FFLocalizations.of(
-                                                                context)
+                                                    hintText: FFLocalizations
+                                                                .of(context)
                                                             .getText(
-                                                                'm7avyr0r'),
+                                                                'm7avyr0r') +
+                                                        ' *',
                                                     icon: Icon(
                                                       Icons
                                                           .keyboard_arrow_down_rounded,
@@ -865,18 +897,11 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                               'Plus Jakarta Sans',
                                                           letterSpacing: 0.0,
                                                         ),
-                                                    hintText: _model
-                                                                .prequalOrPendingValue !=
-                                                            'High Nurture Lead'
-                                                        ? FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                                    'hc6zyezy') +
-                                                            ' *'
-                                                        : FFLocalizations.of(
-                                                                context)
+                                                    hintText: FFLocalizations
+                                                                .of(context)
                                                             .getText(
-                                                                'hc6zyezy'),
+                                                                'hc6zyezy') +
+                                                        ' *',
                                                     icon: Icon(
                                                       Icons
                                                           .keyboard_arrow_down_rounded,
@@ -966,10 +991,12 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                         ),
                                                         'High Nurture Lead',
                                                       ],
-                                                      onChanged: (val) =>
-                                                          safeSetState(() =>
-                                                              _model.prequalOrPendingValue =
-                                                                  val),
+                                                      onChanged: (val) {
+                                                        safeSetState(() => _model
+                                                                .prequalOrPendingValue =
+                                                            val);
+                                                        validateForm();
+                                                      },
                                                       width: 200.0,
                                                       height: 40.0,
                                                       textStyle:
@@ -982,9 +1009,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
-                                                      hintText: _model
-                                                                  .prequalOrPendingValue !=
-                                                              'High Nurture Lead'
+                                                      hintText: _model.prequalOrPendingValue !=
+                                                                  'High Nurture Lead' &&
+                                                              _model.highNurtureLeadValue !=
+                                                                  'Yes'
                                                           ? FFLocalizations.of(
                                                                       context)
                                                                   .getText(
@@ -1101,10 +1129,12 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                           '2te5g9ix' /* 1M+ */,
                                                         )
                                                       ],
-                                                      onChanged: (val) =>
-                                                          safeSetState(() =>
-                                                              _model.prequalAmtValue =
-                                                                  val),
+                                                      onChanged: (val) {
+                                                        safeSetState(() => _model
+                                                                .prequalAmtValue =
+                                                            val);
+                                                        validateForm();
+                                                      },
                                                       width: 200.0,
                                                       height: 40.0,
                                                       textStyle:
@@ -1117,9 +1147,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
-                                                      hintText: _model
-                                                                  .prequalOrPendingValue !=
-                                                              'High Nurture Lead'
+                                                      hintText: _model.prequalOrPendingValue !=
+                                                                  'High Nurture Lead' &&
+                                                              _model.highNurtureLeadValue !=
+                                                                  'Yes'
                                                           ? FFLocalizations.of(
                                                                       context)
                                                                   .getText(
@@ -1228,8 +1259,9 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                       0.0,
                                                                       0.0),
                                                               child: Text(
-                                                                _model.prequalOrPendingValue !=
-                                                                        'High Nurture Lead'
+                                                                _model.prequalOrPendingValue != 'High Nurture Lead' &&
+                                                                        _model.highNurtureLeadValue !=
+                                                                            'Yes'
                                                                     ? FFLocalizations.of(context).getText(
                                                                             'euujb3gv') +
                                                                         ' *'
@@ -1274,10 +1306,13 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                       'si4zvujp' /* No */,
                                                                     ))
                                                                   ],
-                                                                  onChanged: (val) =>
-                                                                      safeSetState(() =>
-                                                                          _model.homeToSellLenderValue =
-                                                                              val?.firstOrNull),
+                                                                  onChanged:
+                                                                      (val) {
+                                                                    safeSetState(() =>
+                                                                        _model.homeToSellLenderValue =
+                                                                            val?.firstOrNull);
+                                                                    validateForm();
+                                                                  },
                                                                   selectedChipStyle:
                                                                       ChipStyle(
                                                                     backgroundColor:
@@ -1357,7 +1392,6 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                         ),
                                                       ),
                                                     ),
-                                                    /*
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
@@ -1407,11 +1441,16 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                       0.0,
                                                                       0.0),
                                                               child: Text(
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  'z7tem2kj' /* High Nurture Lead? */,
-                                                                ),
+                                                                _model.prequalOrPendingValue != 'High Nurture Lead' &&
+                                                                        _model.highNurtureLeadValue !=
+                                                                            'Yes'
+                                                                    ? FFLocalizations.of(context).getText(
+                                                                            'z7tem2kj') +
+                                                                        ' *'
+                                                                    : FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                            'z7tem2kj'),
                                                                 textAlign:
                                                                     TextAlign
                                                                         .center,
@@ -1452,10 +1491,13 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                       'ulaie077' /* No */,
                                                                     ))
                                                                   ],
-                                                                  onChanged: (val) =>
-                                                                      safeSetState(() =>
-                                                                          _model.highNurtureLeadValue =
-                                                                              val?.firstOrNull),
+                                                                  onChanged:
+                                                                      (val) {
+                                                                    safeSetState(() =>
+                                                                        _model.highNurtureLeadValue =
+                                                                            val?.firstOrNull);
+                                                                    validateForm();
+                                                                  },
                                                                   selectedChipStyle:
                                                                       ChipStyle(
                                                                     backgroundColor:
@@ -1535,7 +1577,6 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                         ),
                                                       ),
                                                     ),
-                                                    */
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
@@ -1589,7 +1630,9 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                         0.0),
                                                                 child: Text(
                                                                   _model.prequalOrPendingValue !=
-                                                                          'High Nurture Lead'
+                                                                              'High Nurture Lead' &&
+                                                                          _model.highNurtureLeadValue !=
+                                                                              'Yes'
                                                                       ? FFLocalizations.of(context).getText(
                                                                               'ggy3nq37') +
                                                                           ' *'
@@ -1638,10 +1681,13 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                         'uys3rcxw' /* No */,
                                                                       ))
                                                                     ],
-                                                                    onChanged: (val) =>
-                                                                        safeSetState(() =>
-                                                                            _model.workingwithRealtorValue =
-                                                                                val?.firstOrNull),
+                                                                    onChanged:
+                                                                        (val) {
+                                                                      safeSetState(() =>
+                                                                          _model.workingwithRealtorValue =
+                                                                              val?.firstOrNull);
+                                                                      validateForm();
+                                                                    },
                                                                     selectedChipStyle:
                                                                         ChipStyle(
                                                                       backgroundColor:
@@ -1784,10 +1830,12 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                             'xkyzfmfu' /* Refinance */,
                                                           )
                                                         ],
-                                                        onChanged: (val) =>
-                                                            safeSetState(() =>
-                                                                _model.loanPurposeValue =
-                                                                    val),
+                                                        onChanged: (val) {
+                                                          safeSetState(() =>
+                                                              _model.loanPurposeValue =
+                                                                  val);
+                                                          validateForm();
+                                                        },
                                                         width: 200.0,
                                                         height: 40.0,
                                                         textStyle:
@@ -1800,9 +1848,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
-                                                        hintText: _model
-                                                                    .prequalOrPendingValue !=
-                                                                'High Nurture Lead'
+                                                        hintText: _model.prequalOrPendingValue !=
+                                                                    'High Nurture Lead' &&
+                                                                _model.highNurtureLeadValue !=
+                                                                    'Yes'
                                                             ? FFLocalizations.of(
                                                                         context)
                                                                     .getText(
@@ -1919,10 +1968,12 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                             '1ntkhpsw' /* 1M+ */,
                                                           )
                                                         ],
-                                                        onChanged: (val) =>
-                                                            safeSetState(() =>
-                                                                _model.prequalAmtRealtorValue =
-                                                                    val),
+                                                        onChanged: (val) {
+                                                          safeSetState(() =>
+                                                              _model.prequalAmtRealtorValue =
+                                                                  val);
+                                                          validateForm();
+                                                        },
                                                         width: 200.0,
                                                         height: 40.0,
                                                         textStyle:
@@ -1935,9 +1986,10 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
-                                                        hintText: _model
-                                                                    .prequalOrPendingValue !=
-                                                                'High Nurture Lead'
+                                                        hintText: _model.prequalOrPendingValue !=
+                                                                    'High Nurture Lead' &&
+                                                                _model.highNurtureLeadValue !=
+                                                                    'Yes'
                                                             ? FFLocalizations.of(
                                                                         context)
                                                                     .getText(
@@ -2085,10 +2137,13 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                     'eatvrryd' /* No */,
                                                                   ))
                                                                 ],
-                                                                onChanged: (val) =>
-                                                                    safeSetState(() =>
-                                                                        _model.hometoSellRealtorValue =
-                                                                            val?.firstOrNull),
+                                                                onChanged:
+                                                                    (val) {
+                                                                  safeSetState(() =>
+                                                                      _model.hometoSellRealtorValue =
+                                                                          val?.firstOrNull);
+                                                                  validateForm();
+                                                                },
                                                                 selectedChipStyle:
                                                                     ChipStyle(
                                                                   backgroundColor:
@@ -2267,10 +2322,13 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                     'k3u7u32n' /* No */,
                                                                   ))
                                                                 ],
-                                                                onChanged: (val) =>
-                                                                    safeSetState(() =>
-                                                                        _model.readytoApplyforMortgageValue =
-                                                                            val?.firstOrNull),
+                                                                onChanged:
+                                                                    (val) {
+                                                                  safeSetState(() =>
+                                                                      _model.readytoApplyforMortgageValue =
+                                                                          val?.firstOrNull);
+                                                                  validateForm();
+                                                                },
                                                                 selectedChipStyle:
                                                                     ChipStyle(
                                                                   backgroundColor:
@@ -2449,10 +2507,13 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                     'c7dwergg' /* No */,
                                                                   ))
                                                                 ],
-                                                                onChanged: (val) =>
-                                                                    safeSetState(() =>
-                                                                        _model.workingwithLenderValue =
-                                                                            val?.firstOrNull),
+                                                                onChanged:
+                                                                    (val) {
+                                                                  safeSetState(() =>
+                                                                      _model.workingwithLenderValue =
+                                                                          val?.firstOrNull);
+                                                                  validateForm();
+                                                                },
                                                                 selectedChipStyle:
                                                                     ChipStyle(
                                                                   backgroundColor:
@@ -2699,181 +2760,247 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                            8.0, 8.0, 8.0, 8.0),
-                                                    child: Container(
-                                                      width: 200,
-                                                      decoration: BoxDecoration(
-                                                        boxShadow: const [
-                                                          BoxShadow(
-                                                            blurRadius: 3.0,
-                                                            color: Color(
-                                                                0x33000000),
-                                                            offset: Offset(
-                                                              0.0,
-                                                              3.0,
-                                                            ),
-                                                          )
-                                                        ],
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      child:
-                                                          FlutterFlowDropDown<
-                                                              String>(
-                                                        controller: _model
-                                                                .selectedPodNumberController ??=
-                                                            FormFieldController<
-                                                                String>(null),
-                                                        options: [
-                                                          '1',
-                                                          '2',
-                                                          '3',
-                                                        ],
-                                                        onChanged: (val) =>
-                                                            safeSetState(() =>
-                                                                _model.selectedPodNumber =
-                                                                    val),
-                                                        width: 200.0,
-                                                        height: 40.0,
-                                                        maxHeight: 200.0,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Plus Jakarta Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        hintText: _model
-                                                                    .prequalOrPendingValue !=
-                                                                'High Nurture Lead'
-                                                            ? 'Pod Number' +
-                                                                ' *'
-                                                            : 'Pod Number',
-                                                        icon: Icon(
-                                                          Icons
-                                                              .keyboard_arrow_down_rounded,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        fillColor: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        elevation: 2.0,
-                                                        borderColor:
-                                                            Colors.transparent,
-                                                        borderWidth: 0.0,
-                                                        borderRadius: 8.0,
-                                                        margin:
+                                                  Column(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
                                                             const EdgeInsetsDirectional
-                                                                .fromSTEB(12.0,
-                                                                0.0, 12.0, 0.0),
-                                                        hidesUnderline: true,
-                                                        isOverButton: true,
-                                                        isSearchable: true,
-                                                        isMultiSelect: false,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                            10.0, 0.0),
-                                                    child: AuthUserStreamWidget(
-                                                      builder: (context) =>
-                                                          StreamBuilder<
-                                                              List<
-                                                                  UsersRecord>>(
-                                                        stream:
-                                                            queryUsersRecord(
-                                                          queryBuilder: (usersRecord) =>
-                                                              usersRecord
-                                                                  .where(
-                                                                    'groupID',
-                                                                    isEqualTo: valueOrDefault(
-                                                                        currentUserDocument
-                                                                            ?.groupID,
-                                                                        ''),
-                                                                  )
-                                                                  .where(
-                                                                      'podNum',
-                                                                      isEqualTo:
-                                                                          _model
-                                                                              .selectedPodNumber),
-                                                        ),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 50.0,
-                                                                height: 50.0,
-                                                                child:
-                                                                    CircularProgressIndicator(
-                                                                  valueColor:
-                                                                      AlwaysStoppedAnimation<
-                                                                          Color>(
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                          List<UsersRecord>
-                                                              containerUsersRecordList =
-                                                              snapshot.data!;
-
-                                                          return Container(
-                                                            width: 200.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              boxShadow: const [
-                                                                BoxShadow(
-                                                                  blurRadius:
-                                                                      3.0,
-                                                                  color: Color(
-                                                                      0x33000000),
-                                                                  offset:
-                                                                      Offset(
+                                                                .fromSTEB(0.0,
+                                                                5.0, 0.0, 0.0),
+                                                        child: Text(
+                                                          _model.prequalOrPendingValue !=
+                                                                  'High Nurture Lead'
+                                                              ? 'Pod Number' +
+                                                                  ' *'
+                                                              : 'Pod Number',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Plus Jakarta Sans',
+                                                                letterSpacing:
                                                                     0.0,
-                                                                    3.0,
-                                                                  ),
-                                                                )
-                                                              ],
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                            ),
-                                                            child:
-                                                                FlutterFlowDropDown<
-                                                                    String>(
-                                                              controller: _model
-                                                                      .chooseRecipientValueController ??=
-                                                                  FormFieldController<
-                                                                      String>(
-                                                                _model.chooseRecipientValue ??=
-                                                                    '',
                                                               ),
-                                                              options: List<
-                                                                      String>.from(
-                                                                  containerUsersRecordList
-                                                                      .where((e) =>
-                                                                          () {
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(8.0,
+                                                                8.0, 8.0, 8.0),
+                                                        child: Container(
+                                                          width: 200,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            boxShadow: const [
+                                                              BoxShadow(
+                                                                blurRadius: 3.0,
+                                                                color: Color(
+                                                                    0x33000000),
+                                                                offset: Offset(
+                                                                  0.0,
+                                                                  3.0,
+                                                                ),
+                                                              )
+                                                            ],
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          child:
+                                                              FlutterFlowDropDown<
+                                                                  String>(
+                                                            controller: _model
+                                                                    .selectedPodNumberController ??=
+                                                                FormFieldController<
+                                                                        String>(
+                                                                    currentUserDocument
+                                                                        ?.podNum),
+                                                            options: const [
+                                                              '1',
+                                                              '2',
+                                                              '3',
+                                                            ],
+                                                            onChanged: (val) {
+                                                              safeSetState(() =>
+                                                                  _model.selectedPodNumber =
+                                                                      val);
+                                                              validateForm();
+                                                            },
+                                                            width: 200.0,
+                                                            height: 40.0,
+                                                            maxHeight: 200.0,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Plus Jakarta Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_down_rounded,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              size: 24.0,
+                                                            ),
+                                                            fillColor: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            elevation: 2.0,
+                                                            borderColor: Colors
+                                                                .transparent,
+                                                            borderWidth: 0.0,
+                                                            borderRadius: 8.0,
+                                                            margin:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0),
+                                                            hidesUnderline:
+                                                                true,
+                                                            isOverButton: true,
+                                                            isSearchable: true,
+                                                            isMultiSelect:
+                                                                false,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(0.0,
+                                                                5.0, 0.0, 0.0),
+                                                        child: Text(
+                                                          'Recipient' + ' *',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Plus Jakarta Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(8.0,
+                                                                8.0, 8.0, 8.0),
+                                                        child:
+                                                            AuthUserStreamWidget(
+                                                          builder: (context) =>
+                                                              StreamBuilder<
+                                                                  List<
+                                                                      UsersRecord>>(
+                                                            stream:
+                                                                queryUsersRecord(
+                                                              queryBuilder: (usersRecord) =>
+                                                                  usersRecord
+                                                                      .where(
+                                                                        'groupID',
+                                                                        isEqualTo: valueOrDefault(
+                                                                            currentUserDocument?.groupID,
+                                                                            ''),
+                                                                      )
+                                                                      .where(
+                                                                          'podNum',
+                                                                          isEqualTo:
+                                                                              _model.selectedPodNumber),
+                                                            ),
+                                                            builder: (context,
+                                                                snapshot) {
+                                                              // Customize what your widget looks like when it's loading.
+                                                              if (!snapshot
+                                                                  .hasData) {
+                                                                return Center(
+                                                                  child:
+                                                                      SizedBox(
+                                                                    width: 50.0,
+                                                                    height:
+                                                                        50.0,
+                                                                    child:
+                                                                        CircularProgressIndicator(
+                                                                      valueColor:
+                                                                          AlwaysStoppedAnimation<
+                                                                              Color>(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              }
+                                                              List<UsersRecord>
+                                                                  containerUsersRecordList =
+                                                                  snapshot
+                                                                      .data!;
+
+                                                              return Container(
+                                                                width: 200.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  boxShadow: const [
+                                                                    BoxShadow(
+                                                                      blurRadius:
+                                                                          3.0,
+                                                                      color: Color(
+                                                                          0x33000000),
+                                                                      offset:
+                                                                          Offset(
+                                                                        0.0,
+                                                                        3.0,
+                                                                      ),
+                                                                    )
+                                                                  ],
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                ),
+                                                                child:
+                                                                    FlutterFlowDropDown<
+                                                                        String>(
+                                                                  controller: _model
+                                                                          .chooseRecipientValueController ??=
+                                                                      FormFieldController<
+                                                                          String>(
+                                                                    _model.chooseRecipientValue ??=
+                                                                        '',
+                                                                  ),
+                                                                  options: List<
+                                                                          String>.from(
+                                                                      containerUsersRecordList
+                                                                          .where((e) =>
+                                                                              () {
+                                                                                if (valueOrDefault(currentUserDocument?.userType, '') == 'Realtor') {
+                                                                                  return ((e.userType == 'Lender') && e.language.contains(_model.languageValue) && (e.isPaused != true));
+                                                                                } else if (valueOrDefault(currentUserDocument?.userType, '') == 'Lender') {
+                                                                                  return ((e.userType == 'Realtor') && e.language.contains(_model.languageValue) && (e.isPaused != true));
+                                                                                } else {
+                                                                                  return true;
+                                                                                }
+                                                                              }())
+                                                                          .toList()
+                                                                          .map((e) =>
+                                                                              e.uid)
+                                                                          .toList()),
+                                                                  optionLabels: containerUsersRecordList
+                                                                      .where((e) => () {
                                                                             if (valueOrDefault(currentUserDocument?.userType, '') ==
                                                                                 'Realtor') {
                                                                               return ((e.userType == 'Lender') && e.language.contains(_model.languageValue) && (e.isPaused != true));
@@ -2885,36 +3012,20 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                             }
                                                                           }())
                                                                       .toList()
-                                                                      .map((e) =>
-                                                                          e.uid)
-                                                                      .toList()),
-                                                              optionLabels:
-                                                                  containerUsersRecordList
-                                                                      .where((e) =>
-                                                                          () {
-                                                                            if (valueOrDefault(currentUserDocument?.userType, '') ==
-                                                                                'Realtor') {
-                                                                              return ((e.userType == 'Lender') && e.language.contains(_model.languageValue) && (e.isPaused != true));
-                                                                            } else if (valueOrDefault(currentUserDocument?.userType, '') ==
-                                                                                'Lender') {
-                                                                              return ((e.userType == 'Realtor') && e.language.contains(_model.languageValue) && (e.isPaused != true));
-                                                                            } else {
-                                                                              return true;
-                                                                            }
-                                                                          }())
-                                                                      .toList()
-                                                                      .map((e) =>
-                                                                          e.displayName)
+                                                                      .map((e) => e.displayName)
                                                                       .toList(),
-                                                              maxHeight: 200.0,
-                                                              onChanged: (val) =>
-                                                                  safeSetState(() =>
-                                                                      _model.chooseRecipientValue =
-                                                                          val),
-                                                              width: 200.0,
-                                                              height: 40.0,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
+                                                                  maxHeight:
+                                                                      200.0,
+                                                                  onChanged:
+                                                                      (val) {
+                                                                    safeSetState(() =>
+                                                                        _model.chooseRecipientValue =
+                                                                            val);
+                                                                    validateForm();
+                                                                  },
+                                                                  width: 200.0,
+                                                                  height: 40.0,
+                                                                  textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium
                                                                       .override(
@@ -2923,54 +3034,51 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
-                                                              hintText: _model
-                                                                          .prequalOrPendingValue !=
-                                                                      'High Nurture Lead'
-                                                                  ? FFLocalizations.of(
-                                                                              context)
-                                                                          .getText(
-                                                                              '7ocjy7o7') +
-                                                                      ' *'
-                                                                  : FFLocalizations.of(
+                                                                  hintText: FFLocalizations.of(
                                                                           context)
                                                                       .getText(
                                                                           '7ocjy7o7'),
-                                                              icon: Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_rounded,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                size: 24.0,
-                                                              ),
-                                                              fillColor: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              elevation: 2.0,
-                                                              borderColor: Colors
-                                                                  .transparent,
-                                                              borderWidth: 0.0,
-                                                              borderRadius: 8.0,
-                                                              margin:
-                                                                  const EdgeInsetsDirectional
+                                                                  icon: Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_down_rounded,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    size: 24.0,
+                                                                  ),
+                                                                  fillColor: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  elevation:
+                                                                      2.0,
+                                                                  borderColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  borderWidth:
+                                                                      0.0,
+                                                                  borderRadius:
+                                                                      8.0,
+                                                                  margin: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                       12.0,
                                                                       0.0,
                                                                       12.0,
                                                                       0.0),
-                                                              hidesUnderline:
-                                                                  true,
-                                                              isOverButton:
-                                                                  true,
-                                                              isSearchable:
-                                                                  true,
-                                                              isMultiSelect:
-                                                                  false,
-                                                            ),
-                                                          );
-                                                        },
+                                                                  hidesUnderline:
+                                                                      true,
+                                                                  isOverButton:
+                                                                      true,
+                                                                  isSearchable:
+                                                                      true,
+                                                                  isMultiSelect:
+                                                                      false,
+                                                                ),
+                                                              );
+                                                            },
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
+                                                    ],
                                                   ),
                                                 ],
                                               ),
@@ -2980,138 +3088,151 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                         .fromSTEB(
                                                         10.0, 0.0, 0.0, 0.0),
                                                 child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    logFirebaseEvent(
-                                                        'leadSubmitButton');
+                                                  onPressed: isFormValid
+                                                      ? () async {
+                                                          logFirebaseEvent(
+                                                              'leadSubmitButton');
 
-                                                    await LeadInfoRecord
-                                                        .collection
-                                                        .doc()
-                                                        .set({
-                                                      ...createLeadInfoRecordData(
-                                                        leadName: _model
-                                                            .leadNameTextController
-                                                            .text,
-                                                        leadEmail: _model
-                                                            .leadEmailTextController
-                                                            .text,
-                                                        leadRecipient: _model
-                                                            .chooseRecipientValue,
-                                                        leadSender:
-                                                            currentUserUid,
-                                                        leadPhone: _model
-                                                            .leadPhoneTextController
-                                                            .text,
-                                                        language: _model
-                                                            .languageValue,
-                                                        leadStage: 'Sent',
-                                                        prequalOrPending: _model
-                                                            .prequalOrPendingValue,
-                                                        senderInfo:
-                                                            currentUserReference,
-                                                        numComments: 0,
-                                                        notes: _model
-                                                            .notesTextController
-                                                            .text,
-                                                        loanPurpose: _model
-                                                            .loanPurposeValue,
-                                                        homeToSellLender: _model
-                                                            .homeToSellLenderValue,
-                                                        homeToSellRealtor: _model
-                                                            .hometoSellRealtorValue,
-                                                        prequalAmtLender: _model
-                                                            .prequalAmtValue,
-                                                        prequalAmtRealtor: _model
-                                                            .prequalAmtRealtorValue,
-                                                        highNurture: _model
-                                                            .highNurtureLeadValue,
-                                                        workingWithRealtor: _model
-                                                            .workingwithRealtorValue,
-                                                        workingWithLender: _model
-                                                            .workingwithLenderValue,
-                                                        readyToApply: _model
-                                                            .readytoApplyforMortgageValue,
-                                                        senderUserType:
-                                                            valueOrDefault(
-                                                                currentUserDocument
-                                                                    ?.userType,
-                                                                ''),
-                                                        senderGroupID:
-                                                            valueOrDefault(
-                                                                currentUserDocument
-                                                                    ?.groupID,
-                                                                ''),
-                                                      ),
-                                                      ...mapToFirestore(
-                                                        {
-                                                          'leadCreationDate':
-                                                              FieldValue
-                                                                  .serverTimestamp(),
-                                                          'lastChanged': FieldValue
-                                                              .serverTimestamp(),
-                                                          'areaOfInterest': _model
-                                                              .areaOfInterestValue,
-                                                          'leadID': uuid.v4(),
-                                                        },
-                                                      ),
-                                                    });
-                                                    safeSetState(() {
-                                                      _model
-                                                          .languageValueController
-                                                          ?.reset();
-                                                      _model
-                                                          .areaOfInterestValueController
-                                                          ?.reset();
-                                                      _model
-                                                          .prequalAmtValueController
-                                                          ?.reset();
-                                                      _model
-                                                          .prequalOrPendingValueController
-                                                          ?.reset();
-                                                      _model
-                                                          .loanPurposeValueController
-                                                          ?.reset();
-                                                      _model
-                                                          .prequalAmtRealtorValueController
-                                                          ?.reset();
-                                                      _model
-                                                          .chooseRecipientValueController
-                                                          ?.reset();
-                                                    });
-                                                    safeSetState(() {
-                                                      _model
-                                                          .homeToSellLenderValueController
-                                                          ?.reset();
-                                                      _model
-                                                          .highNurtureLeadValueController
-                                                          ?.reset();
-                                                      _model
-                                                          .workingwithRealtorValueController
-                                                          ?.reset();
-                                                      _model
-                                                          .hometoSellRealtorValueController
-                                                          ?.reset();
-                                                      _model
-                                                          .readytoApplyforMortgageValueController
-                                                          ?.reset();
-                                                      _model
-                                                          .workingwithLenderValueController
-                                                          ?.reset();
-                                                    });
-                                                    safeSetState(() {
-                                                      _model
-                                                          .leadNameTextController
-                                                          ?.clear();
-                                                      _model
-                                                          .leadEmailTextController
-                                                          ?.clear();
-                                                      _model
-                                                          .leadPhoneTextController
-                                                          ?.clear();
-                                                      _model.notesTextController
-                                                          ?.clear();
-                                                    });
-                                                  },
+                                                          await LeadInfoRecord
+                                                              .collection
+                                                              .doc()
+                                                              .set({
+                                                            ...createLeadInfoRecordData(
+                                                              leadName: _model
+                                                                  .leadNameTextController
+                                                                  .text,
+                                                              leadEmail: _model
+                                                                  .leadEmailTextController
+                                                                  .text,
+                                                              leadRecipient: _model
+                                                                  .chooseRecipientValue,
+                                                              leadSender:
+                                                                  currentUserUid,
+                                                              leadPhone: _model
+                                                                  .leadPhoneTextController
+                                                                  .text,
+                                                              language: _model
+                                                                  .languageValue,
+                                                              leadStage: 'Sent',
+                                                              prequalOrPending:
+                                                                  _model
+                                                                      .prequalOrPendingValue,
+                                                              senderInfo:
+                                                                  currentUserReference,
+                                                              numComments: 0,
+                                                              notes: _model
+                                                                  .notesTextController
+                                                                  .text,
+                                                              loanPurpose: _model
+                                                                  .loanPurposeValue,
+                                                              homeToSellLender:
+                                                                  _model
+                                                                      .homeToSellLenderValue,
+                                                              homeToSellRealtor:
+                                                                  _model
+                                                                      .hometoSellRealtorValue,
+                                                              prequalAmtLender:
+                                                                  _model
+                                                                      .prequalAmtValue,
+                                                              prequalAmtRealtor:
+                                                                  _model
+                                                                      .prequalAmtRealtorValue,
+                                                              highNurture: _model
+                                                                  .highNurtureLeadValue,
+                                                              workingWithRealtor:
+                                                                  _model
+                                                                      .workingwithRealtorValue,
+                                                              workingWithLender:
+                                                                  _model
+                                                                      .workingwithLenderValue,
+                                                              readyToApply: _model
+                                                                  .readytoApplyforMortgageValue,
+                                                              senderUserType:
+                                                                  valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.userType,
+                                                                      ''),
+                                                              senderGroupID:
+                                                                  valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.groupID,
+                                                                      ''),
+                                                            ),
+                                                            ...mapToFirestore(
+                                                              {
+                                                                'leadCreationDate':
+                                                                    FieldValue
+                                                                        .serverTimestamp(),
+                                                                'lastChanged':
+                                                                    FieldValue
+                                                                        .serverTimestamp(),
+                                                                'areaOfInterest':
+                                                                    _model
+                                                                        .areaOfInterestValue,
+                                                                'leadID':
+                                                                    uuid.v4(),
+                                                              },
+                                                            ),
+                                                          });
+                                                          safeSetState(() {
+                                                            _model
+                                                                .languageValueController
+                                                                ?.reset();
+                                                            _model
+                                                                .areaOfInterestValueController
+                                                                ?.reset();
+                                                            _model
+                                                                .prequalAmtValueController
+                                                                ?.reset();
+                                                            _model
+                                                                .prequalOrPendingValueController
+                                                                ?.reset();
+                                                            _model
+                                                                .loanPurposeValueController
+                                                                ?.reset();
+                                                            _model
+                                                                .prequalAmtRealtorValueController
+                                                                ?.reset();
+                                                            _model
+                                                                .chooseRecipientValueController
+                                                                ?.reset();
+                                                          });
+                                                          safeSetState(() {
+                                                            _model
+                                                                .homeToSellLenderValueController
+                                                                ?.reset();
+                                                            _model
+                                                                .highNurtureLeadValueController
+                                                                ?.reset();
+                                                            _model
+                                                                .workingwithRealtorValueController
+                                                                ?.reset();
+                                                            _model
+                                                                .hometoSellRealtorValueController
+                                                                ?.reset();
+                                                            _model
+                                                                .readytoApplyforMortgageValueController
+                                                                ?.reset();
+                                                            _model
+                                                                .workingwithLenderValueController
+                                                                ?.reset();
+                                                          });
+                                                          safeSetState(() {
+                                                            _model
+                                                                .leadNameTextController
+                                                                ?.clear();
+                                                            _model
+                                                                .leadEmailTextController
+                                                                ?.clear();
+                                                            _model
+                                                                .leadPhoneTextController
+                                                                ?.clear();
+                                                            _model
+                                                                .notesTextController
+                                                                ?.clear();
+                                                          });
+                                                        }
+                                                      : null,
                                                   text: FFLocalizations.of(
                                                           context)
                                                       .getText(
@@ -3128,9 +3249,11 @@ class _MainContractsWidgetState extends State<MainContractsWidget>
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
+                                                    color: isFormValid
+                                                        ? FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary
+                                                        : Colors.grey,
                                                     textStyle: FlutterFlowTheme
                                                             .of(context)
                                                         .titleSmall

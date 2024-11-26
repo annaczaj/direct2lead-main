@@ -14,9 +14,11 @@ class EditProfilePhotoWidget extends StatefulWidget {
   const EditProfilePhotoWidget({
     super.key,
     required this.userDoc,
+    required this.onPhotoChanged,
   });
 
   final UsersRecord? userDoc;
+  final Function(String) onPhotoChanged; // Callback to pass the new photo URL
 
   @override
   State<EditProfilePhotoWidget> createState() => _EditProfilePhotoWidgetState();
@@ -165,10 +167,10 @@ class _EditProfilePhotoWidgetState extends State<EditProfilePhotoWidget> {
                                                 shape: BoxShape.circle,
                                               ),
                                               child: CachedNetworkImage(
-                                                fadeInDuration:
-                                                    const Duration(milliseconds: 500),
-                                                fadeOutDuration:
-                                                    const Duration(milliseconds: 500),
+                                                fadeInDuration: const Duration(
+                                                    milliseconds: 500),
+                                                fadeOutDuration: const Duration(
+                                                    milliseconds: 500),
                                                 imageUrl: currentUserPhoto,
                                                 fit: BoxFit.cover,
                                               ),
@@ -185,10 +187,10 @@ class _EditProfilePhotoWidgetState extends State<EditProfilePhotoWidget> {
                                               shape: BoxShape.circle,
                                             ),
                                             child: CachedNetworkImage(
-                                              fadeInDuration:
-                                                  const Duration(milliseconds: 500),
-                                              fadeOutDuration:
-                                                  const Duration(milliseconds: 500),
+                                              fadeInDuration: const Duration(
+                                                  milliseconds: 500),
+                                              fadeOutDuration: const Duration(
+                                                  milliseconds: 500),
                                               imageUrl: _model.uploadedFileUrl,
                                               fit: BoxFit.cover,
                                             ),
@@ -287,6 +289,8 @@ class _EditProfilePhotoWidgetState extends State<EditProfilePhotoWidget> {
                                                 _model.uploadedFileUrl =
                                                     downloadUrls.first;
                                               });
+                                              widget.onPhotoChanged(
+                                                  _model.uploadedFileUrl);
                                               showUploadMessage(
                                                   context, 'Success!');
                                             } else {
@@ -303,12 +307,11 @@ class _EditProfilePhotoWidgetState extends State<EditProfilePhotoWidget> {
                                         ),
                                         options: FFButtonOptions(
                                           height: 44.0,
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
+                                              const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           textStyle:
@@ -360,12 +363,11 @@ class _EditProfilePhotoWidgetState extends State<EditProfilePhotoWidget> {
                                         ),
                                         options: FFButtonOptions(
                                           height: 44.0,
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
+                                              const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
                                           textStyle:

@@ -41,6 +41,9 @@ class _MainHomeAdminWidgetState extends State<MainHomeAdminWidget>
     super.initState();
     _model = createModel(context, () => MainHomeAdminModel());
 
+    // Load data immediately when the page is opened
+    loadData();
+
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'Main_HomeAdmin'});
     // On page load action.
@@ -519,6 +522,16 @@ class _MainHomeAdminWidgetState extends State<MainHomeAdminWidget>
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
+  // New method to load data
+  void loadData() async {
+    safeSetState(() {
+      _model.dropDownValueController1?.reset();
+      _model.dropDownValueController2?.reset();
+      _model.dropDownValueController3?.reset();
+      _model.dropDownValueController4?.reset();
+    });
+  }
+
   @override
   void dispose() {
     _model.dispose();
@@ -658,7 +671,7 @@ class _MainHomeAdminWidgetState extends State<MainHomeAdminWidget>
                                                           ?.groupID,
                                                       ''),
                                                 ),
-                                                options: [
+                                                options: const [
                                                   'AZFNT-RocketLocal',
                                                   'AZFNT-MomentumBrokers',
                                                 ], // Replace with your group IDs
@@ -695,8 +708,9 @@ class _MainHomeAdminWidgetState extends State<MainHomeAdminWidget>
                                                         .alternate,
                                                 borderWidth: 1.0,
                                                 borderRadius: 8.0,
-                                                margin: EdgeInsetsDirectional
-                                                    .fromSTEB(
+                                                margin:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
                                                         16.0, 4.0, 12.0, 4.0),
                                                 hidesUnderline: true,
                                                 isSearchable: false,
@@ -709,7 +723,7 @@ class _MainHomeAdminWidgetState extends State<MainHomeAdminWidget>
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 20.0),
+                                const SizedBox(height: 20.0),
                                 Align(
                                   alignment:
                                       const AlignmentDirectional(0.0, 1.0),
@@ -1427,7 +1441,7 @@ class _MainHomeAdminWidgetState extends State<MainHomeAdminWidget>
                                       controller:
                                           _model.dropDownValueController3 ??=
                                               FormFieldController<String>(null),
-                                      options: [
+                                      options: const [
                                         'Sent',
                                         'Accepted',
                                         'Closed',
@@ -1486,7 +1500,7 @@ class _MainHomeAdminWidgetState extends State<MainHomeAdminWidget>
                                       controller:
                                           _model.dropDownValueController4 ??=
                                               FormFieldController<String>(null),
-                                      options: ['Lender', 'Realtor'],
+                                      options: const ['Lender', 'Realtor'],
                                       onChanged: (val) => safeSetState(
                                           () => _model.dropDownValue4 = val),
                                       width: 200.0,

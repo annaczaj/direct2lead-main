@@ -215,6 +215,7 @@ class _ModalProfileEditAdminWidgetState
                                 onPressed: () async {
                                   logFirebaseEvent(
                                       'MODAL_PROFILE_EDIT_ADMIN_CHANGE_PHOTO_BT');
+
                                   await showModalBottomSheet(
                                     isScrollControlled: true,
                                     backgroundColor: Colors.transparent,
@@ -226,6 +227,13 @@ class _ModalProfileEditAdminWidgetState
                                             MediaQuery.viewInsetsOf(context),
                                         child: EditProfilePhotoWidget(
                                           userDoc: widget.userDoc!,
+                                          onPhotoChanged: (newPhotoUrl) {
+                                            // Update the userDoc with the new photo URL
+                                            widget.userDoc!.reference.set({
+                                              ...createUsersRecordData(
+                                                  photoUrl: newPhotoUrl)
+                                            });
+                                          },
                                         ),
                                       );
                                     },
@@ -1019,6 +1027,46 @@ class _ModalProfileEditAdminWidgetState
                                               letterSpacing: 0.0,
                                             ),
                                       )),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              16.0, 4.0, 0.0, 0.0),
+                                      child: SelectionArea(
+                                        child: (() {
+                                          try {
+                                            return Text(
+                                              dateTimeFormat(
+                                                "relative",
+                                                widget.userDoc!.lastActive!,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Plus Jakarta Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            );
+                                          } catch (e) {
+                                            return Text(
+                                              'Never',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Plus Jakarta Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            );
+                                          }
+                                        })(),
+                                      ),
                                     ),
                                   ],
                                 ),
